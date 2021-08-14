@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme-color" content=#000000>
+  <title>微信小程序：灵活适配不同标题栏高度的设备的方法 | 程序员玛丽的星海方舟</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="陈俪影">
+  <meta name="keywords" content="">
+  <meta name="description" content="陈俪影的博客">
+  <script id="hexo-configurations">
+  var CONFIG = {
+    root: '/',
+    theme: 'lx',
+    version: '0.3.10',
+    localsearch:{
+      "enable": true,
+      "trigger": "auto",
+      "top_n_per_article": 1,
+      "unescape": false,
+      "preload": false
+      },
+    path: 'search.xml'
+  };
+</script>
+
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/theme-lx@0.3.10-fixed/source/css/main.min.css">
+  <style type="text/css">
+    pre,
+    code {
+      font-family: 'Roboto Mono', monospace;
+    }
+    html {
+      font-family: 'Noto Serif SC', sans-serif;
+    }
+    body {
+      font-family: 'Noto Serif SC', sans-serif;
+    }
+    h1, h2, h3, h4, h5, figure {
+      font-family: 'Noto Serif SC', sans-serif;
+    }
+    .menu-container{
+      font-family: 'Noto Serif SC', sans-serif;
+    }
+  </style>
+
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/theme-lx@0.3.10-fixed/source/js/jquery.jside.menu.js"></script>
+	<script>
+	$(document).ready(function(){
+	$(".menu-container").jSideMenu({
+	    jSidePosition: "position-right",
+	    jSideSticky: true,
+	    jSideSkin: "black",
+	     });
+	}); 
+	</script>
+  
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto Mono:300,300italic,400,400italic,700,700italic|Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+<div class="single">
+<a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i></a>
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Search..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+<div id="page">
+<div id="lx-aside" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.10-fixed/source/images/post_cover.jpeg)" data-stellar-background-ratio="0.5">
+  <div class="overlay">
+  <div class="page-title">
+    <div class="avatar"><a href="/"><img src="/images/02-avatar.jpg"></a></div>
+    <span>2021-08-14</span>
+    <h2>微信小程序：灵活适配不同...</h2>
+    <div class="tags"><i class="fa fa-tag"></i><a class="tag-none-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a></div>
+    </div>
+</div>
+</div>
+
+<div id="lx-main-content">
+  <div class="lx-post">
+    <div class="lx-entry padding">
+      <div>
+        <h2 id="工程需求"><a href="#工程需求" class="headerlink" title="工程需求"></a>工程需求</h2><p>作为实习生在工作中遇到了这样的需求：需要顶部的标题栏和选择标签栏保持一直在窗口顶部（样式即top:0; position:fixed;），而其他的内容组件则可以随着页面滚动（样式即position:absolute;）。而我开发的小程序属于跨平台App，不知道公司的标题栏大小是如何设置的，总之会产生不同设备上标题栏高度不一的问题（尤其体现在微信小程序和hera生成的Android/IOS应用之间）。那么则需要解决一个问题，如何让absolute的内容组件自动贴着fixed的顶部组件生成呢？</p>
+<p>首先，对于需要分别设置不同position的组件，当然不能使用flex布局之类的进行自动黏贴。那么接下来的想法是想办法获取fixed部分的底部高度。</p>
+<h2 id="方案参照"><a href="#方案参照" class="headerlink" title="方案参照"></a>方案参照</h2><p>在公司其他员工的代码中发现了这样的操作：在html页面中建立一个wxs脚本，运行时获取设备是否为Android，如果是则通过Android系统接口获取标题栏高度而进行对固定内容组件的top样式的渲染，否则就不要使用位置fixed。</p>
+<p>私以为，还能够用更优雅的代码和适配性更强的方案去解决这个问题，于是经过一番思考有了以下的方案：</p>
+<h2 id="最终方案"><a href="#最终方案" class="headerlink" title="最终方案"></a>最终方案</h2><h3 id="大体思路如下："><a href="#大体思路如下：" class="headerlink" title="大体思路如下："></a>大体思路如下：</h3><p>在onLoad函数中使用微信小程序的SelectorQuery选取需要设置fixed的view，然后获取它的底部高度，再对需要设置absolute的内容组件的top样式进行渲染。</p>
+<h3 id="主要代码："><a href="#主要代码：" class="headerlink" title="主要代码："></a>主要代码：</h3><figure class="highlight javascript"><figcaption><span>index.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* page */</span></span><br><span class="line">	<span class="attr">data</span>: &#123;</span><br><span class="line">		<span class="attr">dAbsoluteTop</span>: <span class="number">0</span>, <span class="comment">//准备设置固定内容组件的高度</span></span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="attr">onLoad</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">const</span> that = <span class="built_in">this</span>;</span><br><span class="line">		<span class="keyword">const</span> query = wx.createSelectorQuery();</span><br><span class="line">		query.select(<span class="string">&#x27;#fixed-view&#x27;</span>).boundingClientRect();</span><br><span class="line">		query.selectViewport().scrollOffset();</span><br><span class="line">		query.exec(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">			that.setData(&#123;</span><br><span class="line">				<span class="attr">dAbsoluteTop</span>: res[<span class="number">0</span>].bottom <span class="comment">//根据底部渲染</span></span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;,</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><figcaption><span>index.wxml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;view id=&quot;fixed-view&quot; style=&quot;position: fixed; top: 0; display: flex; flex-direction: column;&quot;&gt;</span><br><span class="line">	&lt;titlebar /&gt; &lt;!-- 标题栏 --&gt;</span><br><span class="line">	&lt;tabbar /&gt; &lt;!-- 选择标签栏 --&gt;</span><br><span class="line">&lt;/view&gt;</span><br><span class="line">&lt;view style=&quot;position: absolute; top: &#123;&#123;dAbsolute&#125;&#125;;&quot;&gt;</span><br><span class="line">	&lt;!-- 内容 --&gt;</span><br><span class="line">&lt;/view&gt;</span><br></pre></td></tr></table></figure>
+
+<p>经不同设备检验，效果良好。</p>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="lx-navigation">
+	<div class="lx-cover prev lx-cover-sm" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.10-fixed/source/images/footer-l.jpeg)">
+		<div class="overlay"></div>
+		<a class="copy" href="#">
+			<div class="display-t">
+				<div class="display-tc">
+					<div>
+						<span>Next</span>
+						<h3>没有更新的文章</h3>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+        <div class="lx-cover next lx-cover-sm" style="background-image: url(//cdn.jsdelivr.net/npm/theme-lx@0.3.10-fixed/source/images/footer-r.jpeg)">
+		<div class="overlay"></div>
+		<a class="copy" href="/2021/08/09/hello-world/">
+			<div class="display-t">
+				<div class="display-tc">
+					<div>
+						<span>Prev</span>
+						<h3>Hello W...</h3>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+</div>
+
+</div>
+<div class="comment"><div id="comments"></div></div>
+<footer>
+  <div>
+  Copyright &copy; 2021.<a href="/">程序员玛丽的星海方舟</a><br>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme <a href="https://lx.js.org" target="_blank">Lx</a><br>
+  </div>
+</footer>
+
+</div>
+
+<button class="hamburger hamburger--arrow-r" type="button">
+    <div class="hamburger-box">
+      <div class="hamburger-inner"></div>
+    </div>
+</button> 
+<div class="menu visibility">
+  <div class="menu-head">
+    <span class="layer">
+      <div class="col">
+        <div class="row for-pic">
+          <div class="profile-pic">
+            <a href="/"><img src="/images/02-avatar.jpg" alt="陈俪影"/></a>
+          </div>
+        </div>
+        <div class="row for-name">
+          <p>陈俪影</p>
+          <span class="tagline">陈俪影的个人空间，用于分享自己学习、工作和兴趣中写程序的心得体会。</span>
+        </div>
+      </div>
+    </span>
+  </div>
+  <nav class="menu-container">
+  <ul class="menu-items">
+    <li><a href="/"><i class="fa fa-home fa-fw"></i>首页</a></li>
+    <li><a href="/archives/"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-th-list fa-fw"></i>分类</span>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a></li></ul>
+    </li>
+    
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-link fa-fw"></i>友链</span>
+        <ul>
+          <li> <a href="https://lx.js.org" target="_blank">Theme-Lx</a></li>
+        </ul>
+    </li>
+  </ul>
+  </nav>
+</div>
+
+<div class="gototop js-top">
+  <a href="#" class="js-gotop"><i class="fa fa-arrow-up"></i></a>
+</div>
+<script src="//cdn.jsdelivr.net/npm/theme-lx@0.3.10-fixed/source/js/jquery.easing.min.js"></script>
+<script>
+(function () {
+	"use strict";
+	var goToTop = function() {
+		$(".js-gotop").on("click", function(event){
+			event.preventDefault();
+			$("html, body").animate({
+				scrollTop: $("html").offset().top
+			}, 500, "easeInOutExpo");
+			return false;
+		});
+		$(window).scroll(function(){
+			var $win = $(window);
+			if ($win.scrollTop() > 200) {
+				$(".js-top").addClass("active");
+			} else {
+				$(".js-top").removeClass("active");
+			}
+		});
+	};
+	$(function(){
+		goToTop();
+	});
+}());
+</script>
+<script src="//cdn.jsdelivr.net/npm/theme-lx@0.3.10-fixed/source/js/local.search.js"></script>
+<script src="//cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'ppDCeYDI9Lamat17KrECdKpg-gzGzoHsz',
+    appKey: 'GvtpMFMScV3igjNY97UsEBr2',
+    placeholder: '可以留下你的想法哦！',
+    avatar: 'identicon',
+    meta: guest,
+    pageSize: '10' || 10,
+    lang: 'zh' || 'zh-cn'
+  });
+</script>
+
+</body>
+</html>
