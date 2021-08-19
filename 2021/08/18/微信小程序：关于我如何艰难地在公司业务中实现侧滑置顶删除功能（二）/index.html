@@ -110,6 +110,8 @@
 <h2 id="新的工程需求"><a href="#新的工程需求" class="headerlink" title="新的工程需求"></a>新的工程需求</h2><p>上次算是做出来一个像样的侧滑置顶删除功能了，在微信小程序调试中以及安卓机上调试都没有问题，但在iOS测试机上运行时却出现了问题：</p>
 <p>不知道是因为这个APP在iOS端上的一个整体功能还是微信小程序原生的触发，在右滑取消菜单的时候会触发一个返回到上级页面的操作……着实是让人不解。理论上，iOS原生的返回手势只有在手指接近屏幕左侧且右滑的时候才会触发。事实上，这个APP的另一个模块也有类似的侧滑删除功能，且右滑该条消息取消菜单时不会触发返回。于是mentor带我去请教了负责这块的iOS开发大哥，他表示：可以尝试在右滑取消时接管手势，但是微信小程序如何实现他也不知道。</p>
 <h2 id="初步想法：阻止手势穿透"><a href="#初步想法：阻止手势穿透" class="headerlink" title="初步想法：阻止手势穿透"></a>初步想法：阻止手势穿透</h2><p>微信小程序的事件有着冒泡机制，而手势则是整个窗口的一些事件（具体事件为tap, touchstart, touchmove, touchend, touchcancel等）。在wxml代码中进行事件捕捉时，需要设定组件的属性catchtap/bindtap, catchtouchstart/bindtouchstart等，这些都是用来捕捉微信小程序原生事件的属性。catch和bind的区别则是，catch会阻止事件冒泡，而bind不会。也就是说，只要设置catchtap，tap事件就会被局限在这个组件上，在它之后可能会收到事件的父组件、子组件都无法收到这个事件了。所以，如果对消息条组件设置catchtap，会不会就能够阻止页面返回呢？</p>
+<span id="more"></span>
+
 <h2 id="尝试：将bind换成catch"><a href="#尝试：将bind换成catch" class="headerlink" title="尝试：将bind换成catch"></a>尝试：将bind换成catch</h2><figure class="highlight plaintext"><figcaption><span>index.wxml</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;view wx:for=&quot;&#123;&#123;dataList&#125;&#125;&quot; data-index=&quot;&#123;&#123;index&#125;&#125;&quot; class=&quot;item &#123;&#123;item.isTouchMove ? &#x27;touch-move-active&#x27; : &#x27;&#x27;&#125;&#125;&quot; catchtouchstart=&quot;touchStart&quot; catchtouchmove=&quot;touchMove&quot;&gt;</span><br><span class="line">	&lt;!-- 内容 --&gt;</span><br><span class="line">&lt;/view&gt;</span><br></pre></td></tr></table></figure>
 
 <p>可以是可以阻止滚动，但结果带来了其他的麻烦，因为catch也阻止了上下滑动触发页面滚动的手势，所以如果有很多内容，手势会被限制在某条组件内，页面就动不了了。</p>

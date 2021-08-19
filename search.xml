@@ -1,34 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>微信小程序：灵活适配不同标题栏高度的设备的方法</title>
-    <url>/2021/08/14/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%EF%BC%9A%E7%81%B5%E6%B4%BB%E9%80%82%E9%85%8D%E4%B8%8D%E5%90%8C%E6%A0%87%E9%A2%98%E6%A0%8F%E9%AB%98%E5%BA%A6%E7%9A%84%E8%AE%BE%E5%A4%87%E7%9A%84%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<h2 id="工程需求"><a href="#工程需求" class="headerlink" title="工程需求"></a>工程需求</h2><p>开发的应用：用微信小程序经由hera生成的跨平台移动端App。</p>
-<p>作为实习生在工作中遇到了这样的需求：需要顶部的标题栏和选择标签栏保持一直在窗口顶部（样式即top:0; position:fixed;），而其他的内容组件则可以随着页面滚动（样式即position:absolute;）。而我开发的小程序属于跨平台App，不知道公司的标题栏大小是如何设置的，总之会产生不同设备上标题栏高度不一的问题（尤其体现在微信小程序和hera生成的Android/IOS应用之间）。那么则需要解决一个问题，如何让absolute的内容组件自动贴着fixed的顶部组件生成呢？</p>
-<p>首先，对于需要分别设置不同position的组件，当然不能使用flex布局之类的进行自动黏贴。那么接下来的想法是想办法获取fixed部分的底部高度。</p>
-<h2 id="方案参考"><a href="#方案参考" class="headerlink" title="方案参考"></a>方案参考</h2><p>在公司其他员工的代码中发现了这样的操作：在html页面中建立一个wxs脚本，运行时获取设备是否为Android，如果是则通过Android系统接口获取标题栏高度而进行对固定内容组件的top样式的渲染，否则就不要使用位置fixed。</p>
-<p>私以为，还能够用更优雅的代码和适配性更强的方案去解决这个问题，于是经过一番思考有了以下的方案：</p>
-<h2 id="最终方案"><a href="#最终方案" class="headerlink" title="最终方案"></a>最终方案</h2><h3 id="大体思路如下："><a href="#大体思路如下：" class="headerlink" title="大体思路如下："></a>大体思路如下：</h3><p>在onLoad函数中使用微信小程序的SelectorQuery选取需要设置fixed的view，然后获取它的底部高度，再对需要设置absolute的内容组件的top样式进行渲染。</p>
-<h3 id="主要代码："><a href="#主要代码：" class="headerlink" title="主要代码："></a>主要代码：</h3><figure class="highlight javascript"><figcaption><span>index.js</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">/* page */</span></span><br><span class="line">	<span class="attr">data</span>: &#123;</span><br><span class="line">		<span class="attr">dAbsoluteTop</span>: <span class="number">0</span>, <span class="comment">//准备设置固定内容组件的高度</span></span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="attr">onLoad</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">const</span> that = <span class="built_in">this</span>;</span><br><span class="line">		<span class="keyword">const</span> query = wx.createSelectorQuery();</span><br><span class="line">		query.select(<span class="string">&#x27;#fixed-view&#x27;</span>).boundingClientRect();</span><br><span class="line">		query.selectViewport().scrollOffset();</span><br><span class="line">		query.exec(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">			that.setData(&#123;</span><br><span class="line">				<span class="attr">dAbsoluteTop</span>: res[<span class="number">0</span>].bottom <span class="comment">//根据底部渲染</span></span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;,</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><figcaption><span>index.wxml</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;view id=&quot;fixed-view&quot; style=&quot;position: fixed; top: 0; display: flex; flex-direction: column;&quot;&gt;</span><br><span class="line">	&lt;titlebar /&gt; &lt;!-- 标题栏 --&gt;</span><br><span class="line">	&lt;tabbar /&gt; &lt;!-- 选择标签栏 --&gt;</span><br><span class="line">&lt;/view&gt;</span><br><span class="line">&lt;view style=&quot;position: absolute; top: &#123;&#123;dAbsolute&#125;&#125;;&quot;&gt;</span><br><span class="line">	&lt;!-- 内容 --&gt;</span><br><span class="line">&lt;/view&gt;</span><br></pre></td></tr></table></figure>
-
-<p>经不同设备检验，效果良好。</p>
-]]></content>
-      <categories>
-        <category>微信小程序</category>
-      </categories>
-      <tags>
-        <tag>微信小程序</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>关于我如何艰难地在公司业务中实现侧滑置顶删除功能（一）</title>
     <url>/2021/08/16/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%EF%BC%9A%E5%85%B3%E4%BA%8E%E6%88%91%E5%A6%82%E4%BD%95%E8%89%B0%E9%9A%BE%E5%9C%B0%E5%9C%A8%E5%85%AC%E5%8F%B8%E4%B8%9A%E5%8A%A1%E4%B8%AD%E5%AE%9E%E7%8E%B0%E4%BE%A7%E6%BB%91%E7%BD%AE%E9%A1%B6%E5%88%A0%E9%99%A4%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%80%EF%BC%89/</url>
     <content><![CDATA[<h2 id="工程需求"><a href="#工程需求" class="headerlink" title="工程需求"></a>工程需求</h2><p>开发的应用：用微信小程序经由hera生成的跨平台移动端APP。</p>
 <p>在“收藏列表”的模块中，需要添加一个类似于微信/QQ对话列表，对每一条信息左滑可以置顶或删除的功能。</p>
 <h2 id="方案参考"><a href="#方案参考" class="headerlink" title="方案参考"></a>方案参考</h2><p>由于公司的APP构建框架似乎无法显示微信的新组件movable-view，因此选用了网络上使用view组件来实现的方案。</p>
 <p>参考链接：<a href="https://blog.csdn.net/LiaoFengJi/article/details/105218664">https://blog.csdn.net/LiaoFengJi/article/details/105218664</a></p>
+<span id="more"></span>
+
 <h2 id="提炼代码如下："><a href="#提炼代码如下：" class="headerlink" title="提炼代码如下："></a>提炼代码如下：</h2><figure class="highlight plaintext"><figcaption><span>index.wxml</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;view wx:for=&quot;&#123;&#123;dataList&#125;&#125;&quot; data-index=&quot;&#123;&#123;index&#125;&#125;&quot; class=&quot;item &#123;&#123;item.isTouchMove ? &#x27;touch-move-active&#x27; : &#x27;&#x27;&#125;&#125;&quot; bindtouchstart=&quot;touchStart&quot; bindtouchmove=&quot;touchMove&quot;&gt;</span><br><span class="line">	&lt;!-- 这里原本bindtouchstart和bindtouchmove是放在内容的组件里（item-left)，但因为我的按钮做得比较大所以设成了整个组件都可以滑动，使得整条内容上都可以右滑关闭菜单 --&gt;</span><br><span class="line">	&lt;view class=&quot;item-left&quot; data-index=&quot;&#123;&#123;index&#125;&#125;&quot;&gt;</span><br><span class="line">		&lt;!-- 每条要显示的内容 --&gt;</span><br><span class="line">	&lt;/view&gt;</span><br><span class="line">	&lt;view class=&quot;item-right&quot;&gt;</span><br><span class="line">		&lt;view class=&quot;btn-right&quot; bindtap=&quot;setTopItem&quot;&gt;置顶&lt;/view&gt;</span><br><span class="line">		&lt;view class=&quot;btn-right&quot; bindtap=&quot;deleteItem&quot;&gt;删除&lt;/view&gt;</span><br><span class="line">	&lt;/view&gt;</span><br><span class="line">&lt;/view&gt;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plaintext"><figcaption><span>index.wxss</span></figcaption><table><tr><td class="code"><pre><span class="line">.item &#123;</span><br><span class="line">  display: flex;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 内容部分 */</span><br><span class="line">.item-left &#123;</span><br><span class="line">  width: 100%;</span><br><span class="line">  /*关键代码*/</span><br><span class="line">  margin-left: -400rpx; /*rpx根据需要调整，具体数值为按钮部分的宽度*/</span><br><span class="line">  transform: translateX(400rpx); /*rpx根据需要调整，具体数值为按钮部分的宽度*/</span><br><span class="line">  -webkit-transition: all 0.4s;</span><br><span class="line">  transition: all 0.4s;</span><br><span class="line">  -webkit-transform: translateX(400rpx); /*rpx根据需要调整，具体数值为按钮部分的宽度*/</span><br><span class="line">  /*关键代码*/</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 按钮部分 */</span><br><span class="line">.item-right &#123;</span><br><span class="line">  height: 100%;</span><br><span class="line">  width: 400rpx; /*根据需要调整*/</span><br><span class="line">  display: flex;</span><br><span class="line">  flex-direction: row;</span><br><span class="line">  /*关键代码*/</span><br><span class="line">  transform: translateX(420rpx); /*rpx根据需要调整，具体数值为按钮部分的宽度多一些*/</span><br><span class="line">  -webkit-transition: all 0.4s;</span><br><span class="line">  transition: all 0.4s;</span><br><span class="line">  -webkit-transform: translateX(420rpx); /*rpx根据需要调整，具体数值为按钮部分的宽度多一些*/</span><br><span class="line">  /*关键代码*/</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.btn-right &#123;</span><br><span class="line">  width: 50%; /*这里根据自己的需要划成了两半*/</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 向左滑动 */</span><br><span class="line">.touch-move-active .item-left,</span><br><span class="line">.touch-move-active .item-right &#123;</span><br><span class="line">  /*关键代码*/</span><br><span class="line">  -webkit-transform: translateX(0);</span><br><span class="line">  transform: translateX(0);</span><br><span class="line">  /*关键代码*/</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -54,6 +34,8 @@
 <h2 id="新的工程需求"><a href="#新的工程需求" class="headerlink" title="新的工程需求"></a>新的工程需求</h2><p>上次算是做出来一个像样的侧滑置顶删除功能了，在微信小程序调试中以及安卓机上调试都没有问题，但在iOS测试机上运行时却出现了问题：</p>
 <p>不知道是因为这个APP在iOS端上的一个整体功能还是微信小程序原生的触发，在右滑取消菜单的时候会触发一个返回到上级页面的操作……着实是让人不解。理论上，iOS原生的返回手势只有在手指接近屏幕左侧且右滑的时候才会触发。事实上，这个APP的另一个模块也有类似的侧滑删除功能，且右滑该条消息取消菜单时不会触发返回。于是mentor带我去请教了负责这块的iOS开发大哥，他表示：可以尝试在右滑取消时接管手势，但是微信小程序如何实现他也不知道。</p>
 <h2 id="初步想法：阻止手势穿透"><a href="#初步想法：阻止手势穿透" class="headerlink" title="初步想法：阻止手势穿透"></a>初步想法：阻止手势穿透</h2><p>微信小程序的事件有着冒泡机制，而手势则是整个窗口的一些事件（具体事件为tap, touchstart, touchmove, touchend, touchcancel等）。在wxml代码中进行事件捕捉时，需要设定组件的属性catchtap/bindtap, catchtouchstart/bindtouchstart等，这些都是用来捕捉微信小程序原生事件的属性。catch和bind的区别则是，catch会阻止事件冒泡，而bind不会。也就是说，只要设置catchtap，tap事件就会被局限在这个组件上，在它之后可能会收到事件的父组件、子组件都无法收到这个事件了。所以，如果对消息条组件设置catchtap，会不会就能够阻止页面返回呢？</p>
+<span id="more"></span>
+
 <h2 id="尝试：将bind换成catch"><a href="#尝试：将bind换成catch" class="headerlink" title="尝试：将bind换成catch"></a>尝试：将bind换成catch</h2><figure class="highlight plaintext"><figcaption><span>index.wxml</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;view wx:for=&quot;&#123;&#123;dataList&#125;&#125;&quot; data-index=&quot;&#123;&#123;index&#125;&#125;&quot; class=&quot;item &#123;&#123;item.isTouchMove ? &#x27;touch-move-active&#x27; : &#x27;&#x27;&#125;&#125;&quot; catchtouchstart=&quot;touchStart&quot; catchtouchmove=&quot;touchMove&quot;&gt;</span><br><span class="line">	&lt;!-- 内容 --&gt;</span><br><span class="line">&lt;/view&gt;</span><br></pre></td></tr></table></figure>
 
 <p>可以是可以阻止滚动，但结果带来了其他的麻烦，因为catch也阻止了上下滑动触发页面滚动的手势，所以如果有很多内容，手势会被限制在某条组件内，页面就动不了了。</p>
@@ -72,6 +54,30 @@
 
 <p>经检验，如果动画设在0.3s，对于快速滑动也能比较好地适应。既保证了动画的流畅性，又保证了接管手势，不触发意外返回。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>至此，这个功能总算是顺利完成。虽然性能问题可能有待商榷（因为要进行大量的if else），但是目前来说是没有想出更好的解决方法。我感觉这个功能对我来说还是比较有锻炼性的，如果另辟蹊径也能达到目的的话，不妨大胆尝试。如有更好的想法，欢迎在评论区留言。</p>
+]]></content>
+      <categories>
+        <category>微信小程序</category>
+      </categories>
+      <tags>
+        <tag>微信小程序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>微信小程序：灵活适配不同标题栏高度的设备的方法</title>
+    <url>/2021/08/14/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%EF%BC%9A%E7%81%B5%E6%B4%BB%E9%80%82%E9%85%8D%E4%B8%8D%E5%90%8C%E6%A0%87%E9%A2%98%E6%A0%8F%E9%AB%98%E5%BA%A6%E7%9A%84%E8%AE%BE%E5%A4%87%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="工程需求"><a href="#工程需求" class="headerlink" title="工程需求"></a>工程需求</h2><p>开发的应用：用微信小程序经由hera生成的跨平台移动端App。</p>
+<p>作为实习生在工作中遇到了这样的需求：需要顶部的标题栏和选择标签栏保持一直在窗口顶部（样式即top:0; position:fixed;），而其他的内容组件则可以随着页面滚动（样式即position:absolute;）。而我开发的小程序属于跨平台App，不知道公司的标题栏大小是如何设置的，总之会产生不同设备上标题栏高度不一的问题（尤其体现在微信小程序和hera生成的Android/IOS应用之间）。那么则需要解决一个问题，如何让absolute的内容组件自动贴着fixed的顶部组件生成呢？</p>
+<p>首先，对于需要分别设置不同position的组件，当然不能使用flex布局之类的进行自动黏贴。那么接下来的想法是想办法获取fixed部分的底部高度。</p>
+<h2 id="方案参考"><a href="#方案参考" class="headerlink" title="方案参考"></a>方案参考</h2><p>在公司其他员工的代码中发现了这样的操作：在html页面中建立一个wxs脚本，运行时获取设备是否为Android，如果是则通过Android系统接口获取标题栏高度而进行对固定内容组件的top样式的渲染，否则就不要使用位置fixed。</p>
+<p>私以为，还能够用更优雅的代码和适配性更强的方案去解决这个问题，于是经过一番思考有了以下的方案：</p>
+<span id="more"></span>
+
+<h2 id="最终方案"><a href="#最终方案" class="headerlink" title="最终方案"></a>最终方案</h2><h3 id="大体思路如下："><a href="#大体思路如下：" class="headerlink" title="大体思路如下："></a>大体思路如下：</h3><p>在onLoad函数中使用微信小程序的SelectorQuery选取需要设置fixed的view，然后获取它的底部高度，再对需要设置absolute的内容组件的top样式进行渲染。</p>
+<h3 id="主要代码："><a href="#主要代码：" class="headerlink" title="主要代码："></a>主要代码：</h3><figure class="highlight javascript"><figcaption><span>index.js</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">/* page */</span></span><br><span class="line">	<span class="attr">data</span>: &#123;</span><br><span class="line">		<span class="attr">dAbsoluteTop</span>: <span class="number">0</span>, <span class="comment">//准备设置固定内容组件的高度</span></span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="attr">onLoad</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">const</span> that = <span class="built_in">this</span>;</span><br><span class="line">		<span class="keyword">const</span> query = wx.createSelectorQuery();</span><br><span class="line">		query.select(<span class="string">&#x27;#fixed-view&#x27;</span>).boundingClientRect();</span><br><span class="line">		query.selectViewport().scrollOffset();</span><br><span class="line">		query.exec(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">			that.setData(&#123;</span><br><span class="line">				<span class="attr">dAbsoluteTop</span>: res[<span class="number">0</span>].bottom <span class="comment">//根据底部渲染</span></span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;,</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><figcaption><span>index.wxml</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;view id=&quot;fixed-view&quot; style=&quot;position: fixed; top: 0; display: flex; flex-direction: column;&quot;&gt;</span><br><span class="line">	&lt;titlebar /&gt; &lt;!-- 标题栏 --&gt;</span><br><span class="line">	&lt;tabbar /&gt; &lt;!-- 选择标签栏 --&gt;</span><br><span class="line">&lt;/view&gt;</span><br><span class="line">&lt;view style=&quot;position: absolute; top: &#123;&#123;dAbsolute&#125;&#125;;&quot;&gt;</span><br><span class="line">	&lt;!-- 内容 --&gt;</span><br><span class="line">&lt;/view&gt;</span><br></pre></td></tr></table></figure>
+
+<p>经不同设备检验，效果良好。</p>
 ]]></content>
       <categories>
         <category>微信小程序</category>
