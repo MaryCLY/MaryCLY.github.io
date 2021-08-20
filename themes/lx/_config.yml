@@ -1,0 +1,157 @@
+### Welcome to Hexo-Theme-Lx
+###Author:blleng(https://github.com/blleng)
+###Version:v0.3.10
+version: 0.3.10
+
+# favicon
+favicon: //cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/物理2-飞船2.svg
+  #favicon.ico
+
+# Theme-color for Android Chrome
+theme_color: "#000000"
+
+# personal information
+personal_des: 陈俪影的个人空间，用于分享自己学习、工作和兴趣中写程序的心得体会。
+
+# avatar
+avatar: //cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/02-avatar.jpg
+  # /images/02-avatar.jpg
+  
+
+###The options below are images information
+# Home cover
+cover: //cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/stars.jpg
+  # /images/stars.jpg
+# page cover
+postcover: //cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/earth.jpg
+  # //cdn.jsdelivr.net/npm/theme-lx@0.3.10-fixed/source/images/post_cover.jpeg
+# the cover of newer or older post
+pre_post: //cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/moon.jpg
+  # //cdn.jsdelivr.net/npm/theme-lx@0.3.10-fixed/source/images/footer-r.jpeg
+nex_post: //cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/astronaut.jpg
+  # //cdn.jsdelivr.net/npm/theme-lx@0.3.10-fixed/source/images/footer-l.jpeg
+
+# The theme of sidebar
+##pure color：green,red,blue,bnp(bright neon pink),orange,black,pink,gol-b(golden brown),greenish(greenish blue)
+##gradient color：endless-river,crazy-orange,between-clouds,amethyst,steel-man,d2f(dance to forget),park-life,moonlit,fb-messenger,flickr
+## default: black-grey
+menu_theme: black
+
+# menu content
+menu:
+  category: true #category
+  pages:  #the page created by yourself
+    enable: false
+    links:
+      Guestbook: guestbook/
+      About: about/
+  friends:
+    enable: true
+    links:
+      Theme-Lx: https://lx.js.org，
+      Hongwei-Fan-Studio: https://hwfan.io,
+      高渐离の屋: https://blog.gaojianli.me,
+
+
+
+# social links
+#
+# links:
+# name:
+#   icon: fontawesome icon
+#   link: url
+social:
+  enable: true
+  links:
+    GitHub:
+      icon: github
+      link: https://github.com/MaryCLY
+  #  Email:
+  #    icon: envelope
+  #    link: mailto:your@email.address
+  #  Weibo:
+  #    icon: weibo
+  #    link: https://weibo.com/yourname
+  #  Twitter:
+  #    icon: twitter
+  #    link: https://twitter.com/yourname
+  #  Instagram:
+  #    icon: instagram
+  #    link: https://instagram.com/yourname
+
+# local search
+#install first:
+#'npm install hexo-generator-searchdb -s'
+local_search:
+  enable: true
+  trigger: auto #'auto' or 'manual' 
+  top_n_per_article: 1
+  unescape: false
+  preload: false
+  placeholder: Search...
+
+# footer
+footer:
+
+# Analytics
+google_analytics: G-TJ8701JF8M
+baidu_analytics: #Baidu ID
+
+# Lx use valine as comment system
+# You should create an application in Leancloud to get the appid and appkey
+comment:
+  enable: true
+  appid: ppDCeYDI9Lamat17KrECdKpg-gzGzoHsz
+  appkey: GvtpMFMScV3igjNY97UsEBr2
+  notify: false
+  verify: false
+  placeholder: 可以留下你的想法哦！
+  avatar: identicon
+  guest_info: nick
+  pageSize: 10
+  language: zh
+  cdn: //cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js
+
+# Mathjax
+mathjax:
+  enable: false
+  cdn: //cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-svg.js
+
+# FontAwesome-CDN
+font_awesome: //cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css
+
+# Font
+font:
+  enable: true
+  host: //fonts.googleapis.com
+  codes: ##the font for codes
+    enable: true
+    family: Roboto Mono
+  else:  ##the font for others
+    enable: true
+    family: Noto Serif SC
+
+
+    
+########### Develop Options ############
+############# Warning ##################
+####### Don't edit options below #######
+## unless you know what you are doing ##
+############# Warning ##################
+
+
+
+#The dir of Js and Css
+base_file:
+  jquery_cdn: //cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js
+  js: //cdn.jsdelivr.net/npm/theme-lx@0.3.10-fixed/source/js/
+  css: //cdn.jsdelivr.net/npm/theme-lx@0.3.10-fixed/source/css/
+
+#develop mode
+#If true，`lx` will load js and css from local `source` dir.
+#Local css file---> 'themes/lx/source/css'
+#Local js file dir---> 'themes/lx/sourc/js/'
+###
+#Special Tips: 'themes/lx/source/css/main.min.css' is only for CDN and it doesn't work under any mode.
+###
+develop: false
