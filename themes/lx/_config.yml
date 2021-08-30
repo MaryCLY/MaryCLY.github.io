@@ -41,9 +41,9 @@ menu_theme: black
 menu:
   category: true #category
   pages:  #the page created by yourself
-    enable: false
+    enable: true
     links:
-      Guestbook: guestbook/
+      # Guestbook: guestbook/
       About: about/
   friends:
     enable: true
