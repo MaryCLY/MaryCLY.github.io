@@ -1,0 +1,336 @@
+layout: false
+---
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="theme-color" content="#000000">
+		<title>巨匠手工收益计算器</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="陈俪影">
+		<meta name="keywords" content>
+		<meta name="description" content="陈俪影的博客">
+		<link rel="shortcut icon" href="//cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/物理2-飞船2.svg">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+
+		<style type="text/css">
+		    @media (max-width: 768px){
+		    	#header{
+		    		width: 100%;
+		    		flex: 0 0 9vh;
+		    		display: flex;
+		    		justify-content: center;
+		    		align-items: center;
+		    	}
+		    	#content_1{
+		    		width: 100%;
+		    		height: 90vh;
+		    		flex: 0 0 90vh;
+		    	}
+		    	#picture_container_cat{
+					display: none;
+				}
+				#content_2{
+					width: 100%;
+					height: 100%;
+					background-image: url('背景1.jpg');
+					background-size: cover;
+				    background-repeat: no-repeat;
+				    background-position: center;
+				    display: flex;
+				    align-items: center;
+				    justify-content: center;
+				}
+				#btn_form_back{
+					display: none;
+				}
+				#title{
+					font-size: 24px;
+					font-weight: bold;
+					font-family: 'Noto Serif SC', serif;
+				}
+				.btn_form{
+					margin: 0;
+				}
+				.btn{
+					background-color: lightcoral;
+					border: none;
+					border-radius: 1vh;
+					width: 100%;
+					height: 10vh;
+					font-size: 13px;
+					word-break: break-all;
+	                font-family: 'Noto Serif SC', serif;
+	                font-weight: bold;
+	                color: white;
+				}
+				.material{
+					width: 35px;
+					height: 35px;
+				}
+				.input_price{
+					width: 50px;
+				}
+				.input_compute{
+					width: 80px;
+				}
+		    }
+		    @media (min-width: 769px){
+		    	#header{
+		    		width: 100%;
+		    		flex: 0 0 9vh;
+		    		display: flex;
+		    		justify-content: center;
+		    		align-items: center;
+		    	}
+		    	#content_1{
+					width: 100%;
+					height: 90vh;
+					flex: 0 0 90vh;
+					display: flex;
+					flex-direction: row;
+					justify-content: center;
+					align-items: center;
+				}
+				#picture_container_cat{
+					height: 80%;
+					flex: 0 1;
+				}
+				#content_2{
+					height: 80%;
+					flex: 1 0 60%;
+					background-image: url('背景1.jpg');
+					background-size: cover;
+				    background-repeat: no-repeat;
+				    background-position: center;
+				    display: flex;
+				    align-items: center;
+				    justify-content: center;
+				}
+				#btn_form_back{
+				    margin: 1.5vh;
+				    position: absolute;
+			    }
+				.btn_form{
+					margin: 0;
+				}
+				.btn{
+					background-color: lightcoral;
+					border: none;
+	                border-radius: 2vh;
+	                width: max-content;
+	                height: max-content;
+	                font-size: 13px;
+	                font-family: 'Noto Serif SC', serif;
+	                font-weight: bold;
+	                color: white;
+	                padding: 2vh;
+	                cursor: pointer;
+				}
+				.btn:hover{
+					color: mistyrose;
+				}
+				#title{
+					font-size: 40px;
+					font-weight: bold;
+					font-family: 'Noto Serif SC', serif;
+				}
+				.material{
+					width: 50px;
+					height: 50px;
+				}
+				.input_price{
+					width: 80px;
+				}
+				.input_compute{
+					width: 110px;
+				}
+		    }
+		    #main{
+		    	background-color: white;
+	    		position: absolute;
+				top: 0;
+				left: 0;
+	    		width: 100vw;
+	    		display: flex;
+			    flex-direction: column;
+			    justify-content: space-between;
+		    }
+		    #line{
+		    	width: 100%;
+		    	flex: 0 0 1vh;
+		    	background-color: lightcoral;
+		    }
+			#img_cat{
+				height: 100%;
+			}
+			#content_3{
+				width: 90%;
+				height: 90%;
+				background-color: rgba(255, 255, 255, 0.8);
+				display: flex;
+			}
+			.content_col{
+				display: table;
+				flex: 0 0 40%;
+				margin: 5%;
+			}
+			.content_table_row{
+				display: table-row;
+				/*text-align: center;*/
+			}
+/*			.content_table_col{
+				display: table-column;
+			}*/
+			.content_table_cell{
+				display: table-cell;
+				text-align: center;
+				vertical-align: middle;
+				font-family: 'Noto Serif SC', serif;
+			}
+			.content_table_text{
+				display: table-caption;
+				text-align: center;
+				font-family: 'Noto Serif SC', serif;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="main">
+			<form class="btn_form" id="btn_form_back" method="get" action="../index.html" target="_self">
+				<button class="btn" id="btn_back">返回主页</button>
+			</form>
+			<div id="header">	
+				<div id="title">巨匠手工收益计算器</div>
+			</div>
+			<div id="line"></div>
+			<div id="content_1">
+				<div class="picture_container" id="picture_container_cat">
+					<img id="img_cat" src="/%E5%B7%A8%E5%8C%A0%E6%89%8B%E5%B7%A5%E6%94%B6%E7%9B%8A%E8%AE%A1%E7%AE%97%E5%99%A8/女仆猫猫1.png">
+				</div>
+				<div id="content_2">
+					<div id="content_3">
+						<div class="content_col">
+							<div class="content_table_text">请输入材料的价格</div>
+							<div class="content_table_row">
+								<div class="content_table_cell"><img class="material" src="/%E5%B7%A8%E5%8C%A0%E6%89%8B%E5%B7%A5%E6%94%B6%E7%9B%8A%E8%AE%A1%E7%AE%97%E5%99%A8/地下天然水.png"></div>
+								<div class="content_table_cell"><input class="input_price" type="number" name="price_water" value="0">/个</div>
+							</div>
+							<div class="content_table_row">
+								<div class="content_table_cell"><img class="material" src="/%E5%B7%A8%E5%8C%A0%E6%89%8B%E5%B7%A5%E6%94%B6%E7%9B%8A%E8%AE%A1%E7%AE%97%E5%99%A8/水螅虫的伞盖.png"></div>
+								<div class="content_table_cell"><input class="input_price" type="number" name="price_hydra" value="0">/个</div>
+							</div>
+							<div class="content_table_row">
+								<div class="content_table_cell"><img class="material" src="/%E5%B7%A8%E5%8C%A0%E6%89%8B%E5%B7%A5%E6%94%B6%E7%9B%8A%E8%AE%A1%E7%AE%97%E5%99%A8/青柠罗勒草.png"></div>
+								<div class="content_table_cell"><input class="input_price" type="number" name="price_herb" value="0">/个</div>
+							</div>
+							<div class="content_table_row">
+								<div class="content_table_cell"><img class="material" src="/%E5%B7%A8%E5%8C%A0%E6%89%8B%E5%B7%A5%E6%94%B6%E7%9B%8A%E8%AE%A1%E7%AE%97%E5%99%A8/葛根.png"></div>
+								<div class="content_table_cell"><input class="input_price" type="number" name="price_geroot" value="0">/个</div>
+							</div>
+							<div class="content_table_row">
+								<div class="content_table_cell"><img class="material" src="/%E5%B7%A8%E5%8C%A0%E6%89%8B%E5%B7%A5%E6%94%B6%E7%9B%8A%E8%AE%A1%E7%AE%97%E5%99%A8/雷之水晶.png"></div>
+								<div class="content_table_cell"><input class="input_price" type="number" name="price_thunder_crys" value="0">/个</div>
+							</div>
+							<div class="content_table_row">
+								<div class="content_table_cell"><img class="material" src="/%E5%B7%A8%E5%8C%A0%E6%89%8B%E5%B7%A5%E6%94%B6%E7%9B%8A%E8%AE%A1%E7%AE%97%E5%99%A8/水之水晶.png"></div>
+								<div class="content_table_cell"><input class="input_price" type="number" name="price_water_crys" value="0">/个</div>
+							</div>
+							<script type="text/javascript">
+								function setStoragePrice(name){
+									document.getElementsByName(name)[0].value = localStorage.getItem(name);
+								}
+								if(localStorage.getItem("hasMaterialPrices")){
+									setStoragePrice('price_water');
+									setStoragePrice('price_hydra');
+									setStoragePrice('price_herb');
+									setStoragePrice('price_geroot');
+									setStoragePrice('price_thunder_crys');
+									setStoragePrice('price_water_crys');
+								}
+							</script>
+						</div>
+						<div class="content_col">
+							<div class="content_table_row">
+								<div class="content_table_cell">
+									<script type="text/javascript">
+										function fillEmptyAndSaveData(name){
+											if(!document.getElementsByName(name)[0].value.length || Number.isNaN(document.getElementsByName(name)[0].value)){
+												document.getElementsByName(name)[0].value = "0"; // 空值处理
+											}
+											localStorage.setItem(name, document.getElementsByName(name)[0].value); // 保存本地记录
+										}
+										function computeCost(){
+											var cost = 0;
+											
+											fillEmptyAndSaveData('price_water');
+											cost += parseInt(document.getElementsByName('price_water')[0].value);
+
+											fillEmptyAndSaveData('price_hydra');
+											cost += 2 * parseInt(document.getElementsByName('price_hydra')[0].value);
+
+											fillEmptyAndSaveData('price_herb');
+											cost += 2 * parseInt(document.getElementsByName('price_herb')[0].value);
+
+											fillEmptyAndSaveData('price_geroot');
+											cost += 2 * parseInt(document.getElementsByName('price_geroot')[0].value);
+
+											fillEmptyAndSaveData('price_thunder_crys');
+											cost += 7 * parseInt(document.getElementsByName('price_thunder_crys')[0].value);
+
+											fillEmptyAndSaveData('price_water_crys');
+											cost += 7 * parseInt(document.getElementsByName('price_water_crys')[0].value);
+
+											cost *= 333;
+											document.getElementsByName('cost')[0].value = cost;
+
+											localStorage.setItem("hasMaterialPrices", true);
+										}
+									</script>
+									<button class="btn" onclick="computeCost()">通过材料费计算成本</button>
+								</div>
+							</div>
+							<div class="content_table_row">
+								<div class="content_table_cell">
+									一组(999)成本<input class="input_compute" type="number" name="cost" value="0">
+								</div>
+							</div>
+							<div class="content_table_row">	
+								<div class="content_table_cell">
+									一组(999)售价<input class="input_compute" type="number" name="sell" value="0">
+								</div>
+							</div>
+							<script type="text/javascript">
+								if(localStorage.getItem("hasSellPrice")){
+									setStoragePrice("sell");
+								}
+							</script>
+							<div class="content_table_row">
+								<div class="content_table_cell">
+									<script type="text/javascript">
+										function computeProfit(){
+											fillEmptyAndSaveData('cost');
+											fillEmptyAndSaveData('sell');
+											document.getElementsByName('profit')[0].value = parseInt(document.getElementsByName('sell')[0].value) - parseInt(document.getElementsByName('cost')[0].value);
+											localStorage.setItem("hasSellPrice", true);
+										}
+									</script>
+									<button class="btn" onclick="computeProfit()">通过成本和售价计算利润</button>
+								</div>
+							</div>
+							<div class="content_table_row">
+								<div class="content_table_cell">
+									一组(999)利润<input class="input_compute" type="number" name="profit" value="0" readonly="true">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
