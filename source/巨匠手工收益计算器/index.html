@@ -15,6 +15,7 @@ layout: false
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
 		<style type="text/css">
 		    @media (max-width: 768px){
@@ -216,119 +217,108 @@ layout: false
 					<div id="content_3">
 						<div class="content_col">
 							<div class="content_table_text">请输入材料的价格</div>
-							<div class="content_table_row">
-								<div class="content_table_cell"><img class="material" src="/%E5%B7%A8%E5%8C%A0%E6%89%8B%E5%B7%A5%E6%94%B6%E7%9B%8A%E8%AE%A1%E7%AE%97%E5%99%A8/地下天然水.png"></div>
-								<div class="content_table_cell"><input class="input_price" type="number" name="price_water" value="0">/个</div>
+							<div class="content_table_row" v-for="item in materials">
+								  <div class="content_table_cell"><img class='material' :src="'/%E5%B7%A8%E5%8C%A0%E6%89%8B%E5%B7%A5%E6%94%B6%E7%9B%8A%E8%AE%A1%E7%AE%97%E5%99%A8/'+(item.name)+'.png'"></div>
+								  <div class="content_table_cell"><input class="input_price" type="number" v-model="materials[item.id].price">/个</div>
 							</div>
-							<div class="content_table_row">
-								<div class="content_table_cell"><img class="material" src="/%E5%B7%A8%E5%8C%A0%E6%89%8B%E5%B7%A5%E6%94%B6%E7%9B%8A%E8%AE%A1%E7%AE%97%E5%99%A8/水螅虫的伞盖.png"></div>
-								<div class="content_table_cell"><input class="input_price" type="number" name="price_hydra" value="0">/个</div>
-							</div>
-							<div class="content_table_row">
-								<div class="content_table_cell"><img class="material" src="/%E5%B7%A8%E5%8C%A0%E6%89%8B%E5%B7%A5%E6%94%B6%E7%9B%8A%E8%AE%A1%E7%AE%97%E5%99%A8/青柠罗勒草.png"></div>
-								<div class="content_table_cell"><input class="input_price" type="number" name="price_herb" value="0">/个</div>
-							</div>
-							<div class="content_table_row">
-								<div class="content_table_cell"><img class="material" src="/%E5%B7%A8%E5%8C%A0%E6%89%8B%E5%B7%A5%E6%94%B6%E7%9B%8A%E8%AE%A1%E7%AE%97%E5%99%A8/葛根.png"></div>
-								<div class="content_table_cell"><input class="input_price" type="number" name="price_geroot" value="0">/个</div>
-							</div>
-							<div class="content_table_row">
-								<div class="content_table_cell"><img class="material" src="/%E5%B7%A8%E5%8C%A0%E6%89%8B%E5%B7%A5%E6%94%B6%E7%9B%8A%E8%AE%A1%E7%AE%97%E5%99%A8/雷之水晶.png"></div>
-								<div class="content_table_cell"><input class="input_price" type="number" name="price_thunder_crys" value="0">/个</div>
-							</div>
-							<div class="content_table_row">
-								<div class="content_table_cell"><img class="material" src="/%E5%B7%A8%E5%8C%A0%E6%89%8B%E5%B7%A5%E6%94%B6%E7%9B%8A%E8%AE%A1%E7%AE%97%E5%99%A8/水之水晶.png"></div>
-								<div class="content_table_cell"><input class="input_price" type="number" name="price_water_crys" value="0">/个</div>
-							</div>
-							<script type="text/javascript">
-								function setStoragePrice(name){
-									document.getElementsByName(name)[0].value = localStorage.getItem(name);
-								}
-								if(localStorage.getItem("hasMaterialPrices")){
-									setStoragePrice('price_water');
-									setStoragePrice('price_hydra');
-									setStoragePrice('price_herb');
-									setStoragePrice('price_geroot');
-									setStoragePrice('price_thunder_crys');
-									setStoragePrice('price_water_crys');
-								}
-							</script>
 						</div>
 						<div class="content_col">
 							<div class="content_table_row">
 								<div class="content_table_cell">
-									<script type="text/javascript">
-										function fillEmptyAndSaveData(name){
-											if(!document.getElementsByName(name)[0].value.length || Number.isNaN(document.getElementsByName(name)[0].value)){
-												document.getElementsByName(name)[0].value = "0"; // 空值处理
-											}
-											localStorage.setItem(name, document.getElementsByName(name)[0].value); // 保存本地记录
-										}
-										function computeCost(){
-											var cost = 0;
-											
-											fillEmptyAndSaveData('price_water');
-											cost += parseInt(document.getElementsByName('price_water')[0].value);
-
-											fillEmptyAndSaveData('price_hydra');
-											cost += 2 * parseInt(document.getElementsByName('price_hydra')[0].value);
-
-											fillEmptyAndSaveData('price_herb');
-											cost += 2 * parseInt(document.getElementsByName('price_herb')[0].value);
-
-											fillEmptyAndSaveData('price_geroot');
-											cost += 2 * parseInt(document.getElementsByName('price_geroot')[0].value);
-
-											fillEmptyAndSaveData('price_thunder_crys');
-											cost += 7 * parseInt(document.getElementsByName('price_thunder_crys')[0].value);
-
-											fillEmptyAndSaveData('price_water_crys');
-											cost += 7 * parseInt(document.getElementsByName('price_water_crys')[0].value);
-
-											cost *= 333;
-											document.getElementsByName('cost')[0].value = cost;
-
-											localStorage.setItem("hasMaterialPrices", true);
-										}
-									</script>
-									<button class="btn" onclick="computeCost()">通过材料费计算成本</button>
+									<button class="btn" v-on:click="computeCost">通过材料费计算成本</button>
 								</div>
 							</div>
 							<div class="content_table_row">
 								<div class="content_table_cell">
-									一组(999)成本<input class="input_compute" type="number" name="cost" value="0">
+									一组(999)成本<input class="input_compute" type="number" v-model="cost">
 								</div>
 							</div>
 							<div class="content_table_row">	
 								<div class="content_table_cell">
-									一组(999)售价<input class="input_compute" type="number" name="sell" value="0">
-								</div>
-							</div>
-							<script type="text/javascript">
-								if(localStorage.getItem("hasSellPrice")){
-									setStoragePrice("sell");
-								}
-							</script>
-							<div class="content_table_row">
-								<div class="content_table_cell">
-									<script type="text/javascript">
-										function computeProfit(){
-											fillEmptyAndSaveData('cost');
-											fillEmptyAndSaveData('sell');
-											document.getElementsByName('profit')[0].value = parseInt(document.getElementsByName('sell')[0].value) - parseInt(document.getElementsByName('cost')[0].value);
-											localStorage.setItem("hasSellPrice", true);
-										}
-									</script>
-									<button class="btn" onclick="computeProfit()">通过成本和售价计算利润</button>
+									一组(999)售价<input class="input_compute" type="number" v-model="sell">
 								</div>
 							</div>
 							<div class="content_table_row">
 								<div class="content_table_cell">
-									一组(999)利润<input class="input_compute" type="number" name="profit" value="0" readonly="true">
+									<button class="btn" v-on:click="computeProfit">通过成本和售价计算利润</button>
+								</div>
+							</div>
+							<div class="content_table_row">
+								<div class="content_table_cell">
+									一组(999)利润<input class="input_compute" type="number" v-bind:value="profit" readonly="true">
 								</div>
 							</div>
 						</div>
 					</div>
+					<script type="text/javascript">
+						var content3 = new Vue({
+							el: '#content_3',
+							data: {
+								materials: [
+								  { id: 0, name: '地下天然水', ename:'price_water', price: '0' },
+								  { id: 1, name: '水螅虫的伞盖', ename:'price_hydra', price: '0' },
+								  { id: 2, name: '青柠罗勒草', ename:'price_herb', price: '0' },
+								  { id: 3, name: '葛根', ename:'price_geroot', price: '0' },
+								  { id: 4, name: '雷之水晶', ename:'price_thunder_crys', price: '0' },
+								  { id: 5, name: '水之水晶', ename:'price_water_crys', price: '0' },
+								],
+								cost: '0',
+								sell: '0',
+								profit: '0',
+							},
+							created: function(){
+								if(localStorage.getItem("hasMaterialPrices")){
+									for(const material of this.materials){
+										material.price = localStorage.getItem(material.ename);
+									}
+								}
+								if(localStorage.getItem("hasSellPrice")){
+									this.sell = localStorage.getItem('sell');
+								}
+							},
+							methods: {
+								fillEmptyAndSaveMaterialsData: function(material){
+									if(!material.price.length || Number.isNaN(+material.price)){
+										material.price = '0';
+									}
+									localStorage.setItem(material.ename, material.price);
+								},
+								fillEmptyCostData: function(){
+									if(!this.cost.length || Number.isNaN(+this.cost)){
+										this.cost = '0';
+									}
+								},
+								fillEmptyAndSaveSellData: function(){
+									if(!this.sell.length || Number.isNaN(+this.sell)){
+										this.sell = '0';
+									}
+									localStorage.setItem('sell', this.sell);
+								},
+								computeCost: function(){
+									let cost = 0;
+									const materials = this.materials;
+									for(const material of materials){
+										this.fillEmptyAndSaveMaterialsData(material);
+									}
+									cost += +materials[0].price;
+									cost += 2 * (+materials[1].price);
+									cost += 2 * (+materials[2].price);
+									cost += 2 * (+materials[3].price);
+									cost += 7 * (+materials[4].price);
+									cost += 7 * (+materials[5].price);
+									cost *= 333;
+									this.cost = String(cost);
+									localStorage.setItem("hasMaterialPrices", true);
+								},
+								computeProfit: function(){
+									this.fillEmptyCostData();
+									this.fillEmptyAndSaveSellData();
+									this.profit = (+this.sell)-(+this.cost);
+									localStorage.setItem("hasSellPrice", true);
+								}
+							}
+						})
+					</script>
 				</div>
 			</div>
 		</div>
