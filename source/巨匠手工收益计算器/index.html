@@ -211,14 +211,14 @@ layout: false
 			<div id="line"></div>
 			<div id="content_1">
 				<div class="picture_container" id="picture_container_cat">
-					<img id="img_cat" src="/%E5%B7%A8%E5%8C%A0%E6%89%8B%E5%B7%A5%E6%94%B6%E7%9B%8A%E8%AE%A1%E7%AE%97%E5%99%A8/女仆猫猫1.png">
+					<img id="img_cat" src="巨匠猫猫.png">
 				</div>
 				<div id="content_2">
 					<div id="content_3">
 						<div class="content_col">
 							<div class="content_table_text">请输入材料的价格</div>
 							<div class="content_table_row" v-for="(item, index) in materials">
-								  <div class="content_table_cell"><img class='material' v-bind:src="'/%E5%B7%A8%E5%8C%A0%E6%89%8B%E5%B7%A5%E6%94%B6%E7%9B%8A%E8%AE%A1%E7%AE%97%E5%99%A8/'+(item.name)+'.png'"></div>
+								  <div class="content_table_cell"><img class='material' v-bind:src="item.name +'.png'"></div>
 								  <div class="content_table_cell"><input class="input_price" type="number" v-model="materials[index].price">/个</div>
 							</div>
 						</div>
