@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme-color" content=#000000>
+  <title>牛客错题簿-HTML | 程序员玛丽的星海方舟</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="陈俪影">
+  <meta name="keywords" content="">
+  <meta name="description" content="陈俪影的博客">
+  <script id="hexo-configurations">
+  var CONFIG = {
+    root: '/',
+    theme: 'lx',
+    version: '0.3.10',
+    localsearch:{
+      "enable": true,
+      "trigger": "auto",
+      "top_n_per_article": 1,
+      "unescape": false,
+      "preload": false
+      },
+    path: 'search.xml'
+  };
+</script>
+
+  <link rel="shortcut icon" href="//cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/物理2-飞船2.svg">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/theme-lx@0.3.10-fixed/source/css/main.min.css">
+  <style type="text/css">
+    pre,
+    code {
+      font-family: 'Roboto Mono', monospace;
+    }
+    html {
+      font-family: 'Noto Serif SC', sans-serif;
+    }
+    body {
+      font-family: 'Noto Serif SC', sans-serif;
+    }
+    h1, h2, h3, h4, h5, figure {
+      font-family: 'Noto Serif SC', sans-serif;
+    }
+    .menu-container{
+      font-family: 'Noto Serif SC', sans-serif;
+    }
+  </style>
+
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/theme-lx@0.3.10-fixed/source/js/jquery.jside.menu.js"></script>
+	<script>
+	$(document).ready(function(){
+	$(".menu-container").jSideMenu({
+	    jSidePosition: "position-right",
+	    jSideSticky: true,
+	    jSideSkin: "black",
+	     });
+	}); 
+	</script>
+  <!--Google_Analytics-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TJ8701JF8M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-TJ8701JF8M');
+</script>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto Mono:300,300italic,400,400italic,700,700italic|Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+<div class="single">
+<a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i></a>
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Search..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+<div id="page">
+<div id="lx-aside" style="background-image: url(//cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/earth.jpg)" data-stellar-background-ratio="0.5">
+  <div class="overlay">
+  <div class="page-title">
+    <div class="avatar"><a href="/"><img src="//cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/02-avatar.jpg"></a></div>
+    <span>2021-09-01</span>
+    <h2>牛客错题簿-HTML</h2>
+    <div class="tags"><i class="fa fa-tag"></i><a class="tag-none-link" href="/tags/HTML/" rel="tag">HTML</a></div>
+    <div class="social-links">
+    <a href="https://github.com/MaryCLY" target="_blank"><i class="fa fa-github fa-fw"></i></a>
+</div></div>
+</div>
+</div>
+
+<div id="lx-main-content">
+  <div class="lx-post">
+    <div class="lx-entry padding">
+      <div>
+        <p>section标签：Html5语义化后的新标签，表示将一大块内容分成几个部分。</p>
+<span id="more"></span>
+<hr>
+<p>noscript标签：如果脚本未执行（如浏览器未支持JavaScript脚本），则会显示标签里的内容。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="handlebars"><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">	<span class="comment">&lt;!--</span></span></span></span><br><span class="line"><span class="comment"><span class="xml"><span class="handlebars">	document.write(&quot;Hello World!&quot;)</span></span></span></span><br><span class="line"><span class="comment"><span class="xml"><span class="handlebars">	//--&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars"></span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;<span class="name">noscript</span>&gt;</span>Your browser does not support JavaScript!<span class="tag">&lt;/<span class="name">noscript</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLFormElement/enctype">HTMLFormElement.enctype</a>属性常用来指明提交表单的内容类型，可选的值如下：</p>
+<ul>
+<li>application/x-www-form-urlencoded: 初始的默认值，在发送前编码所有字符</li>
+<li>multipart/form-data:  不对字符编码，适用于使用&lt;input&gt; 标签上传文件</li>
+<li>text/plain: HTML5 引入的类型，空格转换为 “+” 加号，但不对特殊字符编码</li>
+</ul>
+<p>这些值可以通过元素 &lt;button&gt; or &lt;input&gt; 的属性form.enctype来改写。</p>
+<hr>
+<p>&lt;head&gt;是文章的头部，&lt;slider&gt;是侧边栏，&lt;main&gt;是主要内容，&lt;footer&gt;是尾部。</p>
+<hr>
+<p>input属于窗体元素,层级显示比flash、其它元素都高。请判断这句话的正确与否。（错误）</p>
+<p>解释：在HTML中，帧元素（frameset）的显示优先级最高，其次是表单元素，然后是非表单元素。flash属于帧元素，优先级更高。input属于窗体元素是正确的。</p>
+<hr>
+<p>Canvas和SVG的不同点：</p>
+<p>Canvas</p>
+<ul>
+<li>依赖分辨率</li>
+<li>不支持事件处理器</li>
+<li>弱的文本渲染能力</li>
+<li>能够以 .png 或 .jpg 格式保存结果图像</li>
+<li>最适合图像密集型的游戏，其中的许多对象会被频繁重绘</li>
+<li>Canvas 是逐像素进行渲染的。</li>
+<li>在 Canvas 中，一旦图形被绘制完成，它就不会继续得到浏览器的关注。如果其位置发生变化，那么整个场景也需要重新绘制，包括任何或许已被图形覆盖的对象。</li>
+</ul>
+<p>SVG</p>
+<ul>
+<li>不依赖分辨率</li>
+<li>支持事件处理器</li>
+<li>最适合带有大型渲染区域的应用程序（比如谷歌地图）</li>
+<li>复杂度高会减慢渲染速度（任何过度使用 DOM 的应用都不快）</li>
+<li>不适合游戏应用</li>
+</ul>
+<hr>
+<p>input中的滑块控件type是range（理解成了slider，但slider是侧边栏）。</p>
+<hr>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes">HTML的全局属性</a>：所有标签都可以使用的属性。<br>比如style, id, class等等。</p>
+<hr>
+<p>什么情况会创建块格式化上下文 BFC（一个隔离的容器，容器里的子元素不会影响到外面的元素）</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context">https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context</a></p>
+<hr>
+<p>不能被冒泡的9个事件：load和unload、 mouseenter和mouseleave、 blur和focus、 error、 resize和abort</p>
+<hr>
+<p>&lt;a&gt;可以包含任何其他元素，但不能包含&lt;a&gt;本身。</p>
+<hr>
+<p>Dom Tree的根节点是Document对象。</p>
+<hr>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="lx-navigation">
+	<div class="lx-cover prev lx-cover-sm" style="background-image: url(//cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/astronaut.jpg)">
+		<div class="overlay"></div>
+		<a class="copy" href="/2021/09/01/%E7%89%9B%E5%AE%A2%E9%94%99%E9%A2%98%E7%B0%BF-CSS/">
+			<div class="display-t">
+				<div class="display-tc">
+					<div>
+						<span>Next</span>
+						<h3>牛客错题簿-CSS</h3>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+        <div class="lx-cover next lx-cover-sm" style="background-image: url(//cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/moon.jpg)">
+		<div class="overlay"></div>
+		<a class="copy" href="/2021/08/29/Pow-x-n-10-%EF%BC%88%E5%BF%AB%E9%80%9F%E5%B9%82-%E5%A4%A7%E6%95%B0%E5%8F%96%E6%A8%A1%E9%97%AE%E9%A2%98%EF%BC%89/">
+			<div class="display-t">
+				<div class="display-tc">
+					<div>
+						<span>Prev</span>
+						<h3>Pow(x, ...</h3>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+</div>
+
+</div>
+<div class="comment"><div id="comments"></div></div>
+<footer>
+  <div>
+  Copyright &copy; 2021.<a href="/">程序员玛丽的星海方舟</a><br>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme <a href="https://lx.js.org" target="_blank">Lx</a><br>
+  </div>
+</footer>
+
+</div>
+
+<button class="hamburger hamburger--arrow-r" type="button">
+    <div class="hamburger-box">
+      <div class="hamburger-inner"></div>
+    </div>
+</button> 
+<div class="menu visibility">
+  <div class="menu-head">
+    <span class="layer">
+      <div class="col">
+        <div class="row for-pic">
+          <div class="profile-pic">
+            <a href="/"><img src="//cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/02-avatar.jpg" alt="陈俪影"/></a>
+          </div>
+        </div>
+        <div class="row for-name">
+          <p>陈俪影</p>
+          <span class="tagline">陈俪影的个人空间，用于分享自己学习、工作和兴趣中写程序的心得体会。</span>
+        </div>
+      </div>
+    </span>
+  </div>
+  <nav class="menu-container">
+  <ul class="menu-items">
+    <li><a href="/"><i class="fa fa-home fa-fw"></i>首页</a></li>
+    <li><a href="/archives/"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-th-list fa-fw"></i>分类</span>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FF14/">FF14</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/FF14/%E9%A1%B9%E7%9B%AE/">项目</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JS/">JS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/JS/%E7%AE%97%E6%B3%95/">算法</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a></li></ul>
+    </li>
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-bookmark fa-fw"></i>页面</span>
+        <ul>
+          <li><a href="/about/">About</a></li>
+        </ul>
+    </li>
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-link fa-fw"></i>友链</span>
+        <ul>
+          <li> <a href="https://lx.js.org" target="_blank">Theme-Lx</a></li>
+        <li> <a href="https://hwfan.io" target="_blank">Hongwei Fan Studio</a></li>
+        <li> <a href="https://blog.gaojianli.me" target="_blank">高渐离の屋</a></li>
+        <li> <a href="https://tackoil.github.io" target="_blank">Tackoil&#39;s Website</a></li>
+        <li> <a href="https://sprinter1999.github.io" target="_blank">XueFen&#39;s Corner</a></li>
+        </ul>
+    </li>
+  </ul>
+  </nav>
+</div>
+
+<div class="gototop js-top">
+  <a href="#" class="js-gotop"><i class="fa fa-arrow-up"></i></a>
+</div>
+<script src="//cdn.jsdelivr.net/npm/theme-lx@0.3.10-fixed/source/js/jquery.easing.min.js"></script>
+<script>
+(function () {
+	"use strict";
+	var goToTop = function() {
+		$(".js-gotop").on("click", function(event){
+			event.preventDefault();
+			$("html, body").animate({
+				scrollTop: $("html").offset().top
+			}, 500, "easeInOutExpo");
+			return false;
+		});
+		$(window).scroll(function(){
+			var $win = $(window);
+			if ($win.scrollTop() > 200) {
+				$(".js-top").addClass("active");
+			} else {
+				$(".js-top").removeClass("active");
+			}
+		});
+	};
+	$(function(){
+		goToTop();
+	});
+}());
+</script>
+<script src="//cdn.jsdelivr.net/npm/theme-lx@0.3.10-fixed/source/js/local.search.js"></script>
+
+
+</body>
+</html>

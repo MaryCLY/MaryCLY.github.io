@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="theme-color" content=#000000>
+  <title>牛客错题簿-JS | 程序员玛丽的星海方舟</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="陈俪影">
+  <meta name="keywords" content="">
+  <meta name="description" content="陈俪影的博客">
+  <script id="hexo-configurations">
+  var CONFIG = {
+    root: '/',
+    theme: 'lx',
+    version: '0.3.10',
+    localsearch:{
+      "enable": true,
+      "trigger": "auto",
+      "top_n_per_article": 1,
+      "unescape": false,
+      "preload": false
+      },
+    path: 'search.xml'
+  };
+</script>
+
+  <link rel="shortcut icon" href="//cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/物理2-飞船2.svg">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/theme-lx@0.3.10-fixed/source/css/main.min.css">
+  <style type="text/css">
+    pre,
+    code {
+      font-family: 'Roboto Mono', monospace;
+    }
+    html {
+      font-family: 'Noto Serif SC', sans-serif;
+    }
+    body {
+      font-family: 'Noto Serif SC', sans-serif;
+    }
+    h1, h2, h3, h4, h5, figure {
+      font-family: 'Noto Serif SC', sans-serif;
+    }
+    .menu-container{
+      font-family: 'Noto Serif SC', sans-serif;
+    }
+  </style>
+
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/theme-lx@0.3.10-fixed/source/js/jquery.jside.menu.js"></script>
+	<script>
+	$(document).ready(function(){
+	$(".menu-container").jSideMenu({
+	    jSidePosition: "position-right",
+	    jSideSticky: true,
+	    jSideSkin: "black",
+	     });
+	}); 
+	</script>
+  <!--Google_Analytics-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TJ8701JF8M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-TJ8701JF8M');
+</script>
+
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto Mono:300,300italic,400,400italic,700,700italic|Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/font-awesome@4/css/font-awesome.min.css">
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body>
+<div class="single">
+<a href="javascript:;" class="popup-trigger"><i class="menu-item-icon fa fa-search fa-fw"></i></a>
+<div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Search..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+<div id="page">
+<div id="lx-aside" style="background-image: url(//cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/earth.jpg)" data-stellar-background-ratio="0.5">
+  <div class="overlay">
+  <div class="page-title">
+    <div class="avatar"><a href="/"><img src="//cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/02-avatar.jpg"></a></div>
+    <span>2021-09-01</span>
+    <h2>牛客错题簿-JS</h2>
+    <div class="tags"><i class="fa fa-tag"></i><a class="tag-none-link" href="/tags/JS/" rel="tag">JS</a></div>
+    <div class="social-links">
+    <a href="https://github.com/MaryCLY" target="_blank"><i class="fa fa-github fa-fw"></i></a>
+</div></div>
+</div>
+</div>
+
+<div id="lx-main-content">
+  <div class="lx-post">
+    <div class="lx-entry padding">
+      <div>
+        <p>JavaScipt是一门单线程的语言。</p>
+<p>解释：因为用于页面交互和操作DOM，多线程会导致各种同步错误。为了利用多核CPU的计算能力，HTML5提出Web Worker标准，允许JavaScript脚本创建多个线程，但是子线程完全受主线程控制，且不得操作DOM。所以，这个新标准并没有改变JavaScript单线程的本质。</p>
+<span id="more"></span>
+<hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">null</span> <span class="keyword">instanceof</span> <span class="built_in">Object</span>;</span><br><span class="line"><span class="comment">// false : null 的原型不是Object，但是typeof null返回object是某种规定</span></span><br><span class="line"><span class="literal">NaN</span> == <span class="literal">NaN</span>;</span><br><span class="line"><span class="comment">// false : NaN是一个过于笼统的概念，不知道究竟表示的是什么数，因此不管是==或===都不相等</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>表单的JS选择：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//首先获得下拉框的节点对象；</span></span><br><span class="line">    <span class="keyword">var</span> obj = <span class="built_in">document</span>.getElementById(<span class="string">&quot;obj&quot;</span>);</span><br><span class="line">    <span class="comment">//1.如何获得当前选中的值？：</span></span><br><span class="line">    <span class="keyword">var</span> value = obj.value;</span><br><span class="line">    <span class="comment">//2.如何获得该下拉框所有的option的节点对象</span></span><br><span class="line">    <span class="keyword">var</span> options = obj.options;</span><br><span class="line">    <span class="comment">//注意：得到的options是一个对象数组</span></span><br><span class="line">    <span class="comment">//3.如何获得第几个option的value值?比如我要获取第一option的value,可以这样：</span></span><br><span class="line">    <span class="keyword">var</span> value1 =options[<span class="number">0</span>].value;</span><br><span class="line">    <span class="comment">//4.如何获得第几个option的文本内容?比如我要获取第一option的文本,可以这样：</span></span><br><span class="line">    <span class="keyword">var</span> text1 = options[<span class="number">0</span>].text;</span><br><span class="line">    <span class="comment">//5.如何获得当前选中的option的索引？</span></span><br><span class="line">    <span class="keyword">var</span> index = obj.selectedIndex;</span><br><span class="line">    <span class="comment">//6.如何获得当前选中的option的文本内容？</span></span><br><span class="line">    <span class="comment">//从第2个问题，我们已经获得所有的option的对象数组options了</span></span><br><span class="line">    <span class="comment">//又从第5个问题，我们获取到了当前选中的option的索引值</span></span><br><span class="line">    <span class="comment">//所以我们只要同options[index]下标的方法得到当前选中的option了</span></span><br><span class="line">    <span class="keyword">var</span> selectedText =options[index].text;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> datas=[<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>];</span><br><span class="line">datas.unshift(<span class="number">40</span>,<span class="number">50</span>); datas.pop();</span><br><span class="line">datas.push(<span class="number">60</span>,<span class="number">70</span>); datas.shift();</span><br><span class="line"><span class="built_in">console</span>.log(datas.toString());</span><br></pre></td></tr></table></figure>
+<p>输出的结果应该是：50,10,20,60,70;</p>
+<p>解释：unshift和push如果携带多个参数，属于在头和尾合并这样一个数组，而非按顺序执行。</p>
+<hr>
+<p>参考<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/sort">Array.prototype.sort()</a></p>
+<p>Array.sort()的比较函数的意义是：<br>compareFunction(a, b)：</p>
+<ul>
+<li>return&lt;0, a排列在b之前；</li>
+<li>return=0, 相对位置不变；</li>
+<li>return&gt;0, a排列在b之后；</li>
+</ul>
+<p>所以如果要数字升序，可以使用a-b作为比较函数；降序，则使用b-a；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> numbers = [<span class="number">4</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>];</span><br><span class="line">numbers.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> a - b;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(numbers);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 也可以写成：</span></span><br><span class="line"><span class="keyword">var</span> numbers = [<span class="number">4</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">3</span>];</span><br><span class="line">numbers.sort(<span class="function">(<span class="params">a, b</span>) =&gt;</span> a - b);</span><br><span class="line"><span class="built_in">console</span>.log(numbers);</span><br><span class="line"></span><br><span class="line"><span class="comment">// [1, 2, 3, 4, 5]</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>JavaScript正则表达式内容：</p>
+<p>以下代码的执行后，str 的值是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&quot;Hellllo world&quot;</span>;</span><br><span class="line">str = str.replace(<span class="regexp">/(l)\1/g</span>, <span class="string">&#x27;$1&#x27;</span>);</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String/replace">String.prototype.replace</a><br>其中$1意为第1个括号选取的字符串，也就是l；</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions">正则表达式</a>语法中，<br>\1也意为第1个括号选取的字符串，也就是l；<br>而/…/g，即全局标签g，会进行全局匹配，也就是多次选取。</p>
+<p>因此实际上的过程是：正则表达式全局选取”ll”，选中了两个”ll”，然后分别替换为”l”；最终的结果就是”Hello world”。</p>
+<hr>
+<p>Date.now()返回的是一个毫秒数，也就是Number。而new Date({Number})可以根据时间戳创建一个Date对象。</p>
+<hr>
+<p>JavaScript内部对象：</p>
+<ul>
+<li>History 包含用户（在浏览器窗口中）访问过的 URL</li>
+<li>Location 包含有关当前 URL 的信息</li>
+<li>Window 表示浏览器中打开的窗口</li>
+<li>Navigator 包含有关浏览器的信息</li>
+</ul>
+<hr>
+<p>以下代码执行后，控制台的输出是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> a)</span><br></pre></td></tr></table></figure>
+<p>函数提升大于变量提升，变量提升会提升到除函数声明的后面，这个过程等价于：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="keyword">var</span> a; <span class="comment">//顺便一提，var可以进行重声明，但let不能，如果let a会报错。</span></span><br><span class="line">a = <span class="number">10</span>;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> a)</span><br></pre></td></tr></table></figure>
+<p>所以结果是”Number”</p>
+<hr>
+<p>关于this对象：</p>
+<ul>
+<li>在不改变this指向的前提下，this总是指向函数的直接调用者。</li>
+<li>如果有new关键字，this指向new出来的那个对象。</li>
+<li>IE中attachEvent中的this总是指向全局对象Window。</li>
+</ul>
+<hr>
+<p>下列函数哪些是JavaScript的全局函数？<br>正确：encodeURI, parseFloat, eval<br>错误：setTimeOut<br>因为setTimeOut是window的函数。</p>
+<hr>
+<p>parseInt的转换方式：<br>1、如果都是字母， 返回：NaN<br>parseInt(“abc”, 10)  //返回 NaN<br>2、如果都是数字，则返回整数<br>parseInt(“123”, 10)   //返回 123<br>3、如果字母和数字都存在<br>(1)、以数字开头，则取截止到第一个字母出现之前的所有数字进行转换<br>parseInt(“12x2bc”, 10)   // 返回：12<br>(2)、如果参数“string”，以字母开头，直接返回NaN （10进制中字母不是一个有效的的表示）<br>parseInt(“df2bc”, 10)  //返回 NaN</p>
+<hr>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="lx-navigation">
+	<div class="lx-cover prev lx-cover-sm" style="background-image: url(//cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/astronaut.jpg)">
+		<div class="overlay"></div>
+		<a class="copy" href="/2021/11/04/%E5%B7%A8%E5%8C%A0%E6%89%8B%E5%B7%A5%E6%94%B6%E7%9B%8A%E8%AE%A1%E7%AE%97%E5%99%A8/">
+			<div class="display-t">
+				<div class="display-tc">
+					<div>
+						<span>Next</span>
+						<h3>巨匠手工收益计算器</h3>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+        <div class="lx-cover next lx-cover-sm" style="background-image: url(//cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/moon.jpg)">
+		<div class="overlay"></div>
+		<a class="copy" href="/2021/09/01/%E7%89%9B%E5%AE%A2%E9%94%99%E9%A2%98%E7%B0%BF-CSS/">
+			<div class="display-t">
+				<div class="display-tc">
+					<div>
+						<span>Prev</span>
+						<h3>牛客错题簿-CSS</h3>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+</div>
+
+</div>
+<div class="comment"><div id="comments"></div></div>
+<footer>
+  <div>
+  Copyright &copy; 2021.<a href="/">程序员玛丽的星海方舟</a><br>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> | Theme <a href="https://lx.js.org" target="_blank">Lx</a><br>
+  </div>
+</footer>
+
+</div>
+
+<button class="hamburger hamburger--arrow-r" type="button">
+    <div class="hamburger-box">
+      <div class="hamburger-inner"></div>
+    </div>
+</button> 
+<div class="menu visibility">
+  <div class="menu-head">
+    <span class="layer">
+      <div class="col">
+        <div class="row for-pic">
+          <div class="profile-pic">
+            <a href="/"><img src="//cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/02-avatar.jpg" alt="陈俪影"/></a>
+          </div>
+        </div>
+        <div class="row for-name">
+          <p>陈俪影</p>
+          <span class="tagline">陈俪影的个人空间，用于分享自己学习、工作和兴趣中写程序的心得体会。</span>
+        </div>
+      </div>
+    </span>
+  </div>
+  <nav class="menu-container">
+  <ul class="menu-items">
+    <li><a href="/"><i class="fa fa-home fa-fw"></i>首页</a></li>
+    <li><a href="/archives/"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-th-list fa-fw"></i>分类</span>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CSS/">CSS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FF14/">FF14</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/FF14/%E9%A1%B9%E7%9B%AE/">项目</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTML/">HTML</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JS/">JS</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/JS/%E7%AE%97%E6%B3%95/">算法</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">微信小程序</a></li></ul>
+    </li>
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-bookmark fa-fw"></i>页面</span>
+        <ul>
+          <li><a href="/about/">About</a></li>
+        </ul>
+    </li>
+    <li class="has-sub"><span class="dropdown-heading">
+      <i class="fa fa-link fa-fw"></i>友链</span>
+        <ul>
+          <li> <a href="https://lx.js.org" target="_blank">Theme-Lx</a></li>
+        <li> <a href="https://hwfan.io" target="_blank">Hongwei Fan Studio</a></li>
+        <li> <a href="https://blog.gaojianli.me" target="_blank">高渐离の屋</a></li>
+        <li> <a href="https://tackoil.github.io" target="_blank">Tackoil&#39;s Website</a></li>
+        <li> <a href="https://sprinter1999.github.io" target="_blank">XueFen&#39;s Corner</a></li>
+        </ul>
+    </li>
+  </ul>
+  </nav>
+</div>
+
+<div class="gototop js-top">
+  <a href="#" class="js-gotop"><i class="fa fa-arrow-up"></i></a>
+</div>
+<script src="//cdn.jsdelivr.net/npm/theme-lx@0.3.10-fixed/source/js/jquery.easing.min.js"></script>
+<script>
+(function () {
+	"use strict";
+	var goToTop = function() {
+		$(".js-gotop").on("click", function(event){
+			event.preventDefault();
+			$("html, body").animate({
+				scrollTop: $("html").offset().top
+			}, 500, "easeInOutExpo");
+			return false;
+		});
+		$(window).scroll(function(){
+			var $win = $(window);
+			if ($win.scrollTop() > 200) {
+				$(".js-top").addClass("active");
+			} else {
+				$(".js-top").removeClass("active");
+			}
+		});
+	};
+	$(function(){
+		goToTop();
+	});
+}());
+</script>
+<script src="//cdn.jsdelivr.net/npm/theme-lx@0.3.10-fixed/source/js/local.search.js"></script>
+
+
+</body>
+</html>

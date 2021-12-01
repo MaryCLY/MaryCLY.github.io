@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="theme-color" content="#000000">
+		<title>巨匠手工收益计算器</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="陈俪影">
+		<meta name="keywords" content>
+		<meta name="description" content="陈俪影的博客">
+		<link rel="shortcut icon" href="//cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/物理2-飞船2.svg">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+		<style type="text/css">
+		    @media (max-width: 768px){
+		    	#header{
+		    		width: 100%;
+		    		flex: 0 0 9vh;
+		    		display: flex;
+		    		justify-content: center;
+		    		align-items: center;
+		    	}
+		    	#content_1{
+		    		width: 100%;
+		    		height: 90vh;
+		    		flex: 0 0 90vh;
+		    	}
+		    	#picture_container_cat{
+					display: none;
+				}
+				#content_2{
+					width: 100%;
+					height: 100%;
+					background-image: url('背景1.jpg');
+					background-size: cover;
+				    background-repeat: no-repeat;
+				    background-position: center;
+				    display: flex;
+				    align-items: center;
+				    justify-content: center;
+				}
+				#btn_form_back{
+					display: none;
+				}
+				#title{
+					font-size: 24px;
+					font-weight: bold;
+					font-family: 'Noto Serif SC', serif;
+				}
+				.btn_form{
+					margin: 0;
+				}
+				.btn{
+					background-color: lightcoral;
+					border: none;
+					border-radius: 1vh;
+					width: 100%;
+					height: 10vh;
+					font-size: 13px;
+					word-break: break-all;
+	                font-family: 'Noto Serif SC', serif;
+	                font-weight: bold;
+	                color: white;
+				}
+				.material{
+					width: 35px;
+					height: 35px;
+				}
+				.input_price{
+					width: 50px;
+				}
+				.input_compute{
+					width: 80px;
+				}
+		    }
+		    @media (min-width: 769px){
+		    	#header{
+		    		width: 100%;
+		    		flex: 0 0 9vh;
+		    		display: flex;
+		    		justify-content: center;
+		    		align-items: center;
+		    	}
+		    	#content_1{
+					width: 100%;
+					height: 90vh;
+					flex: 0 0 90vh;
+					display: flex;
+					flex-direction: row;
+					justify-content: center;
+					align-items: center;
+				}
+				#picture_container_cat{
+					height: 80%;
+					flex: 0 1;
+				}
+				#content_2{
+					height: 80%;
+					flex: 1 0 60%;
+					background-image: url('背景1.jpg');
+					background-size: cover;
+				    background-repeat: no-repeat;
+				    background-position: center;
+				    display: flex;
+				    align-items: center;
+				    justify-content: center;
+				}
+				#btn_form_back{
+				    margin: 1.5vh;
+				    position: absolute;
+			    }
+				.btn_form{
+					margin: 0;
+				}
+				.btn{
+					background-color: lightcoral;
+					border: none;
+	                border-radius: 2vh;
+	                width: max-content;
+	                height: max-content;
+	                font-size: 13px;
+	                font-family: 'Noto Serif SC', serif;
+	                font-weight: bold;
+	                color: white;
+	                padding: 2vh;
+	                cursor: pointer;
+				}
+				.btn:hover{
+					color: mistyrose;
+				}
+				#title{
+					font-size: 40px;
+					font-weight: bold;
+					font-family: 'Noto Serif SC', serif;
+				}
+				.material{
+					width: 50px;
+					height: 50px;
+				}
+				.input_price{
+					width: 80px;
+				}
+				.input_compute{
+					width: 110px;
+				}
+		    }
+		    #main{
+		    	background-color: white;
+	    		position: absolute;
+				top: 0;
+				left: 0;
+	    		width: 100vw;
+	    		display: flex;
+			    flex-direction: column;
+			    justify-content: space-between;
+		    }
+		    #line{
+		    	width: 100%;
+		    	flex: 0 0 1vh;
+		    	background-color: lightcoral;
+		    }
+			#img_cat{
+				height: 100%;
+			}
+			#content_3{
+				width: 90%;
+				height: 90%;
+				background-color: rgba(255, 255, 255, 0.8);
+				display: flex;
+			}
+			.content_col{
+				display: table;
+				flex: 0 0 40%;
+				margin: 5%;
+			}
+			.content_table_row{
+				display: table-row;
+				/*text-align: center;*/
+			}
+/*			.content_table_col{
+				display: table-column;
+			}*/
+			.content_table_cell{
+				display: table-cell;
+				text-align: center;
+				vertical-align: middle;
+				font-family: 'Noto Serif SC', serif;
+			}
+			.content_table_text{
+				display: table-caption;
+				text-align: center;
+				font-family: 'Noto Serif SC', serif;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="main">
+			<form class="btn_form" id="btn_form_back" method="get" action="../index.html" target="_self">
+				<button class="btn" id="btn_back">返回主页</button>
+			</form>
+			<div id="header">	
+				<div id="title">巨匠手工收益计算器</div>
+			</div>
+			<div id="line"></div>
+			<div id="content_1">
+				<div class="picture_container" id="picture_container_cat">
+					<img id="img_cat" src="//cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/巨匠猫猫.png">
+				</div>
+				<div id="content_2">
+					<div id="content_3">
+						<div class="content_col">
+							<div class="content_table_text">请输入材料的价格</div>
+							<div class="content_table_row" v-for="(item, index) in materials">
+								  <div class="content_table_cell"><img class="material" v-bind:src="item.name +'.png'"></div>
+								  <div class="content_table_cell"><input class="input_price" type="number" v-model="materials[index].price">/个</div>
+							</div>
+						</div>
+						<div class="content_col">
+							<div class="content_table_row">
+								<div class="content_table_cell">
+									<button class="btn" v-on:click="computeCost">通过材料费计算成本</button>
+								</div>
+							</div>
+							<div class="content_table_row">
+								<div class="content_table_cell">
+									一组(999)成本<input class="input_compute" type="number" v-model="cost">
+								</div>
+							</div>
+							<div class="content_table_row">	
+								<div class="content_table_cell">
+									一组(999)售价<input class="input_compute" type="number" v-model="sell">
+								</div>
+							</div>
+							<div class="content_table_row">
+								<div class="content_table_cell">
+									<button class="btn" v-on:click="computeProfit">通过成本和售价计算利润</button>
+								</div>
+							</div>
+							<div class="content_table_row">
+								<div class="content_table_cell">
+									一组(999)利润<input class="input_compute" type="number" v-bind:value="profit" readonly="true">
+								</div>
+							</div>
+						</div>
+					</div>
+					<script type="text/javascript">
+						var content3 = new Vue({
+							el: '#content_3',
+							data: {
+								materials: [
+								  { id: 0, name: '地下天然水', ename:'price_water', price: '0' },
+								  { id: 1, name: '水螅虫的伞盖', ename:'price_hydra', price: '0' },
+								  { id: 2, name: '青柠罗勒草', ename:'price_herb', price: '0' },
+								  { id: 3, name: '葛根', ename:'price_geroot', price: '0' },
+								  { id: 4, name: '雷之水晶', ename:'price_thunder_crys', price: '0' },
+								  { id: 5, name: '水之水晶', ename:'price_water_crys', price: '0' },
+								],
+								cost: '0',
+								sell: '0',
+								profit: '0',
+							},
+							created: function(){
+								if(localStorage.getItem("hasMaterialPrices")){
+									for(const material of this.materials){
+										material.price = localStorage.getItem(material.ename);
+									}
+								}
+								if(localStorage.getItem("hasSellPrice")){
+									this.sell = localStorage.getItem('sell');
+								}
+							},
+							methods: {
+								fillEmptyAndSaveMaterialsData: function(material){
+									if(!material.price.length || Number.isNaN(+material.price)){
+										material.price = '0';
+									}
+									localStorage.setItem(material.ename, material.price);
+								},
+								fillEmptyCostData: function(){
+									if(!this.cost.length || Number.isNaN(+this.cost)){
+										this.cost = '0';
+									}
+								},
+								fillEmptyAndSaveSellData: function(){
+									if(!this.sell.length || Number.isNaN(+this.sell)){
+										this.sell = '0';
+									}
+									localStorage.setItem('sell', this.sell);
+								},
+								computeCost: function(){
+									let cost = 0;
+									const materials = this.materials;
+									for(const material of materials){
+										this.fillEmptyAndSaveMaterialsData(material);
+									}
+									cost += +materials[0].price;
+									cost += 2 * (+materials[1].price);
+									cost += 2 * (+materials[2].price);
+									cost += 2 * (+materials[3].price);
+									cost += 7 * (+materials[4].price);
+									cost += 7 * (+materials[5].price);
+									cost *= 333;
+									this.cost = String(cost);
+									localStorage.setItem("hasMaterialPrices", true);
+								},
+								computeProfit: function(){
+									this.fillEmptyCostData();
+									this.fillEmptyAndSaveSellData();
+									this.profit = (+this.sell)-(+this.cost);
+									localStorage.setItem("hasSellPrice", true);
+								}
+							}
+						})
+					</script>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
