@@ -35,7 +35,7 @@
 				#content_2{
 					width: 100%;
 					height: 100%;
-					background-image: url('背景1.jpg');
+					background-image: url('背景.jpg');
 					background-size: cover;
 				    background-repeat: no-repeat;
 				    background-position: center;
@@ -101,7 +101,7 @@
 				#content_2{
 					height: 80%;
 					flex: 1 0 60%;
-					background-image: url('背景1.jpg');
+					background-image: url('背景.jpg');
 					background-size: cover;
 				    background-repeat: no-repeat;
 				    background-position: center;
@@ -208,16 +208,16 @@
 			</div>
 			<div id="line"></div>
 			<div id="content_1">
-				<div class="picture_container" id="picture_container_cat">
+				<!-- <div class="picture_container" id="picture_container_cat">
 					<img id="img_cat" src="//cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/巨匠猫猫.png">
-				</div>
+				</div> -->
 				<div id="content_2">
 					<div id="content_3">
 						<div class="content_col">
 							<div class="content_table_text">请输入材料的价格</div>
 							<div class="content_table_row" v-for="(item, index) in materials">
 								  <div class="content_table_cell"><img class="material" v-bind:src="item.name +'.png'"></div>
-								  <div class="content_table_cell"><input class="input_price" type="number" v-model="materials[index].price">/个</div>
+								  <div class="content_table_cell"><input class="input_price" type="number" v-model.number="materials[index].price">/个</div>
 							</div>
 						</div>
 						<div class="content_col">
@@ -228,12 +228,12 @@
 							</div>
 							<div class="content_table_row">
 								<div class="content_table_cell">
-									一组(999)成本<input class="input_compute" type="number" v-model="cost">
+									一组(999)成本<input class="input_compute" type="number" v-model.number="cost">
 								</div>
 							</div>
 							<div class="content_table_row">	
 								<div class="content_table_cell">
-									一组(999)售价<input class="input_compute" type="number" v-model="sell">
+									一组(999)售价<input class="input_compute" type="number" v-model.number="sell">
 								</div>
 							</div>
 							<div class="content_table_row">
@@ -253,42 +253,42 @@
 							el: '#content_3',
 							data: {
 								materials: [
-								  { id: 0, name: '地下天然水', ename:'price_water', price: '0' },
-								  { id: 1, name: '水螅虫的伞盖', ename:'price_hydra', price: '0' },
-								  { id: 2, name: '青柠罗勒草', ename:'price_herb', price: '0' },
-								  { id: 3, name: '葛根', ename:'price_geroot', price: '0' },
-								  { id: 4, name: '雷之水晶', ename:'price_thunder_crys', price: '0' },
-								  { id: 5, name: '水之水晶', ename:'price_water_crys', price: '0' },
+								  { id: 0, name: '地下天然水', ename:'price_water', price: 0 },
+								  { id: 1, name: '水螅虫的伞盖', ename:'price_hydra', price: 0 },
+								  { id: 2, name: '青柠罗勒草', ename:'price_herb', price: 0 },
+								  { id: 3, name: '葛根', ename:'price_geroot', price: 0 },
+								  { id: 4, name: '雷之水晶', ename:'price_thunder_crys', price: 0 },
+								  { id: 5, name: '水之水晶', ename:'price_water_crys', price: 0 },
 								],
-								cost: '0',
-								sell: '0',
-								profit: '0',
+								cost: 0,
+								sell: 0,
+								profit: 0,
 							},
 							created: function(){
 								if(localStorage.getItem("hasMaterialPrices")){
 									for(const material of this.materials){
-										material.price = localStorage.getItem(material.ename);
+										material.price = +localStorage.getItem(material.ename);
 									}
 								}
 								if(localStorage.getItem("hasSellPrice")){
-									this.sell = localStorage.getItem('sell');
+									this.sell = +localStorage.getItem('sell');
 								}
 							},
 							methods: {
 								fillEmptyAndSaveMaterialsData: function(material){
-									if(!material.price.length || Number.isNaN(+material.price)){
-										material.price = '0';
+									if(material.price instanceof String){
+										material.price = 0;
 									}
 									localStorage.setItem(material.ename, material.price);
 								},
 								fillEmptyCostData: function(){
-									if(!this.cost.length || Number.isNaN(+this.cost)){
-										this.cost = '0';
+									if(this.cost instanceof String){
+										this.cost = 0;
 									}
 								},
 								fillEmptyAndSaveSellData: function(){
-									if(!this.sell.length || Number.isNaN(+this.sell)){
-										this.sell = '0';
+									if(this.sell instanceof String){
+										this.sell = 0;
 									}
 									localStorage.setItem('sell', this.sell);
 								},
@@ -298,12 +298,12 @@
 									for(const material of materials){
 										this.fillEmptyAndSaveMaterialsData(material);
 									}
-									cost += +materials[0].price;
-									cost += 2 * (+materials[1].price);
-									cost += 2 * (+materials[2].price);
-									cost += 2 * (+materials[3].price);
-									cost += 7 * (+materials[4].price);
-									cost += 7 * (+materials[5].price);
+									cost += materials[0].price;
+									cost += 2 * materials[1].price;
+									cost += 2 * materials[2].price;
+									cost += 2 * materials[3].price;
+									cost += 7 * materials[4].price;
+									cost += 7 * materials[5].price;
 									cost *= 333;
 									this.cost = String(cost);
 									localStorage.setItem("hasMaterialPrices", true);
@@ -311,7 +311,7 @@
 								computeProfit: function(){
 									this.fillEmptyCostData();
 									this.fillEmptyAndSaveSellData();
-									this.profit = (+this.sell)-(+this.cost);
+									this.profit = this.sell - this.cost;
 									localStorage.setItem("hasSellPrice", true);
 								}
 							}
