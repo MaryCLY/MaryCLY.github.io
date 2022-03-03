@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="theme-color" content=#000000>
-  <title>牛客错题簿-HTML | 程序员玛丽的星海方舟</title>
+  <title>CSS学习记录 | 程序员玛丽的星海方舟</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="陈俪影">
   <meta name="keywords" content="">
@@ -95,8 +95,8 @@
   <div class="page-title">
     <div class="avatar"><a href="/"><img src="//cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/02-avatar.jpg"></a></div>
     <span>2021-09-01</span>
-    <h2>牛客错题簿-HTML</h2>
-    <div class="tags"><i class="fa fa-tag"></i><a class="tag-none-link" href="/tags/HTML/" rel="tag">HTML</a></div>
+    <h2>CSS学习记录</h2>
+    <div class="tags"><i class="fa fa-tag"></i><a class="tag-none-link" href="/tags/CSS/" rel="tag">CSS</a></div>
     <div class="social-links">
     <a href="https://github.com/MaryCLY" target="_blank"><i class="fa fa-github fa-fw"></i></a>
 </div></div>
@@ -107,58 +107,53 @@
   <div class="lx-post">
     <div class="lx-entry padding">
       <div>
-        <p>section标签：Html5语义化后的新标签，表示将一大块内容分成几个部分。</p>
+        <p>CSS选择器的权重（赋属性时的覆盖优先级）：</p>
+<ul>
+<li>style: 1000 （HTML中的行内样式）</li>
+<li>id: 100 （#id{}）</li>
+<li>class: 10 （.class{}）</li>
+<li>element: 1 （element{}）</li>
+</ul>
 <span id="more"></span>
 <hr>
-<p>noscript标签：如果脚本未执行（如浏览器未支持JavaScript脚本），则会显示标签里的内容。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="handlebars"><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">	<span class="comment">&lt;!--</span></span></span></span><br><span class="line"><span class="comment"><span class="xml"><span class="handlebars">	document.write(&quot;Hello World!&quot;)</span></span></span></span><br><span class="line"><span class="comment"><span class="xml"><span class="handlebars">	//--&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars"></span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;<span class="name">noscript</span>&gt;</span>Your browser does not support JavaScript!<span class="tag">&lt;/<span class="name">noscript</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<hr>
-<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLFormElement/enctype">HTMLFormElement.enctype</a>属性常用来指明提交表单的内容类型，可选的值如下：</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Building_blocks/The_box_model">CSS盒模型</a>：</p>
 <ul>
-<li>application/x-www-form-urlencoded: 初始的默认值，在发送前编码所有字符</li>
-<li>multipart/form-data:  不对字符编码，适用于使用&lt;input&gt; 标签上传文件</li>
-<li>text/plain: HTML5 引入的类型，空格转换为 “+” 加号，但不对特殊字符编码</li>
+<li>块级盒子和内联盒子</li>
+<li>标准盒模型（content-box）和替代（奇异/IE）盒模型（border-box）</li>
+<li>盒子内的部分<ul>
+<li>content: 内容。在content-box中设置的宽和高就是内容的宽高。会应用该元素的背景。</li>
+<li>padding: 内边距。边框与内容区域之间的部分，增加内边距可以让边框和内容之间更宽敞。不能设置负值。内边距会应用该元素的背景。</li>
+<li>border: 边框。内边距以外的部分。如果要设置边框，一定要设置大小和样式，否则不会生效。当设置为solid时，边框实际上是四个等腰梯形均分边框外界和内边距外界两个矩形之间的空间。因此当内容和内边距的面积都是0的时候，就会变成均分一个矩形，也就是四个三角形。由此可以实现将内容设为0，某些边框设为透明来显示三角形。</li>
+<li>margin: 外边距。在border以外的矩形部分，用来推开其他盒子。如果设置负值，则会向其他盒子重叠。会显示父元素的背景（因为是透明的）。两个紧挨的外边距会出现折叠的情况，通常只会设定成两个里面的较大值。</li>
 </ul>
-<p>这些值可以通过元素 &lt;button&gt; or &lt;input&gt; 的属性form.enctype来改写。</p>
-<hr>
-<p>&lt;head&gt;是文章的头部，&lt;slider&gt;是侧边栏，&lt;main&gt;是主要内容，&lt;footer&gt;是尾部。</p>
-<hr>
-<p>input属于窗体元素,层级显示比flash、其它元素都高。请判断这句话的正确与否。（错误）</p>
-<p>解释：在HTML中，帧元素（frameset）的显示优先级最高，其次是表单元素，然后是非表单元素。flash属于帧元素，优先级更高。input属于窗体元素是正确的。</p>
-<hr>
-<p>Canvas和SVG的不同点：</p>
-<p>Canvas</p>
-<ul>
-<li>依赖分辨率</li>
-<li>不支持事件处理器</li>
-<li>弱的文本渲染能力</li>
-<li>能够以 .png 或 .jpg 格式保存结果图像</li>
-<li>最适合图像密集型的游戏，其中的许多对象会被频繁重绘</li>
-<li>Canvas 是逐像素进行渲染的。</li>
-<li>在 Canvas 中，一旦图形被绘制完成，它就不会继续得到浏览器的关注。如果其位置发生变化，那么整个场景也需要重新绘制，包括任何或许已被图形覆盖的对象。</li>
+</li>
+<li>不管是padding, border, 还是margin, 他们的大小设置百分比时都是参照父元素的宽度。</li>
+<li>当使用padding或margin属性设置时：<ul>
+<li>padding: 10px; 上下左右全部设为10px;</li>
+<li>padding: 10px 2px; 上下设为10px, 左右设为2px;</li>
+<li>padding: 2px 3px 4px; 上设为2px, 左右设为3px, 下设为4px;</li>
+<li>padding: 2px 3px 4px 5px; 上右下左（顺时针）分别设置。</li>
 </ul>
-<p>SVG</p>
-<ul>
-<li>不依赖分辨率</li>
-<li>支持事件处理器</li>
-<li>最适合带有大型渲染区域的应用程序（比如谷歌地图）</li>
-<li>复杂度高会减慢渲染速度（任何过度使用 DOM 的应用都不快）</li>
-<li>不适合游戏应用</li>
+</li>
 </ul>
 <hr>
-<p>input中的滑块控件type是range（理解成了slider，但slider是侧边栏）。</p>
+<p>改变一个元素状态CSS属性的排列顺序可以改变显示优先级，在后的会优先显示。</p>
+<p>题目：超链接访问过后hover样式就不出现了，被点击访问过的超链接样式不再具有hover和active了，解决方法是改变CSS属性的排列顺序？</p>
+<p>答案：a:link {} a:visited {} a:hover {} a:active {}</p>
 <hr>
-<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes">HTML的全局属性</a>：所有标签都可以使用的属性。<br>比如style, id, class等等。</p>
+<p>word-break属性可以调整是否为整个单词换行，<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/white-space">white-space</a>属性可以设定是否以及在哪些地方自动换行，所以严格来说如果要设置不换行应该设置white-space（可以设为nowrap）。</p>
 <hr>
-<p>什么情况会创建块格式化上下文 BFC（一个隔离的容器，容器里的子元素不会影响到外面的元素）</p>
-<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context">https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context</a></p>
+<p>CSS选择器中，nth-child是从1开始数的。</p>
 <hr>
-<p>不能被冒泡的9个事件：load和unload、 mouseenter和mouseleave、 blur和focus、 error、 resize和abort</p>
+<p>CSS中link和@import的区别:</p>
+<ul>
+<li>link属于XHTML标签，而@import完全是CSS提供的一种方式。</li>
+<li>当一个页面被加载的时候，link引用的CSS会同时被加载，而@import引用的CSS会等到页面全部被下载完再被加载。</li>
+<li>link在支持CSS的浏览器上都支持而@import只在5.0以上的版本有效。</li>
+<li>当使用javascript控制dom去改变样式的时候，只能使用link标签，因为@import不是dom可以控制的。</li>
+</ul>
 <hr>
-<p>&lt;a&gt;可以包含任何其他元素，但不能包含&lt;a&gt;本身。</p>
-<hr>
-<p>Dom Tree的根节点是Document对象。</p>
-<hr>
+<p>子选择器(a &gt; b)和后代选择器(a b)的区别：<br>子选择器只能选择a的直接子元素b，而后代选择器可以接受容器a中更深层的b元素。</p>
 
       </div>
     </div>
@@ -167,12 +162,12 @@
 <div class="lx-navigation">
 	<div class="lx-cover prev lx-cover-sm" style="background-image: url(//cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/astronaut.jpg)">
 		<div class="overlay"></div>
-		<a class="copy" href="/2021/09/01/%E7%89%9B%E5%AE%A2%E9%94%99%E9%A2%98%E7%B0%BF-CSS/">
+		<a class="copy" href="/2021/09/01/JavaScript%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
 			<div class="display-t">
 				<div class="display-tc">
 					<div>
 						<span>Next</span>
-						<h3>牛客错题簿-CSS</h3>
+						<h3>JavaScr...</h3>
 					</div>
 				</div>
 			</div>
@@ -180,12 +175,12 @@
 	</div>
         <div class="lx-cover next lx-cover-sm" style="background-image: url(//cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/moon.jpg)">
 		<div class="overlay"></div>
-		<a class="copy" href="/2021/08/29/Pow-x-n-10-%EF%BC%88%E5%BF%AB%E9%80%9F%E5%B9%82-%E5%A4%A7%E6%95%B0%E5%8F%96%E6%A8%A1%E9%97%AE%E9%A2%98%EF%BC%89/">
+		<a class="copy" href="/2021/09/01/HTML%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
 			<div class="display-t">
 				<div class="display-tc">
 					<div>
 						<span>Prev</span>
-						<h3>Pow(x, ...</h3>
+						<h3>HTML学习记录</h3>
 					</div>
 				</div>
 			</div>
