@@ -448,7 +448,10 @@ body {
 	font-weight: 400;
 }
 li {
-	list-style: none;
+	list-style-position: inside;
+}
+li > p {
+	display: inline;
 }
 li > a {
 	display: block;
@@ -621,12 +624,18 @@ img {
 .article__body > ul > li {
 	margin: 5px 0;
 }
-.article__body > ul > li:before {
+/* .article__body > ul > li:before {
 	content: "•";
 	margin: 0 10px;
-}
+} */
 .article__body > ul > li > a {
 	display: inline-block;
+}
+.article__body > ol > li {
+	margin: 5px 0;
+}
+.article__body > ol > li > p {
+	margin-left: 1em;
 }
 .article__body > .highlight {
 	background-color: #292a2b !important;
