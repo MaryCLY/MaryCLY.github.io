@@ -540,6 +540,9 @@ img {
 	-ms-flex-pack: distribute;
 	justify-content: space-around;
 }
+.main-nav__list {
+	list-style: none;
+}
 .main-nav__list__link {
 	color: #35ffdc;
 	border-bottom: 2px solid transparent;
