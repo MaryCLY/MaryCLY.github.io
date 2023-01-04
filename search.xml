@@ -33,8 +33,8 @@
     <content><![CDATA[<p>在vue开发中，页面跳转时常需要传递一些参数。如果我们使用vue router来进行路由，通常有两种方式进行参数的传递，一种是使用params, 一种是使用query. 在下文中我将介绍一下个人使用中感受到的这两者的区别。</p>
 <span id="more"></span>
 
-<h3 id="params"><a href="#params" class="headerlink" title="params"></a>params</h3><p>如果在url中定义了params的绑定，则可以直接在url中传递params(‘/articles/:id’), 否则只能通过vue router的方法（router-link或$router.push等）传递路径对象时添加params. params可以直接传递值和对象，并且定义了router中的props属性后，能在页面中通过props属性去获取。如果不通过props, 也可以使用this.$route.params获取。</p>
-<h3 id="query"><a href="#query" class="headerlink" title="query"></a>query</h3><p>query既可以直接在url后添加(‘marycly.github.io/index?pageId=114514’), 也可以通过vue router的方法传递路径对象时添加query. query可以传递值，但传递对象效果不稳定，最好将传递的对象通过JSON来保存。在页面中可以使用this.$route.query来获取query的内容。</p>
+<h3 id="params"><a href="#params" class="headerlink" title="params"></a>params</h3><p>如果在url中定义了params的绑定，则可以直接在url中传递params(&#39;/articles/:id&#39;), 否则只能通过vue router的方法（router-link或$router.push等）传递路径对象时添加params. params可以直接传递值和对象，并且定义了router中的props属性后，能在页面中通过props属性去获取。如果不通过props, 也可以使用this.$route.params获取。</p>
+<h3 id="query"><a href="#query" class="headerlink" title="query"></a>query</h3><p>query既可以直接在url后添加(&#39;marycly.github.io/index?pageId=114514&#39;), 也可以通过vue router的方法传递路径对象时添加query. query可以传递值，但传递对象效果不稳定，最好将传递的对象通过JSON来保存。在页面中可以使用this.$route.query来获取query的内容。</p>
 <h3 id="在页面跳转中的实际应用表现"><a href="#在页面跳转中的实际应用表现" class="headerlink" title="在页面跳转中的实际应用表现"></a>在页面跳转中的实际应用表现</h3><p>如果url中没有定义与params绑定的动态路由，个人不建议使用params来传递信息。因为这种情况下url里面并不包含params的信息，在浏览器历史前进/回退的过程中就会丢失，因此只能实现一个单向的传递。如果需要支持时常在页面之间跳转并保留信息的话，建议使用query.</p>
 ]]></content>
       <categories>
@@ -48,7 +48,7 @@
     <title>JS: Union-find(quick-union + weighting + path compression + map)</title>
     <url>/JS-Union-find-quick-union-weighting-path-compression-map/</url>
     <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Union-find，合并-查找，这个算法是在学习Algorithms这本书的时候看到的。</p>
-<h3 id="用于解决的问题"><a href="#用于解决的问题" class="headerlink" title="用于解决的问题"></a>用于解决的问题</h3><p>假定一个学校的圈子中，有A,B,C…这些人，而A,B存在联系，B,C存在联系，若要寻找A,C是否存在联系，只要存在B这个媒介，那么就说明有联系。为了建立这样的关系网，把存在联系的人连接合并成集合，这样在判断联系时，只需要判断是否存在这个集合里即可。抽象地说，就是在一个图中划分出连通子图。</p>
+<h3 id="用于解决的问题"><a href="#用于解决的问题" class="headerlink" title="用于解决的问题"></a>用于解决的问题</h3><p>假定一个学校的圈子中，有A,B,C...这些人，而A,B存在联系，B,C存在联系，若要寻找A,C是否存在联系，只要存在B这个媒介，那么就说明有联系。为了建立这样的关系网，把存在联系的人连接合并成集合，这样在判断联系时，只需要判断是否存在这个集合里即可。抽象地说，就是在一个图中划分出连通子图。</p>
 <h3 id="核心的方法需求"><a href="#核心的方法需求" class="headerlink" title="核心的方法需求"></a>核心的方法需求</h3><p>Union(p, q): 将点p和点q建立连接的方法。</p>
 <p>Find(p): 寻找点p所在的子集。通常用Find(p)==Find(q)来判断p和q具有连通性。</p>
 <span id="more"></span>
@@ -93,23 +93,6 @@
       </tags>
   </entry>
   <entry>
-    <title>一些使用UI组件库的经验</title>
-    <url>/%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8UI%E7%BB%84%E4%BB%B6%E5%BA%93%E7%9A%84%E7%BB%8F%E9%AA%8C/</url>
-    <content><![CDATA[<p>近期进行前端开发的过程中，接触了一些比较全面方便的UI库，有Ant Design Vue, 以及Vant. 这些UI库使用起来比自己造零件要方便且美观，不过在初使用的过程中也会遇到一些比较疑惑的问题，因此写下本文记录一下使用这些UI组件库所积累的一些经验。</p>
-<span id="more"></span>
-
-<h2 id="主题定制"><a href="#主题定制" class="headerlink" title="主题定制"></a>主题定制</h2><p>通常来说，UI组件库都提供全局的主题定制的功能，如某个组件的默认颜色或整体的颜色风格等，一般可以在官网找到更改方式，譬如Ant Design Vue 3的主题定制方式就在<a href="https://antdv.com/docs/vue/customize-theme-cn">定制主题 - Ant Design Vue</a>. Vue项目通常需要修改全局选项文件。</p>
-<h2 id="调整内部样式"><a href="#调整内部样式" class="headerlink" title="调整内部样式"></a>调整内部样式</h2><p>在使用UI组件库的过程中，有时候需要调整个别组件的样式，而不改变全局的UI库参数。如果直接打开浏览器的开发者检查工具，可以看到UI库组件的内部存在一些class, 它们定义了那些你不想要的样式。这种时候，如果在源代码中直接用类名选择器设置这些class的样式，会发现并没有效果。这种时候，使用/deep/ .target-class 的选择器来定义你需要更改的样式，就能起到效果（LESS预编译语言下）。有一篇类似情况的文章可供参考：<a href="https://www.jianshu.com/p/5bd38a4d4d64">&gt;&gt;&gt;或/deep/的作用</a></p>
-]]></content>
-      <categories>
-        <category>开发</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-        <tag>CSS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>关于我如何艰难地在公司业务中实现侧滑置顶删除功能（二）</title>
     <url>/%E5%85%B3%E4%BA%8E%E6%88%91%E5%A6%82%E4%BD%95%E8%89%B0%E9%9A%BE%E5%9C%B0%E5%9C%A8%E5%85%AC%E5%8F%B8%E4%B8%9A%E5%8A%A1%E4%B8%AD%E5%AE%9E%E7%8E%B0%E4%BE%A7%E6%BB%91%E7%BD%AE%E9%A1%B6%E5%88%A0%E9%99%A4%E5%8A%9F%E8%83%BD%EF%BC%88%E4%BA%8C%EF%BC%89/</url>
     <content><![CDATA[<p>上一章内容：<a href="/2021/08/16/%E5%85%B3%E4%BA%8E%E6%88%91%E5%A6%82%E4%BD%95%E8%89%B0%E9%9A%BE%E5%9C%B0%E5%9C%A8%E5%85%AC%E5%8F%B8%E4%B8%9A%E5%8A%A1%E4%B8%AD%E5%AE%9E%E7%8E%B0%E4%BE%A7%E6%BB%91%E7%BD%AE%E9%A1%B6%E5%88%A0%E9%99%A4%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%80%EF%BC%89">关于我如何艰难地在公司业务中实现侧滑置顶删除功能（一）</a></p>
@@ -146,6 +129,23 @@
       </tags>
   </entry>
   <entry>
+    <title>一些使用UI组件库的经验</title>
+    <url>/%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8UI%E7%BB%84%E4%BB%B6%E5%BA%93%E7%9A%84%E7%BB%8F%E9%AA%8C/</url>
+    <content><![CDATA[<p>近期进行前端开发的过程中，接触了一些比较全面方便的UI库，有Ant Design Vue, 以及Vant. 这些UI库使用起来比自己造零件要方便且美观，不过在初使用的过程中也会遇到一些比较疑惑的问题，因此写下本文记录一下使用这些UI组件库所积累的一些经验。</p>
+<span id="more"></span>
+
+<h2 id="主题定制"><a href="#主题定制" class="headerlink" title="主题定制"></a>主题定制</h2><p>通常来说，UI组件库都提供全局的主题定制的功能，如某个组件的默认颜色或整体的颜色风格等，一般可以在官网找到更改方式，譬如Ant Design Vue 3的主题定制方式就在<a href="https://antdv.com/docs/vue/customize-theme-cn">定制主题 - Ant Design Vue</a>. Vue项目通常需要修改全局选项文件。</p>
+<h2 id="调整内部样式"><a href="#调整内部样式" class="headerlink" title="调整内部样式"></a>调整内部样式</h2><p>在使用UI组件库的过程中，有时候需要调整个别组件的样式，而不改变全局的UI库参数。如果直接打开浏览器的开发者检查工具，可以看到UI库组件的内部存在一些class, 它们定义了那些你不想要的样式。这种时候，如果在源代码中直接用类名选择器设置这些class的样式，会发现并没有效果。这种时候，使用/deep/ .target-class 的选择器来定义你需要更改的样式，就能起到效果（LESS预编译语言下）。有一篇类似情况的文章可供参考：<a href="https://www.jianshu.com/p/5bd38a4d4d64">&gt;&gt;&gt;或/deep/的作用</a></p>
+]]></content>
+      <categories>
+        <category>开发</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>关于我如何艰难地在公司业务中实现侧滑置顶删除功能（一）</title>
     <url>/%E5%85%B3%E4%BA%8E%E6%88%91%E5%A6%82%E4%BD%95%E8%89%B0%E9%9A%BE%E5%9C%B0%E5%9C%A8%E5%85%AC%E5%8F%B8%E4%B8%9A%E5%8A%A1%E4%B8%AD%E5%AE%9E%E7%8E%B0%E4%BE%A7%E6%BB%91%E7%BD%AE%E9%A1%B6%E5%88%A0%E9%99%A4%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%80%EF%BC%89/</url>
     <content><![CDATA[<h2 id="工程需求"><a href="#工程需求" class="headerlink" title="工程需求"></a>工程需求</h2><p>开发的应用：用微信小程序经由hera生成的跨平台移动端APP。</p>
@@ -172,61 +172,43 @@
       </tags>
   </entry>
   <entry>
-    <title>微信小程序：灵活适配不同标题栏高度的设备的方法</title>
-    <url>/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%EF%BC%9A%E7%81%B5%E6%B4%BB%E9%80%82%E9%85%8D%E4%B8%8D%E5%90%8C%E6%A0%87%E9%A2%98%E6%A0%8F%E9%AB%98%E5%BA%A6%E7%9A%84%E8%AE%BE%E5%A4%87%E7%9A%84%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<h2 id="工程需求"><a href="#工程需求" class="headerlink" title="工程需求"></a>工程需求</h2><p>开发的应用：用微信小程序经由hera生成的跨平台移动端App。</p>
-<p>作为实习生在工作中遇到了这样的需求：需要顶部的标题栏和选择标签栏保持一直在窗口顶部（样式即top:0; position:fixed;），而其他的内容组件则可以随着页面滚动（样式即position:absolute;）。而我开发的小程序属于跨平台App，不知道公司的标题栏大小是如何设置的，总之会产生不同设备上标题栏高度不一的问题（尤其体现在微信小程序和hera生成的Android/IOS应用之间）。那么则需要解决一个问题，如何让absolute的内容组件自动贴着fixed的顶部组件生成呢？</p>
-<p>首先，对于需要分别设置不同position的组件，当然不能使用flex布局之类的进行自动黏贴。那么接下来的想法是想办法获取fixed部分的底部高度。</p>
-<h2 id="方案参考"><a href="#方案参考" class="headerlink" title="方案参考"></a>方案参考</h2><p>在公司其他员工的代码中发现了这样的操作：在html页面中建立一个wxs脚本，运行时获取设备是否为Android，如果是则通过Android系统接口获取标题栏高度而进行对固定内容组件的top样式的渲染，否则就不要使用位置fixed。</p>
-<p>私以为，还能够用更优雅的代码和适配性更强的方案去解决这个问题，于是经过一番思考有了以下的方案：</p>
+    <title>各种问题的发现、解决与感想(2)</title>
+    <url>/%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98%E7%9A%84%E5%8F%91%E7%8E%B0%E3%80%81%E8%A7%A3%E5%86%B3%E4%B8%8E%E6%84%9F%E6%83%B3-2/</url>
+    <content><![CDATA[<p>目录：</p>
+<ul>
+<li><a href="#CSS-opacity%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE%E7%99%BE%E5%88%86%E6%AF%94%E4%BC%9A%E5%AF%BC%E8%87%B4%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%97%AE%E9%A2%98">CSS opacity属性设置百分比会导致生产环境问题</a></li>
+<li><a href="#HTML%E6%96%87%E4%BB%B6%E5%BC%95%E7%94%A8%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98">HTML文件引用在服务器上的路径问题</a></li>
+</ul>
 <span id="more"></span>
 
-<h2 id="最终方案"><a href="#最终方案" class="headerlink" title="最终方案"></a>最终方案</h2><h3 id="大体思路如下："><a href="#大体思路如下：" class="headerlink" title="大体思路如下："></a>大体思路如下：</h3><p>在onLoad函数中使用微信小程序的SelectorQuery选取需要设置fixed的view，然后获取它的底部高度，再对需要设置absolute的内容组件的top样式进行渲染。</p>
-<h3 id="主要代码："><a href="#主要代码：" class="headerlink" title="主要代码："></a>主要代码：</h3><figure class="highlight javascript"><figcaption><span>index.js</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">/* page */</span></span><br><span class="line">	<span class="attr">data</span>: &#123;</span><br><span class="line">		<span class="attr">dAbsoluteTop</span>: <span class="number">0</span>, <span class="comment">//准备设置固定内容组件的高度</span></span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="attr">onLoad</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">const</span> that = <span class="built_in">this</span>;</span><br><span class="line">		<span class="keyword">const</span> query = wx.createSelectorQuery();</span><br><span class="line">		query.select(<span class="string">&#x27;#fixed-view&#x27;</span>).boundingClientRect();</span><br><span class="line">		query.selectViewport().scrollOffset();</span><br><span class="line">		query.exec(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">			that.setData(&#123;</span><br><span class="line">				<span class="attr">dAbsoluteTop</span>: res[<span class="number">0</span>].bottom <span class="comment">//根据底部渲染</span></span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;,</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><figcaption><span>index.wxml</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;view id=&quot;fixed-view&quot; style=&quot;position: fixed; top: 0; display: flex; flex-direction: column;&quot;&gt;</span><br><span class="line">	&lt;titlebar /&gt; &lt;!-- 标题栏 --&gt;</span><br><span class="line">	&lt;tabbar /&gt; &lt;!-- 选择标签栏 --&gt;</span><br><span class="line">&lt;/view&gt;</span><br><span class="line">&lt;view style=&quot;position: absolute; top: &#123;&#123;dAbsolute&#125;&#125;;&quot;&gt;</span><br><span class="line">	&lt;!-- 内容 --&gt;</span><br><span class="line">&lt;/view&gt;</span><br></pre></td></tr></table></figure>
-
-<p>经不同设备检验，效果良好。</p>
+<hr>
+<h2 id="CSS-opacity属性设置百分比会导致生产环境问题"><a href="#CSS-opacity属性设置百分比会导致生产环境问题" class="headerlink" title="CSS opacity属性设置百分比会导致生产环境问题"></a>CSS opacity属性设置百分比会导致生产环境问题</h2><p>在某个项目的测试阶段中，测试人员反馈某个元素没有显示，但是本地开发环境一切正常。在浏览器检查时发现，该元素的opacity属性值被设置为1%，故几乎不可见，但实际代码中设置为70%.</p>
+<p>经过网络查询发现，原来别人也有出现同样的问题，即当opacity属性设置为百分比的时候，打包工具无法正确处理，就会变成1%. 如果使用0.7这样的小数值，便可以正常处理。</p>
+<p>实际上，opacity的值的标准写法就是小数（见MDN Web Doc），但工程中往往写百分比形式也可以正常使用（且符合直觉，通常不透明度的概念经常以百分比表示），然而使用一些打包工具转移到生产环境的时候，就会导致数值错误的问题。希望读者都能够知道这件事情，不要犯类似的错误。</p>
+<hr>
+<h2 id="HTML文件引用在服务器上的路径问题"><a href="#HTML文件引用在服务器上的路径问题" class="headerlink" title="HTML文件引用在服务器上的路径问题"></a>HTML文件引用在服务器上的路径问题</h2><p>有时我们不使用node进行开发和打包，而是直接使用HTML, CSS, JS文件开发和打包。</p>
+<p>在开发阶段，我们在HTML代码中引用文件时通常使用文件的相对路径，如&quot;image/xxx.png&quot;, &quot;css/common.css&quot;，并且可以正常调试。打包到服务器上时，有时会把资源文件和HTML分开存放，有时就保留原始目录结构放在同一个文件夹下。但尽管放在同一个文件夹下，原来的相对路径却无法正常在浏览器中引用了，这是为什么呢？</p>
+<p>因为HTML文件中的相对路径，在浏览器环境下，会引用的实际路径是相对服务器根目录的路径。如HTML代码中引用了&quot;image/xxx.png&quot;，服务器地址是&quot;localhost:8080&quot;, 页面的地址是&quot;localhost:8080/hello/index.html&quot;, 反馈到浏览器中则不是期望的&quot;localhost:8080/hello/image/xxx.png&quot;, 而是&quot;localhost:8080/image/xxx.png&quot;，这样就无法正确地引用到文件了。</p>
+<p>因此，实际部署时正确的引用方式应该是&quot;hello/image/xxx.png&quot;. 实际上是一个相对服务器根目录的绝对路径。</p>
 ]]></content>
       <categories>
         <category>开发</category>
       </categories>
       <tags>
-        <tag>微信小程序</tag>
+        <tag>CSS</tag>
+        <tag>HTML</tag>
       </tags>
   </entry>
   <entry>
-    <title>邮箱系统界面设计</title>
-    <url>/%E9%82%AE%E7%AE%B1%E7%B3%BB%E7%BB%9F%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1/</url>
-    <content><![CDATA[<p>谨以本文记录2022年7月入职科大讯飞后，作为培训的一部分参加的编程大赛。</p>
-<p>因为项目要求队员中至少一位有TCP编程经验，原本小组中的两位前端之一（自然不是我）被分配到其他小组了，而新分配进来的这位是一个Android开发工程师，并没有Vue开发经验（比赛要求使用Vue框架进行开发）。因此，所有的前端开发工作便由我一个人完成。因为前端部分代码完全由我独立开发，因此作为个人成果发布于<a href="https://github.com/MaryCLY/mail-system-ui">GitHub</a>供公开交流学习。</p>
-<span id="more"></span>
-
-<h2 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h2><h3 id="登录-注册界面"><a href="#登录-注册界面" class="headerlink" title="登录/注册界面"></a>登录/注册界面</h3><p>登录/注册的过程又被分为两个步骤：第一个步骤是输入用户名并点击“下一步”，这时系统会检测用户名是否已注册，从而将用户转入登录或注册页面。而第二个步骤则是输入密码，其中需要注册的用户将被要求重复输入密码，而登录的用户只需输入一次。在这个过程中，前端包含用户名与密码的格式检测。</p>
-<p>点击确认后，系统请求后端是否注册/登录成功，如果失败弹出错误提示，反之则弹出成功提示，并将页面转入主页。</p>
-<h3 id="主页"><a href="#主页" class="headerlink" title="主页"></a>主页</h3><p>主页提供查看邮件以及写新邮件的功能。其中查看邮件的内容分为收件箱和发件箱，邮件列表提供分页功能，点击列表中的邮件标题进入邮件详情。</p>
-<p>写邮件的功能采用按钮+模态弹窗的形式实现。因为开发时采用的富文本编辑器出现bug难以修复，只提供了输入纯文本的功能。未支持上传附件。</p>
-<p>头部提供退出登录按钮。</p>
-<h2 id="主要技术"><a href="#主要技术" class="headerlink" title="主要技术"></a>主要技术</h2><p>系统使用Vite+Vue 3进行前端开发。</p>
-<h2 id="部分细节"><a href="#部分细节" class="headerlink" title="部分细节"></a>部分细节</h2><p>交付时的版本，只使用点击来切换sider中的选项卡，而复杂的操作下会出现bug. 之后进行了一定的优化，使用vuex state来管理当前处于的页面，从而保证sider的选项正确。</p>
-]]></content>
-      <categories>
-        <category>开发</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>最近项目中发现的一些问题解决方案及感想</title>
-    <url>/%E6%9C%80%E8%BF%91%E9%A1%B9%E7%9B%AE%E4%B8%AD%E5%8F%91%E7%8E%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%8F%8A%E6%84%9F%E6%83%B3/</url>
+    <title>各种问题的发现、解决与感想</title>
+    <url>/%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98%E7%9A%84%E5%8F%91%E7%8E%B0%E3%80%81%E8%A7%A3%E5%86%B3%E4%B8%8E%E6%84%9F%E6%83%B3/</url>
     <content><![CDATA[<p>前段时间参与了一个项目的开发，共计超过一个月的时间。工作量其实是非常饱和的，并且在接手各种老旧工程的时候经历了很多奇奇怪怪的问题，有的至今难以解决。特此分享一下在这段项目中发现的一些问题解决方案及感想。</p>
 <p>目录：</p>
 <ul>
-<li>重定向到统一登录页面后，返回的地址默认是网站首页的解决方案</li>
-<li>跨域传输数据的解决方案</li>
-<li>无法更改源码时阻止网页中默认弹出提示的解决方案</li>
-<li>对付前人写的坏代码的心得感想</li>
+<li><a href="#%E9%87%8D%E5%AE%9A%E5%90%91%E5%88%B0%E7%BB%9F%E4%B8%80%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E5%90%8E%EF%BC%8C%E8%BF%94%E5%9B%9E%E7%9A%84%E5%9C%B0%E5%9D%80%E9%BB%98%E8%AE%A4%E6%98%AF%E7%BD%91%E7%AB%99%E9%A6%96%E9%A1%B5%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">重定向到统一登录页面后，返回的地址默认是网站首页的解决方案</a></li>
+<li><a href="#%E8%B7%A8%E5%9F%9F%E4%BC%A0%E8%BE%93%E6%95%B0%E6%8D%AE%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">跨域传输数据的解决方案</a></li>
+<li><a href="#%E6%97%A0%E6%B3%95%E6%9B%B4%E6%94%B9%E6%BA%90%E7%A0%81%E6%97%B6%E9%98%BB%E6%AD%A2%E7%BD%91%E9%A1%B5%E4%B8%AD%E9%BB%98%E8%AE%A4%E5%BC%B9%E5%87%BA%E6%8F%90%E7%A4%BA%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">无法更改源码时阻止网页中默认弹出提示的解决方案</a></li>
+<li><a href="#%E5%AF%B9%E4%BB%98%E5%89%8D%E4%BA%BA%E5%86%99%E7%9A%84%E5%9D%8F%E4%BB%A3%E7%A0%81%E7%9A%84%E5%BF%83%E5%BE%97%E6%84%9F%E6%83%B3">对付前人写的坏代码的心得感想</a></li>
 </ul>
 <span id="more"></span>
 
@@ -249,7 +231,7 @@
 <p>代码示例：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// A页面 - 打开B页面前</span></span><br><span class="line"><span class="keyword">const</span> nextOrigin = <span class="string">&#x27;https://marycly.github.io&#x27;</span> <span class="comment">// B页面的源地址</span></span><br><span class="line"><span class="keyword">const</span> nextUrl = <span class="string">&#x27;https://marycly.github.io/archives/&#x27;</span> <span class="comment">// B页面的完整打开地址</span></span><br><span class="line"><span class="keyword">const</span> parseValue = <span class="string">&#x27;hello&#x27;</span> <span class="comment">// 要传递的数据</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&#x27;message&#x27;</span>, <span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (!e.origin.includes(nextOrigin)) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="comment">// 任何消息监听器里都应该加上这个判断，不仅可以区分不同地址发来的消息所产生的不同效果，也可以防止未知网站的消息攻击</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">this</span>.receiveMessageTimeout) &#123;</span><br><span class="line">    <span class="built_in">window</span>.clearTimeout(<span class="built_in">this</span>.receiveMessageTimeout)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">this</span>.receiveMessageTimeout = <span class="built_in">window</span>.setTimeout(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.nextPage.postMessage(parseValue, nextOrigin) <span class="comment">// 这是最终会干的事情，向B页面发送数据</span></span><br><span class="line">  &#125;, <span class="number">500</span>)</span><br><span class="line">  <span class="comment">// 这里小小做了一个0.5s延时的消抖，防止消息重复发送</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">this</span>.nextPage = <span class="built_in">window</span>.open(nextUrl) <span class="comment">// 然后打开B页面，并保存窗口对象到变量中，便于监听器调用</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// B页面 - 加载完成后</span></span><br><span class="line"><span class="keyword">const</span> lastOrigin = <span class="string">&#x27;https://anyone.github.io&#x27;</span> <span class="comment">// A页面的源地址</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&#x27;message&#x27;</span>, <span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (!e.origin.includes(lastOrigin)) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="comment">// 任何消息监听器里都应该加上这个判断，不仅可以区分不同地址发来的消息所产生的不同效果，也可以防止未知网站的消息攻击</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 使用e.data干任何事！</span></span><br><span class="line">  <span class="built_in">console</span>.log(e.data)</span><br><span class="line">  <span class="built_in">this</span>.lastPageData = e.data</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">const</span> lastPage = <span class="built_in">window</span>.opener <span class="comment">// 通过opener获取A页面的窗口对象</span></span><br><span class="line">lastPage.postMessage(<span class="string">&#x27;I am all okay!&#x27;</span>, lastOrigin) <span class="comment">// 向A页面表示你已经准备好接收数据了</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// B页面 - 加载完成后</span></span><br><span class="line"><span class="keyword">const</span> lastOrigin = <span class="string">&#x27;https://anyone.hello&#x27;</span> <span class="comment">// A页面的源地址</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&#x27;message&#x27;</span>, <span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (!e.origin.includes(lastOrigin)) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="comment">// 任何消息监听器里都应该加上这个判断，不仅可以区分不同地址发来的消息所产生的不同效果，也可以防止未知网站的消息攻击</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 使用e.data干任何事！</span></span><br><span class="line">  <span class="built_in">console</span>.log(e.data)</span><br><span class="line">  <span class="built_in">this</span>.lastPageData = e.data</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">const</span> lastPage = <span class="built_in">window</span>.opener <span class="comment">// 通过opener获取A页面的窗口对象</span></span><br><span class="line">lastPage.postMessage(<span class="string">&#x27;I am all okay!&#x27;</span>, lastOrigin) <span class="comment">// 向A页面表示你已经准备好接收数据了</span></span><br></pre></td></tr></table></figure>
 
 <hr>
 <h2 id="无法更改源码时阻止网页中默认弹出提示的解决方案"><a href="#无法更改源码时阻止网页中默认弹出提示的解决方案" class="headerlink" title="无法更改源码时阻止网页中默认弹出提示的解决方案"></a>无法更改源码时阻止网页中默认弹出提示的解决方案</h2><p>问题描述：工程所使用的一个依赖包中有这样一个逻辑，提交数据成功时会默认弹出一个提示（element-ui的message组件）。现需要阻止该提示，但依赖包的内容难以直接更改。</p>
@@ -276,6 +258,107 @@
       </categories>
       <tags>
         <tag>JS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>对一些团队前端开发规范的质疑、求证和思考总结</title>
+    <url>/%E5%AF%B9%E4%B8%80%E4%BA%9B%E5%9B%A2%E9%98%9F%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83%E7%9A%84%E8%B4%A8%E7%96%91%E3%80%81%E6%B1%82%E8%AF%81%E5%92%8C%E6%80%9D%E8%80%83%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>因为我算是比较重视代码质量的一个人，在刚进公司的时候就开始积极地学习团队内的一些开发规范。其中有写在文档里面的，也有同事们在代码审查中提到的；有美观性、易读性方面的，也有性能提升方面的。有时，看到一些开发规范，我无法理解它的意义和必要性，并且觉得非常不方便，便会在网络上寻找相关的资料，以及与同事交流。当然，作为一名前端新人，我个人的考虑其实也有很多不足之处，以下就介绍一下我对一些团队前端开发规范产生的质疑、求证和思考总结。</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="定义样式时使用class，避免使用id"><a href="#定义样式时使用class，避免使用id" class="headerlink" title="定义样式时使用class，避免使用id"></a>定义样式时使用class，避免使用id</h2><p>这一点，我一开始不知道有什么意义，在深入了解过后觉得是必要的。</p>
+<p>首先这两个属性存在明显的不同：class属性是专为样式准备的，并且可复用；id属性具有当前文档内的唯一性，通常能够起到特殊的作用，比如作为&lt;a&gt;标签的锚点，以及最快地被JavaScript元素节点语法选中。</p>
+<p>因此，id属性通常作为一种具有特殊性的标识，表示本元素可能用作页面锚点，或者代码中需要对该元素执行JavaScript操作。除此之外，不在非必要的时候使用id属性也可以减少出现意外重复的概率。</p>
+<p>总之，使用CSS选择器的时候，如果该本身就需要使用id进行其他操作，就可以使用id选择器，否则尽量不要仅为了定义样式而使用id.</p>
+<hr>
+<h2 id="少使用标签选择器"><a href="#少使用标签选择器" class="headerlink" title="少使用标签选择器"></a>少使用标签选择器</h2><p>从开发者的角度来说，其实使用标签选择器是很方便的。譬如某个div元素中只存在一个img标签，使用[.certain-div img]的选择器就可以最快地选中该img元素。</p>
+<p>但从性能的方面考虑，使用标签选择器可能会带来一些性能影响。CSS选择器的层次逻辑是从右到左执行的，因此越往右边的选择器越影响效率。而标签选择器通常放在较右边，这就使得CSS先选中文档中所有的该标签，再执行上一步的层次查找。标签往往在文档中相比class和id是最多的，因此会影响CSS选择器的效率。</p>
+<p>当然，如果本身就是在文档中比较少使用的标签，自然不会非常影响效率，但div, span等使用频率较高的标签，可以想象对性能影响还是比较大的。</p>
+<p>总的来说，定义样式的时候，如果能使用class，尽量还是避免使用标签选择器。</p>
+<hr>
+<h2 id="Vue框架中v-for列表渲染的key属性是否能使用index"><a href="#Vue框架中v-for列表渲染的key属性是否能使用index" class="headerlink" title="Vue框架中v-for列表渲染的key属性是否能使用index"></a>Vue框架中v-for列表渲染的key属性是否能使用index</h2><p>key属性，是在Vue列表渲染时，被用于唯一标识每一列表项的属性。在列表渲染的机制中起到非常重要的作用。</p>
+<p>首先，在比较简单且静态的列表结构里面，使用index作为key, 或者不使用key, 其实是能够通过依赖默认行为提高性能的。</p>
+<p>但是，以下几种情况无法使用index作为key:</p>
+<ol>
+<li>该列表可能出现顺序变化。譬如需要提供向列表中间插入项的功能，这时会把顺序打乱，原本的标识作用也将产生混乱。这种情况，建议在列表结构中，给每一项增加一个单独的识别码，譬如：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">id</span>: <span class="string">&#x27;hello1&#x27;</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;Hello&#x27;</span></span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        <span class="attr">id</span>: <span class="string">&#x27;hello2&#x27;</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;Hello&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>两个及以上的列表渲染作为兄弟节点出现。</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item, index) in array&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;index&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item1, index1) in array1&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;index1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>因为key的作用范围是同一元素下，这种条件下就可能会出现key重复的情况。解决方式是把index和一些字符拼接起来，就可以把两种key区分开。这种方式生成的key实际上也是和index完全相对应的。如下：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item, index) in array&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;`a$&#123;index&#125;`&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item1, index1) in array1&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;`b$&#123;index1&#125;`&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>跟前辈讨论的时候，她认为为了避免key重复的情况，应该完全不使用index作为key, 尽量拼接字符串。我其实觉得，这种情况在使用简单静态列表的场景下很少出现，只要心里有数就可以用。</p>
+<hr>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>没人爱写注释，我也不爱。听过一种说法，一个条理清晰、命名意义明确、排版舒适的代码胜过各种注释，因此我也一直很努力地在做到，为了不写注释。</p>
+<p>当然，有些注释还是可以一写，大多方便别人，部分方便自己：</p>
+<ol>
+<li><p>公用的方法、变量、组件等。方法的注释推荐使用VSCode拓展koroFileHeader生成模板。如有需要，变量、组件参数建议说明取值范围。</p>
+</li>
+<li><p>文件头注释。也可以使用koroFileHeader生成模板，主要是介绍一下该文件负责的功能。</p>
+</li>
+<li><p>确实复杂，不易看懂的代码部分。如果发现某一段代码可能让未来的自己或别人看不懂，及时写注释。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>开发</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+        <tag>CSS</tag>
+        <tag>HTML</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>邮箱系统界面设计</title>
+    <url>/%E9%82%AE%E7%AE%B1%E7%B3%BB%E7%BB%9F%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1/</url>
+    <content><![CDATA[<p>谨以本文记录2022年7月入职科大讯飞后，作为培训的一部分参加的编程大赛。</p>
+<p>因为项目要求队员中至少一位有TCP编程经验，原本小组中的两位前端之一（自然不是我）被分配到其他小组了，而新分配进来的这位是一个Android开发工程师，并没有Vue开发经验（比赛要求使用Vue框架进行开发）。因此，所有的前端开发工作便由我一个人完成。因为前端部分代码完全由我独立开发，因此作为个人成果发布于<a href="https://github.com/MaryCLY/mail-system-ui">GitHub</a>供公开交流学习。</p>
+<span id="more"></span>
+
+<h2 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h2><h3 id="登录-注册界面"><a href="#登录-注册界面" class="headerlink" title="登录/注册界面"></a>登录/注册界面</h3><p>登录/注册的过程又被分为两个步骤：第一个步骤是输入用户名并点击“下一步”，这时系统会检测用户名是否已注册，从而将用户转入登录或注册页面。而第二个步骤则是输入密码，其中需要注册的用户将被要求重复输入密码，而登录的用户只需输入一次。在这个过程中，前端包含用户名与密码的格式检测。</p>
+<p>点击确认后，系统请求后端是否注册/登录成功，如果失败弹出错误提示，反之则弹出成功提示，并将页面转入主页。</p>
+<h3 id="主页"><a href="#主页" class="headerlink" title="主页"></a>主页</h3><p>主页提供查看邮件以及写新邮件的功能。其中查看邮件的内容分为收件箱和发件箱，邮件列表提供分页功能，点击列表中的邮件标题进入邮件详情。</p>
+<p>写邮件的功能采用按钮+模态弹窗的形式实现。因为开发时采用的富文本编辑器出现bug难以修复，只提供了输入纯文本的功能。未支持上传附件。</p>
+<p>头部提供退出登录按钮。</p>
+<h2 id="主要技术"><a href="#主要技术" class="headerlink" title="主要技术"></a>主要技术</h2><p>系统使用Vite+Vue 3进行前端开发。</p>
+<h2 id="部分细节"><a href="#部分细节" class="headerlink" title="部分细节"></a>部分细节</h2><p>交付时的版本，只使用点击来切换sider中的选项卡，而复杂的操作下会出现bug. 之后进行了一定的优化，使用vuex state来管理当前处于的页面，从而保证sider的选项正确。</p>
+]]></content>
+      <categories>
+        <category>开发</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>微信小程序：灵活适配不同标题栏高度的设备的方法</title>
+    <url>/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%EF%BC%9A%E7%81%B5%E6%B4%BB%E9%80%82%E9%85%8D%E4%B8%8D%E5%90%8C%E6%A0%87%E9%A2%98%E6%A0%8F%E9%AB%98%E5%BA%A6%E7%9A%84%E8%AE%BE%E5%A4%87%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="工程需求"><a href="#工程需求" class="headerlink" title="工程需求"></a>工程需求</h2><p>开发的应用：用微信小程序经由hera生成的跨平台移动端App。</p>
+<p>作为实习生在工作中遇到了这样的需求：需要顶部的标题栏和选择标签栏保持一直在窗口顶部（样式即top:0; position:fixed;），而其他的内容组件则可以随着页面滚动（样式即position:absolute;）。而我开发的小程序属于跨平台App，不知道公司的标题栏大小是如何设置的，总之会产生不同设备上标题栏高度不一的问题（尤其体现在微信小程序和hera生成的Android/IOS应用之间）。那么则需要解决一个问题，如何让absolute的内容组件自动贴着fixed的顶部组件生成呢？</p>
+<p>首先，对于需要分别设置不同position的组件，当然不能使用flex布局之类的进行自动黏贴。那么接下来的想法是想办法获取fixed部分的底部高度。</p>
+<h2 id="方案参考"><a href="#方案参考" class="headerlink" title="方案参考"></a>方案参考</h2><p>在公司其他员工的代码中发现了这样的操作：在html页面中建立一个wxs脚本，运行时获取设备是否为Android，如果是则通过Android系统接口获取标题栏高度而进行对固定内容组件的top样式的渲染，否则就不要使用位置fixed。</p>
+<p>私以为，还能够用更优雅的代码和适配性更强的方案去解决这个问题，于是经过一番思考有了以下的方案：</p>
+<span id="more"></span>
+
+<h2 id="最终方案"><a href="#最终方案" class="headerlink" title="最终方案"></a>最终方案</h2><h3 id="大体思路如下："><a href="#大体思路如下：" class="headerlink" title="大体思路如下："></a>大体思路如下：</h3><p>在onLoad函数中使用微信小程序的SelectorQuery选取需要设置fixed的view，然后获取它的底部高度，再对需要设置absolute的内容组件的top样式进行渲染。</p>
+<h3 id="主要代码："><a href="#主要代码：" class="headerlink" title="主要代码："></a>主要代码：</h3><figure class="highlight javascript"><figcaption><span>index.js</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">/* page */</span></span><br><span class="line">	<span class="attr">data</span>: &#123;</span><br><span class="line">		<span class="attr">dAbsoluteTop</span>: <span class="number">0</span>, <span class="comment">//准备设置固定内容组件的高度</span></span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="attr">onLoad</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">const</span> that = <span class="built_in">this</span>;</span><br><span class="line">		<span class="keyword">const</span> query = wx.createSelectorQuery();</span><br><span class="line">		query.select(<span class="string">&#x27;#fixed-view&#x27;</span>).boundingClientRect();</span><br><span class="line">		query.selectViewport().scrollOffset();</span><br><span class="line">		query.exec(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">			that.setData(&#123;</span><br><span class="line">				<span class="attr">dAbsoluteTop</span>: res[<span class="number">0</span>].bottom <span class="comment">//根据底部渲染</span></span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;,</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><figcaption><span>index.wxml</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;view id=&quot;fixed-view&quot; style=&quot;position: fixed; top: 0; display: flex; flex-direction: column;&quot;&gt;</span><br><span class="line">	&lt;titlebar /&gt; &lt;!-- 标题栏 --&gt;</span><br><span class="line">	&lt;tabbar /&gt; &lt;!-- 选择标签栏 --&gt;</span><br><span class="line">&lt;/view&gt;</span><br><span class="line">&lt;view style=&quot;position: absolute; top: &#123;&#123;dAbsolute&#125;&#125;;&quot;&gt;</span><br><span class="line">	&lt;!-- 内容 --&gt;</span><br><span class="line">&lt;/view&gt;</span><br></pre></td></tr></table></figure>
+
+<p>经不同设备检验，效果良好。</p>
+]]></content>
+      <categories>
+        <category>开发</category>
+      </categories>
+      <tags>
+        <tag>微信小程序</tag>
       </tags>
   </entry>
 </search>

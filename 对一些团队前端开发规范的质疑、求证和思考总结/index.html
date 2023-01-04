@@ -1,0 +1,46 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>程序员玛丽的星海方舟 | 对一些团队前端开发规范的质疑、求证和思考总结</title><meta name="description" content="&lt;p&gt;因为我算是比较重视代码质量的一个人，在刚进公司的时候就开始积极地学习团队内的一些开发规范。其中有写在文档里面的，也有同事们在代码审查中提到的；有美观性、易读性方面的，也有性能提升方面的。有时，看到一些开发规范，我无法理解它的意义和必要性，并且觉得非常不方便，便会在网络上寻找相关的资料，以及与同事交流。当然，作为一名前端新人，我个人的考虑其实也有很多不足之处，以下就介绍一下我对一些团队前端开发规范产生的质疑、求证和思考总结。&lt;/p&gt;"><link rel="icon" href="https://cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/物理2-飞船2.svg"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700"><link rel="stylesheet" href="/css/highlights/darkula.css"><link rel="stylesheet" href="/css/main.css"><link rel="search" type="application/opensearchdescription+xml" href="https://MaryCLY.github.io/atom.xml" title="程序员玛丽的星海方舟"><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="程序员玛丽的星海方舟" type="application/atom+xml">
+</head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/">程序员玛丽的星海方舟</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/about/" target="_self">ABOUT</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="https://github.com/maryCLY" target="_blank">GITHUB</a></li></ul></nav></header><main class="container__wrapper"><article class="article post"><h1 class="article__title">对一些团队前端开发规范的质疑、求证和思考总结</h1><div class="article__date metadata"><div class="post-info">2023/01/04</div></div><div class="article__categories metadata">分类:
+<a class="article__categories__link metadata" href="/categories/%E5%BC%80%E5%8F%91/">开发</a></div><div class="article__tags metadata">标签:
+<a class="article__tags__link metadata" href="/tags/Vue/">Vue</a><a class="article__tags__link metadata" href="/tags/CSS/">CSS</a><a class="article__tags__link metadata" href="/tags/HTML/">HTML</a></div><div class="article__body"><p>因为我算是比较重视代码质量的一个人，在刚进公司的时候就开始积极地学习团队内的一些开发规范。其中有写在文档里面的，也有同事们在代码审查中提到的；有美观性、易读性方面的，也有性能提升方面的。有时，看到一些开发规范，我无法理解它的意义和必要性，并且觉得非常不方便，便会在网络上寻找相关的资料，以及与同事交流。当然，作为一名前端新人，我个人的考虑其实也有很多不足之处，以下就介绍一下我对一些团队前端开发规范产生的质疑、求证和思考总结。</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="定义样式时使用class，避免使用id"><a href="#定义样式时使用class，避免使用id" class="headerlink" title="定义样式时使用class，避免使用id"></a>定义样式时使用class，避免使用id</h2><p>这一点，我一开始不知道有什么意义，在深入了解过后觉得是必要的。</p>
+<p>首先这两个属性存在明显的不同：class属性是专为样式准备的，并且可复用；id属性具有当前文档内的唯一性，通常能够起到特殊的作用，比如作为&lt;a&gt;标签的锚点，以及最快地被JavaScript元素节点语法选中。</p>
+<p>因此，id属性通常作为一种具有特殊性的标识，表示本元素可能用作页面锚点，或者代码中需要对该元素执行JavaScript操作。除此之外，不在非必要的时候使用id属性也可以减少出现意外重复的概率。</p>
+<p>总之，使用CSS选择器的时候，如果该本身就需要使用id进行其他操作，就可以使用id选择器，否则尽量不要仅为了定义样式而使用id.</p>
+<hr>
+<h2 id="少使用标签选择器"><a href="#少使用标签选择器" class="headerlink" title="少使用标签选择器"></a>少使用标签选择器</h2><p>从开发者的角度来说，其实使用标签选择器是很方便的。譬如某个div元素中只存在一个img标签，使用[.certain-div img]的选择器就可以最快地选中该img元素。</p>
+<p>但从性能的方面考虑，使用标签选择器可能会带来一些性能影响。CSS选择器的层次逻辑是从右到左执行的，因此越往右边的选择器越影响效率。而标签选择器通常放在较右边，这就使得CSS先选中文档中所有的该标签，再执行上一步的层次查找。标签往往在文档中相比class和id是最多的，因此会影响CSS选择器的效率。</p>
+<p>当然，如果本身就是在文档中比较少使用的标签，自然不会非常影响效率，但div, span等使用频率较高的标签，可以想象对性能影响还是比较大的。</p>
+<p>总的来说，定义样式的时候，如果能使用class，尽量还是避免使用标签选择器。</p>
+<hr>
+<h2 id="Vue框架中v-for列表渲染的key属性是否能使用index"><a href="#Vue框架中v-for列表渲染的key属性是否能使用index" class="headerlink" title="Vue框架中v-for列表渲染的key属性是否能使用index"></a>Vue框架中v-for列表渲染的key属性是否能使用index</h2><p>key属性，是在Vue列表渲染时，被用于唯一标识每一列表项的属性。在列表渲染的机制中起到非常重要的作用。</p>
+<p>首先，在比较简单且静态的列表结构里面，使用index作为key, 或者不使用key, 其实是能够通过依赖默认行为提高性能的。</p>
+<p>但是，以下几种情况无法使用index作为key:</p>
+<ol>
+<li>该列表可能出现顺序变化。譬如需要提供向列表中间插入项的功能，这时会把顺序打乱，原本的标识作用也将产生混乱。这种情况，建议在列表结构中，给每一项增加一个单独的识别码，譬如：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">id</span>: <span class="string">&#x27;hello1&#x27;</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;Hello&#x27;</span></span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        <span class="attr">id</span>: <span class="string">&#x27;hello2&#x27;</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;Hello&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>两个及以上的列表渲染作为兄弟节点出现。</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item, index) in array&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;index&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item1, index1) in array1&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;index1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>因为key的作用范围是同一元素下，这种条件下就可能会出现key重复的情况。解决方式是把index和一些字符拼接起来，就可以把两种key区分开。这种方式生成的key实际上也是和index完全相对应的。如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item, index) in array&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;`a$&#123;index&#125;`&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item1, index1) in array1&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;`b$&#123;index1&#125;`&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>跟前辈讨论的时候，她认为为了避免key重复的情况，应该完全不使用index作为key, 尽量拼接字符串。我其实觉得，这种情况在使用简单静态列表的场景下很少出现，只要心里有数就可以用。</p>
+<hr>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>没人爱写注释，我也不爱。听过一种说法，一个条理清晰、命名意义明确、排版舒适的代码胜过各种注释，因此我也一直很努力地在做到，为了不写注释。</p>
+<p>当然，有些注释还是可以一写，大多方便别人，部分方便自己：</p>
+<ol>
+<li><p>公用的方法、变量、组件等。方法的注释推荐使用VSCode拓展koroFileHeader生成模板。如有需要，变量、组件参数建议说明取值范围。</p>
+</li>
+<li><p>文件头注释。也可以使用koroFileHeader生成模板，主要是介绍一下该文件负责的功能。</p>
+</li>
+<li><p>确实复杂，不易看懂的代码部分。如果发现某一段代码可能让未来的自己或别人看不懂，及时写注释。</p>
+</li>
+</ol>
+</div></article><div class="pagination"><a class="pagination__link pagination__next" href="/%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98%E7%9A%84%E5%8F%91%E7%8E%B0%E3%80%81%E8%A7%A3%E5%86%B3%E4%B8%8E%E6%84%9F%E6%83%B3-2/">下一篇</a></div></main><footer class="footer metadata"><p class="footer__text">© 2023 陈俪影</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
