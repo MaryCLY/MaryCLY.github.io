@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://marycly.github.io/Vue%E7%BB%84%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%AE%9E%E7%8E%B0%E6%A8%A1%E5%9D%97%E6%94%BE%E5%A4%A7%E7%BB%88%E6%9E%81%E4%BC%98%E5%8C%96%E7%89%88/</loc>
+    
+    <lastmod>2023-11-15</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://marycly.github.io/Vue%E7%BB%84%E4%BB%B6%E7%9A%84%E5%A4%8D%E5%88%B6%E6%88%96HTML%E5%BF%AB%E7%85%A7%EF%BC%8C%E6%9C%80%E7%BB%88%E5%AE%9E%E7%8E%B0%E6%A8%A1%E5%9D%97%E6%94%BE%E5%A4%A7%E6%98%BE%E7%A4%BA%E7%9A%84%E5%8A%9F%E8%83%BD/</loc>
     
     <lastmod>2023-11-08</lastmod>
@@ -121,64 +130,64 @@
 
   <url>
     <loc>https://marycly.github.io/</loc>
-    <lastmod>2023-11-08</lastmod>
+    <lastmod>2023-11-15</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
+    <loc>https://marycly.github.io/tags/Vue/</loc>
+    <lastmod>2023-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://marycly.github.io/tags/JS/</loc>
-    <lastmod>2023-11-08</lastmod>
+    <lastmod>2023-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://marycly.github.io/tags/%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2023-11-08</lastmod>
+    <lastmod>2023-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://marycly.github.io/tags/%E5%BF%AB%E9%80%9F%E5%B9%82/</loc>
-    <lastmod>2023-11-08</lastmod>
+    <lastmod>2023-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://marycly.github.io/tags/%E5%A4%A7%E6%95%B0%E8%B6%8A%E7%95%8C/</loc>
-    <lastmod>2023-11-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://marycly.github.io/tags/Vue/</loc>
-    <lastmod>2023-11-08</lastmod>
+    <lastmod>2023-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://marycly.github.io/tags/CSS/</loc>
-    <lastmod>2023-11-08</lastmod>
+    <lastmod>2023-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://marycly.github.io/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/</loc>
-    <lastmod>2023-11-08</lastmod>
+    <lastmod>2023-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://marycly.github.io/tags/HTML/</loc>
-    <lastmod>2023-11-08</lastmod>
+    <lastmod>2023-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -187,7 +196,7 @@
   
   <url>
     <loc>https://marycly.github.io/categories/%E5%BC%80%E5%8F%91/</loc>
-    <lastmod>2023-11-08</lastmod>
+    <lastmod>2023-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

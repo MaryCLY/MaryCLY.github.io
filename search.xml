@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Vue router中params和query的区别</title>
+    <url>/Vue-router%E4%B8%ADparams%E5%92%8Cquery%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<p>在vue开发中，页面跳转时常需要传递一些参数。如果我们使用vue router来进行路由，通常有两种方式进行参数的传递，一种是使用params, 一种是使用query. 在下文中我将介绍一下个人使用中感受到的这两者的区别。</p>
+<span id="more"></span>
+
+<h3 id="params"><a href="#params" class="headerlink" title="params"></a>params</h3><p>如果在url中定义了params的绑定，则可以直接在url中传递params(&#39;/articles/:id&#39;), 否则只能通过vue router的方法（router-link或$router.push等）传递路径对象时添加params. params可以直接传递值和对象，并且定义了router中的props属性后，能在页面中通过props属性去获取。如果不通过props, 也可以使用this.$route.params获取。</p>
+<h3 id="query"><a href="#query" class="headerlink" title="query"></a>query</h3><p>query既可以直接在url后添加(&#39;marycly.github.io/index?pageId=114514&#39;), 也可以通过vue router的方法传递路径对象时添加query. query可以传递值，但传递对象效果不稳定，最好将传递的对象通过JSON来保存。在页面中可以使用this.$route.query来获取query的内容。</p>
+<h3 id="在页面跳转中的实际应用表现"><a href="#在页面跳转中的实际应用表现" class="headerlink" title="在页面跳转中的实际应用表现"></a>在页面跳转中的实际应用表现</h3><p>如果url中没有定义与params绑定的动态路由，个人不建议使用params来传递信息。因为这种情况下url里面并不包含params的信息，在浏览器历史前进/回退的过程中就会丢失，因此只能实现一个单向的传递。如果需要支持时常在页面之间跳转并保留信息的话，建议使用query.</p>
+]]></content>
+      <categories>
+        <category>开发</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JS: Union-find(quick-union + weighting + path compression + map)</title>
     <url>/JS-Union-find-quick-union-weighting-path-compression-map/</url>
     <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Union-find，合并-查找，这个算法是在学习Algorithms这本书的时候看到的。</p>
@@ -76,14 +93,42 @@
       </tags>
   </entry>
   <entry>
-    <title>Vue router中params和query的区别</title>
-    <url>/Vue-router%E4%B8%ADparams%E5%92%8Cquery%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<p>在vue开发中，页面跳转时常需要传递一些参数。如果我们使用vue router来进行路由，通常有两种方式进行参数的传递，一种是使用params, 一种是使用query. 在下文中我将介绍一下个人使用中感受到的这两者的区别。</p>
+    <title>一些使用UI组件库的经验</title>
+    <url>/%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8UI%E7%BB%84%E4%BB%B6%E5%BA%93%E7%9A%84%E7%BB%8F%E9%AA%8C/</url>
+    <content><![CDATA[<p>近期进行前端开发的过程中，接触了一些比较全面方便的UI库，有Ant Design Vue, 以及Vant. 这些UI库使用起来比自己造零件要方便且美观，不过在初使用的过程中也会遇到一些比较疑惑的问题，因此写下本文记录一下使用这些UI组件库所积累的一些经验。</p>
 <span id="more"></span>
 
-<h3 id="params"><a href="#params" class="headerlink" title="params"></a>params</h3><p>如果在url中定义了params的绑定，则可以直接在url中传递params(&#39;/articles/:id&#39;), 否则只能通过vue router的方法（router-link或$router.push等）传递路径对象时添加params. params可以直接传递值和对象，并且定义了router中的props属性后，能在页面中通过props属性去获取。如果不通过props, 也可以使用this.$route.params获取。</p>
-<h3 id="query"><a href="#query" class="headerlink" title="query"></a>query</h3><p>query既可以直接在url后添加(&#39;marycly.github.io/index?pageId=114514&#39;), 也可以通过vue router的方法传递路径对象时添加query. query可以传递值，但传递对象效果不稳定，最好将传递的对象通过JSON来保存。在页面中可以使用this.$route.query来获取query的内容。</p>
-<h3 id="在页面跳转中的实际应用表现"><a href="#在页面跳转中的实际应用表现" class="headerlink" title="在页面跳转中的实际应用表现"></a>在页面跳转中的实际应用表现</h3><p>如果url中没有定义与params绑定的动态路由，个人不建议使用params来传递信息。因为这种情况下url里面并不包含params的信息，在浏览器历史前进/回退的过程中就会丢失，因此只能实现一个单向的传递。如果需要支持时常在页面之间跳转并保留信息的话，建议使用query.</p>
+<h2 id="主题定制"><a href="#主题定制" class="headerlink" title="主题定制"></a>主题定制</h2><p>通常来说，UI组件库都提供全局的主题定制的功能，如某个组件的默认颜色或整体的颜色风格等，一般可以在官网找到更改方式，譬如Ant Design Vue 3的主题定制方式就在<a href="https://antdv.com/docs/vue/customize-theme-cn">定制主题 - Ant Design Vue</a>. Vue项目通常需要修改全局选项文件。</p>
+<h2 id="调整内部样式"><a href="#调整内部样式" class="headerlink" title="调整内部样式"></a>调整内部样式</h2><p>在使用UI组件库的过程中，有时候需要调整个别组件的样式，而不改变全局的UI库参数。如果直接打开浏览器的开发者检查工具，可以看到UI库组件的内部存在一些class, 它们定义了那些你不想要的样式。这种时候，如果在源代码中直接用类名选择器设置这些class的样式，会发现并没有效果。这种时候，使用/deep/ .target-class 的选择器来定义你需要更改的样式，就能起到效果（LESS预编译语言下）。有一篇类似情况的文章可供参考：<a href="https://www.jianshu.com/p/5bd38a4d4d64">&gt;&gt;&gt;或/deep/的作用</a></p>
+]]></content>
+      <categories>
+        <category>开发</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue组件复制实现模块放大终极优化版</title>
+    <url>/Vue%E7%BB%84%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%AE%9E%E7%8E%B0%E6%A8%A1%E5%9D%97%E6%94%BE%E5%A4%A7%E7%BB%88%E6%9E%81%E4%BC%98%E5%8C%96%E7%89%88/</url>
+    <content><![CDATA[<p>继上章研究出模块放大的实现方法并选择了 Vue 组件复制的方法后，将该方法投入了实践。在开发过程中还是觉得之前设计的调用方式有些繁琐，于是灵机一动，改良了一下代码。接下来将放出完整的关键代码，没看上一章也没关系。</p>
+<span id="more"></span>
+
+<h3 id="用于渲染的组件"><a href="#用于渲染的组件" class="headerlink" title="用于渲染的组件"></a>用于渲染的组件</h3><figure class="highlight html"><figcaption><span>enlarge-wrapper.vue</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-show</span>=<span class="string">&quot;component&quot;</span> <span class="attr">id</span>=<span class="string">&quot;EnlargeWrapperArea&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 遮罩，点击关闭 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;EnlargeWrapperAreaMask&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;close&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 中心的一层包装，可设置背景 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;EnlargeWrapper&quot;</span> <span class="attr">:style</span>=<span class="string">&quot;&#123; width: finalWidth + &#x27;px&#x27;, height: finalHeight + &#x27;px&#x27; &#125;&quot;</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 这里设置了一个enlarged属性来便于组件内部分辨是否被放大，按需添加 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">component</span></span></span><br><span class="line"><span class="tag">        <span class="attr">:is</span>=<span class="string">&quot;component&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">v-bind</span>=<span class="string">&quot;props&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">style</span>=<span class="string">&quot;transform-origin: top left&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">:style</span>=<span class="string">&quot;&#123;</span></span></span><br><span class="line"><span class="string"><span class="tag">          width: initialWidth + &#x27;px&#x27;,</span></span></span><br><span class="line"><span class="string"><span class="tag">          height: initialHeight + &#x27;px&#x27;,</span></span></span><br><span class="line"><span class="string"><span class="tag">          transform: `scale($&#123;scale&#125;)`,</span></span></span><br><span class="line"><span class="string"><span class="tag">        &#125;&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">enlarged</span></span></span><br><span class="line"><span class="tag">      &gt;</span><span class="tag">&lt;/<span class="name">component</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  <span class="function"><span class="title">data</span>(<span class="params"></span>)</span> &#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="javascript">      <span class="attr">component</span>: <span class="literal">null</span>, <span class="comment">// 渲染放大的组件，顺便控制是否显示</span></span></span><br><span class="line"><span class="javascript">      <span class="attr">props</span>: &#123;&#125;, <span class="comment">// 将输入组件的参数</span></span></span><br><span class="line"><span class="javascript">      <span class="attr">initialWidth</span>: <span class="number">0</span>, <span class="comment">// 原始组件的宽度</span></span></span><br><span class="line"><span class="javascript">      <span class="attr">initialHeight</span>: <span class="number">0</span>, <span class="comment">// 原始组件的高度</span></span></span><br><span class="line"><span class="javascript">      <span class="attr">finalWidth</span>: <span class="number">0</span>, <span class="comment">// 放大后的宽度</span></span></span><br><span class="line"><span class="javascript">      <span class="attr">finalHeight</span>: <span class="number">0</span>, <span class="comment">// 放大后的高度</span></span></span><br><span class="line"><span class="javascript">      <span class="attr">scale</span>: <span class="number">1</span>, <span class="comment">// 应放大的倍数</span></span></span><br><span class="line"><span class="javascript">    &#125;;</span></span><br><span class="line"><span class="javascript">  &#125;,</span></span><br><span class="line"><span class="javascript">  <span class="attr">methods</span>: &#123;</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 接收参数并显示浮层的方法</span></span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="title">handler</span>(<span class="params">component, initialWidth, initialHeight, props = &#123;&#125;</span>)</span> &#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">if</span> (!component || !initialWidth || !initialHeight) &#123;</span></span><br><span class="line"><span class="javascript">        <span class="comment">// 预防异常</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span>;</span></span><br><span class="line"><span class="javascript">      &#125;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">this</span>.initialWidth = initialWidth;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">this</span>.initialHeight = initialHeight;</span></span><br><span class="line"><span class="javascript">      <span class="comment">// 根据情况计算应放大的效果，获取finalWidth, finalHeight和scale.</span></span></span><br><span class="line"><span class="javascript">      <span class="keyword">const</span> maxWidth = <span class="number">2400</span>, maxHeight = <span class="number">1200</span>;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">const</span> maxWidthScale = maxWidth / <span class="built_in">this</span>.initialWidth, maxHeightScale = maxHeight / <span class="built_in">this</span>.initialHeight;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">this</span>.scale = <span class="built_in">Math</span>.min(maxWidthScale, maxHeightScale);</span></span><br><span class="line"><span class="javascript">      <span class="built_in">this</span>.finalWidth = <span class="built_in">this</span>.initialWidth * <span class="built_in">this</span>.scale;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">this</span>.finalHeight = <span class="built_in">this</span>.initialHeight * <span class="built_in">this</span>.scale;</span></span><br><span class="line"><span class="javascript">      <span class="comment">// 设置组件和参数，将会开始渲染</span></span></span><br><span class="line"><span class="javascript">      <span class="built_in">this</span>.component = component;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">this</span>.props = props;</span></span><br><span class="line"><span class="javascript">    &#125;,</span></span><br><span class="line"><span class="javascript">    <span class="comment">// 关闭浮层的方法</span></span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="title">close</span>(<span class="params"></span>)</span> &#123;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">this</span>.component = <span class="literal">null</span>;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">this</span>.props = &#123;&#125;;</span></span><br><span class="line"><span class="javascript">    &#125;</span></span><br><span class="line"><span class="javascript">  &#125;</span></span><br><span class="line"><span class="javascript">&#125;</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">scoped</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css"><span class="selector-id">#EnlargeWrapperArea</span> &#123;</span></span><br><span class="line"><span class="css">  <span class="comment">/* 覆盖全屏 */</span></span></span><br><span class="line"><span class="css">  <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="css">  <span class="attribute">top</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="css">  <span class="attribute">right</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="css">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="css">  <span class="attribute">left</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="css">  <span class="attribute">z-index</span>: <span class="number">9999</span>;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-id">#EnlargeWrapperAreaMask</span> &#123;</span></span><br><span class="line"><span class="css">  <span class="comment">/* 覆盖全屏，第一层 */</span></span></span><br><span class="line"><span class="css">  <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="css">  <span class="attribute">top</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="css">  <span class="attribute">right</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="css">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="css">  <span class="attribute">left</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="css">  <span class="attribute">background</span>: <span class="built_in">rgba</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.5</span>); <span class="comment">/* 遮罩颜色 */</span></span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"><span class="selector-id">#EnlargeWrapper</span> &#123;</span></span><br><span class="line"><span class="css">  <span class="comment">/* 居中，第二层 */</span></span></span><br><span class="line"><span class="css">  <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="css">  <span class="attribute">top</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="css">  <span class="attribute">right</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="css">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="css">  <span class="attribute">left</span>: <span class="number">0</span>;</span></span><br><span class="line"><span class="css">  <span class="attribute">background</span>: <span class="number">#061d33</span>; <span class="comment">/* 设置的深色背景颜色，用于显示浅色调的内容 */</span></span></span><br><span class="line"><span class="css">  <span class="attribute">margin</span>: auto;</span></span><br><span class="line"><span class="css">&#125;</span></span><br><span class="line"><span class="css"></span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>该组件需要被设置在较低层级的地方，如#app 元素中，以使其 z-index 能否覆盖所有的图层。</strong></p>
+<figure class="highlight html"><figcaption><span>App.vue</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">enlarge-wrapper</span>&gt;</span><span class="tag">&lt;/<span class="name">enlarge-wrapper</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="调用方式"><a href="#调用方式" class="headerlink" title="调用方式"></a>调用方式</h3><p>上一个版本需要更改父组件，较为繁琐，本版本仅需操作需要复制放大的组件。</p>
+<p>如果父组件中注册了我们的目标组件，名称为TargetComponent：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">target-component</span>&gt;</span><span class="tag">&lt;/<span class="name">target-component</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> TargetComponent <span class="keyword">from</span> <span class="string">&#x27;[path]&#x27;</span>;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  <span class="attr">components</span>: &#123; TargetComponent &#125;</span></span><br><span class="line"><span class="javascript">&#125;</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在子组件中，需要这样调用放大功能：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 需要知道自己在父组件中的注册名 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;enlarge(&#x27;TargetComponent&#x27;)&quot;</span>&gt;</span>Enlarge Myself<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">  <span class="comment">/* 按需获取enlarged属性 */</span></span></span><br><span class="line"><span class="javascript">  <span class="comment">/* </span></span></span><br><span class="line"><span class="comment"><span class="javascript">  props: &#123;</span></span></span><br><span class="line"><span class="comment"><span class="javascript">    enlarged: &#123;</span></span></span><br><span class="line"><span class="comment"><span class="javascript">      type: Boolean,</span></span></span><br><span class="line"><span class="comment"><span class="javascript">      default: false</span></span></span><br><span class="line"><span class="comment"><span class="javascript">    &#125;</span></span></span><br><span class="line"><span class="comment"><span class="javascript">  &#125;, </span></span></span><br><span class="line"><span class="comment"><span class="javascript">  */</span></span></span><br><span class="line"><span class="javascript">  <span class="attr">methods</span>: &#123;</span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="title">enlarge</span>(<span class="params">name</span>)</span> &#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">const</span> el = <span class="built_in">this</span>.$el;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">const</span> component = <span class="built_in">this</span>.$parent?.$options?.components[name];</span></span><br><span class="line"><span class="javascript">      <span class="keyword">if</span> (!el || !component) &#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span>;</span></span><br><span class="line"><span class="javascript">      &#125;</span></span><br><span class="line"><span class="javascript">      <span class="comment">// 保存当前的props列表及对应的值，用于再次渲染</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">// 过滤enlarged属性，因为在enlarge-wrapper中会直接置为true</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">// 保存成键值对的形式，用于传递给v-bind方法</span></span></span><br><span class="line"><span class="javascript">      <span class="keyword">const</span> propsNameList = <span class="built_in">Object</span>.keys(<span class="built_in">this</span>.$options.props).filter(<span class="function"><span class="params">v</span> =&gt;</span> v !== <span class="string">&#x27;enlarged&#x27;</span>);</span></span><br><span class="line"><span class="javascript">      <span class="keyword">const</span> props = propsNameList.reduce(<span class="function">(<span class="params">cum, v</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">        cum[v] = <span class="built_in">this</span>[v];</span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> cum;</span></span><br><span class="line"><span class="javascript">      &#125;, &#123;&#125;);</span></span><br><span class="line"><span class="javascript">      <span class="comment">// 触发enlarge-wrapper组件中的handler方法，这里用的事件总线</span></span></span><br><span class="line"><span class="javascript">      <span class="built_in">this</span>.$bus.emit(<span class="string">&#x27;enlarge&#x27;</span>, component, el.clientWidth, el.clientHeight, props);</span></span><br><span class="line"><span class="javascript">    &#125;</span></span><br><span class="line"><span class="javascript">  &#125;</span></span><br><span class="line"><span class="javascript">&#125;</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>当然，你可以将以上的props和methods保存到mixin，方便在每个需要放大的组件中调用。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>虽然优化的代码行数不多，但是可以把代码局限在需要调用的目标组件中，缩小影响的代码范围。此外，能够复制props也是比较有用的功能拓展。</p>
 ]]></content>
       <categories>
         <category>开发</category>
@@ -169,23 +214,6 @@
       </categories>
       <tags>
         <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一些使用UI组件库的经验</title>
-    <url>/%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8UI%E7%BB%84%E4%BB%B6%E5%BA%93%E7%9A%84%E7%BB%8F%E9%AA%8C/</url>
-    <content><![CDATA[<p>近期进行前端开发的过程中，接触了一些比较全面方便的UI库，有Ant Design Vue, 以及Vant. 这些UI库使用起来比自己造零件要方便且美观，不过在初使用的过程中也会遇到一些比较疑惑的问题，因此写下本文记录一下使用这些UI组件库所积累的一些经验。</p>
-<span id="more"></span>
-
-<h2 id="主题定制"><a href="#主题定制" class="headerlink" title="主题定制"></a>主题定制</h2><p>通常来说，UI组件库都提供全局的主题定制的功能，如某个组件的默认颜色或整体的颜色风格等，一般可以在官网找到更改方式，譬如Ant Design Vue 3的主题定制方式就在<a href="https://antdv.com/docs/vue/customize-theme-cn">定制主题 - Ant Design Vue</a>. Vue项目通常需要修改全局选项文件。</p>
-<h2 id="调整内部样式"><a href="#调整内部样式" class="headerlink" title="调整内部样式"></a>调整内部样式</h2><p>在使用UI组件库的过程中，有时候需要调整个别组件的样式，而不改变全局的UI库参数。如果直接打开浏览器的开发者检查工具，可以看到UI库组件的内部存在一些class, 它们定义了那些你不想要的样式。这种时候，如果在源代码中直接用类名选择器设置这些class的样式，会发现并没有效果。这种时候，使用/deep/ .target-class 的选择器来定义你需要更改的样式，就能起到效果（LESS预编译语言下）。有一篇类似情况的文章可供参考：<a href="https://www.jianshu.com/p/5bd38a4d4d64">&gt;&gt;&gt;或/deep/的作用</a></p>
-]]></content>
-      <categories>
-        <category>开发</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-        <tag>CSS</tag>
       </tags>
   </entry>
   <entry>
@@ -279,6 +307,61 @@
       </tags>
   </entry>
   <entry>
+    <title>对一些团队前端开发规范的质疑、求证和思考总结</title>
+    <url>/%E5%AF%B9%E4%B8%80%E4%BA%9B%E5%9B%A2%E9%98%9F%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83%E7%9A%84%E8%B4%A8%E7%96%91%E3%80%81%E6%B1%82%E8%AF%81%E5%92%8C%E6%80%9D%E8%80%83%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>因为我算是比较重视代码质量的一个人，在刚进公司的时候就开始积极地学习团队内的一些开发规范。其中有写在文档里面的，也有同事们在代码审查中提到的；有美观性、易读性方面的，也有性能提升方面的。有时，看到一些开发规范，我无法理解它的意义和必要性，并且觉得非常不方便，便会在网络上寻找相关的资料，以及与同事交流。当然，作为一名前端新人，我个人的考虑其实也有很多不足之处，以下就介绍一下我对一些团队前端开发规范产生的质疑、求证和思考总结。</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="定义样式时使用class，避免使用id"><a href="#定义样式时使用class，避免使用id" class="headerlink" title="定义样式时使用class，避免使用id"></a>定义样式时使用class，避免使用id</h2><p>这一点，我一开始不知道有什么意义，在深入了解过后觉得是必要的。</p>
+<p>首先这两个属性存在明显的不同：class属性是专为样式准备的，并且可复用；id属性具有当前文档内的唯一性，通常能够起到特殊的作用，比如作为&lt;a&gt;标签的锚点，以及最快地被JavaScript元素节点语法选中。</p>
+<p>因此，id属性通常作为一种具有特殊性的标识，表示本元素可能用作页面锚点，或者代码中需要对该元素执行JavaScript操作。除此之外，不在非必要的时候使用id属性也可以减少出现意外重复的概率。</p>
+<p>总之，使用CSS选择器的时候，如果该本身就需要使用id进行其他操作，就可以使用id选择器，否则尽量不要仅为了定义样式而使用id.</p>
+<hr>
+<h2 id="少使用标签选择器"><a href="#少使用标签选择器" class="headerlink" title="少使用标签选择器"></a>少使用标签选择器</h2><p>从开发者的角度来说，其实使用标签选择器是很方便的。譬如某个div元素中只存在一个img标签，使用[.certain-div img]的选择器就可以最快地选中该img元素。</p>
+<p>但从性能的方面考虑，使用标签选择器可能会带来一些性能影响。CSS选择器的层次逻辑是从右到左执行的，因此越往右边的选择器越影响效率。而标签选择器通常放在较右边，这就使得CSS先选中文档中所有的该标签，再执行上一步的层次查找。标签往往在文档中相比class和id是最多的，因此会影响CSS选择器的效率。</p>
+<p>当然，如果本身就是在文档中比较少使用的标签，自然不会非常影响效率，但div, span等使用频率较高的标签，可以想象对性能影响还是比较大的。</p>
+<p>总的来说，定义样式的时候，如果能使用class，尽量还是避免使用标签选择器。</p>
+<hr>
+<h2 id="Vue框架中v-for列表渲染的key属性是否能使用index"><a href="#Vue框架中v-for列表渲染的key属性是否能使用index" class="headerlink" title="Vue框架中v-for列表渲染的key属性是否能使用index"></a>Vue框架中v-for列表渲染的key属性是否能使用index</h2><p>key属性，是在Vue列表渲染时，被用于唯一标识每一列表项的属性。在列表渲染的机制中起到非常重要的作用。</p>
+<p>首先，在比较简单且静态的列表结构里面，使用index作为key, 或者不使用key, 其实是能够通过依赖默认行为提高性能的。</p>
+<p>但是，以下几种情况无法使用index作为key:</p>
+<ol>
+<li>该列表可能出现顺序变化。譬如需要提供向列表中间插入项的功能，这时会把顺序打乱，原本的标识作用也将产生混乱。这种情况，建议在列表结构中，给每一项增加一个单独的识别码，譬如：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">id</span>: <span class="string">&#x27;hello1&#x27;</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;Hello&#x27;</span></span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        <span class="attr">id</span>: <span class="string">&#x27;hello2&#x27;</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;Hello&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>两个及以上的列表渲染作为兄弟节点出现。</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item, index) in array&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;index&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item1, index1) in array1&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;index1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>因为key的作用范围是同一元素下，这种条件下就可能会出现key重复的情况。解决方式是把index和一些字符拼接起来，就可以把两种key区分开。这种方式生成的key实际上也是和index完全相对应的。如下：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item, index) in array&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;`a$&#123;index&#125;`&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item1, index1) in array1&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;`b$&#123;index1&#125;`&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>跟前辈讨论的时候，她认为为了避免key重复的情况，应该完全不使用index作为key, 尽量拼接字符串。我其实觉得，这种情况在使用简单静态列表的场景下很少出现，只要心里有数就可以用。</p>
+<hr>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>没人爱写注释，我也不爱。听过一种说法，一个条理清晰、命名意义明确、排版舒适的代码胜过各种注释，因此我也一直很努力地在做到，为了不写注释。</p>
+<p>当然，有些注释还是可以一写，大多方便别人，部分方便自己：</p>
+<ol>
+<li><p>公用的方法、变量、组件等。方法的注释推荐使用VSCode拓展koroFileHeader生成模板。如有需要，变量、组件参数建议说明取值范围。</p>
+</li>
+<li><p>文件头注释。也可以使用koroFileHeader生成模板，主要是介绍一下该文件负责的功能。</p>
+</li>
+<li><p>确实复杂，不易看懂的代码部分。如果发现某一段代码可能让未来的自己或别人看不懂，及时写注释。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>开发</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+        <tag>CSS</tag>
+        <tag>HTML</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>各种问题的发现、解决与感想</title>
     <url>/%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98%E7%9A%84%E5%8F%91%E7%8E%B0%E3%80%81%E8%A7%A3%E5%86%B3%E4%B8%8E%E6%84%9F%E6%83%B3/</url>
     <content><![CDATA[<p>前段时间参与了一个项目的开发，共计超过一个月的时间。工作量其实是非常饱和的，并且在接手各种老旧工程的时候经历了很多奇奇怪怪的问题，有的至今难以解决。特此分享一下在这段项目中发现的一些问题解决方案及感想。</p>
@@ -337,61 +420,6 @@
       </categories>
       <tags>
         <tag>JS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>对一些团队前端开发规范的质疑、求证和思考总结</title>
-    <url>/%E5%AF%B9%E4%B8%80%E4%BA%9B%E5%9B%A2%E9%98%9F%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83%E7%9A%84%E8%B4%A8%E7%96%91%E3%80%81%E6%B1%82%E8%AF%81%E5%92%8C%E6%80%9D%E8%80%83%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<p>因为我算是比较重视代码质量的一个人，在刚进公司的时候就开始积极地学习团队内的一些开发规范。其中有写在文档里面的，也有同事们在代码审查中提到的；有美观性、易读性方面的，也有性能提升方面的。有时，看到一些开发规范，我无法理解它的意义和必要性，并且觉得非常不方便，便会在网络上寻找相关的资料，以及与同事交流。当然，作为一名前端新人，我个人的考虑其实也有很多不足之处，以下就介绍一下我对一些团队前端开发规范产生的质疑、求证和思考总结。</p>
-<span id="more"></span>
-
-<hr>
-<h2 id="定义样式时使用class，避免使用id"><a href="#定义样式时使用class，避免使用id" class="headerlink" title="定义样式时使用class，避免使用id"></a>定义样式时使用class，避免使用id</h2><p>这一点，我一开始不知道有什么意义，在深入了解过后觉得是必要的。</p>
-<p>首先这两个属性存在明显的不同：class属性是专为样式准备的，并且可复用；id属性具有当前文档内的唯一性，通常能够起到特殊的作用，比如作为&lt;a&gt;标签的锚点，以及最快地被JavaScript元素节点语法选中。</p>
-<p>因此，id属性通常作为一种具有特殊性的标识，表示本元素可能用作页面锚点，或者代码中需要对该元素执行JavaScript操作。除此之外，不在非必要的时候使用id属性也可以减少出现意外重复的概率。</p>
-<p>总之，使用CSS选择器的时候，如果该本身就需要使用id进行其他操作，就可以使用id选择器，否则尽量不要仅为了定义样式而使用id.</p>
-<hr>
-<h2 id="少使用标签选择器"><a href="#少使用标签选择器" class="headerlink" title="少使用标签选择器"></a>少使用标签选择器</h2><p>从开发者的角度来说，其实使用标签选择器是很方便的。譬如某个div元素中只存在一个img标签，使用[.certain-div img]的选择器就可以最快地选中该img元素。</p>
-<p>但从性能的方面考虑，使用标签选择器可能会带来一些性能影响。CSS选择器的层次逻辑是从右到左执行的，因此越往右边的选择器越影响效率。而标签选择器通常放在较右边，这就使得CSS先选中文档中所有的该标签，再执行上一步的层次查找。标签往往在文档中相比class和id是最多的，因此会影响CSS选择器的效率。</p>
-<p>当然，如果本身就是在文档中比较少使用的标签，自然不会非常影响效率，但div, span等使用频率较高的标签，可以想象对性能影响还是比较大的。</p>
-<p>总的来说，定义样式的时候，如果能使用class，尽量还是避免使用标签选择器。</p>
-<hr>
-<h2 id="Vue框架中v-for列表渲染的key属性是否能使用index"><a href="#Vue框架中v-for列表渲染的key属性是否能使用index" class="headerlink" title="Vue框架中v-for列表渲染的key属性是否能使用index"></a>Vue框架中v-for列表渲染的key属性是否能使用index</h2><p>key属性，是在Vue列表渲染时，被用于唯一标识每一列表项的属性。在列表渲染的机制中起到非常重要的作用。</p>
-<p>首先，在比较简单且静态的列表结构里面，使用index作为key, 或者不使用key, 其实是能够通过依赖默认行为提高性能的。</p>
-<p>但是，以下几种情况无法使用index作为key:</p>
-<ol>
-<li>该列表可能出现顺序变化。譬如需要提供向列表中间插入项的功能，这时会把顺序打乱，原本的标识作用也将产生混乱。这种情况，建议在列表结构中，给每一项增加一个单独的识别码，譬如：</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">id</span>: <span class="string">&#x27;hello1&#x27;</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;Hello&#x27;</span></span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        <span class="attr">id</span>: <span class="string">&#x27;hello2&#x27;</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;Hello&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>两个及以上的列表渲染作为兄弟节点出现。</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item, index) in array&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;index&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item1, index1) in array1&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;index1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>因为key的作用范围是同一元素下，这种条件下就可能会出现key重复的情况。解决方式是把index和一些字符拼接起来，就可以把两种key区分开。这种方式生成的key实际上也是和index完全相对应的。如下：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item, index) in array&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;`a$&#123;index&#125;`&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item1, index1) in array1&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;`b$&#123;index1&#125;`&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>跟前辈讨论的时候，她认为为了避免key重复的情况，应该完全不使用index作为key, 尽量拼接字符串。我其实觉得，这种情况在使用简单静态列表的场景下很少出现，只要心里有数就可以用。</p>
-<hr>
-<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>没人爱写注释，我也不爱。听过一种说法，一个条理清晰、命名意义明确、排版舒适的代码胜过各种注释，因此我也一直很努力地在做到，为了不写注释。</p>
-<p>当然，有些注释还是可以一写，大多方便别人，部分方便自己：</p>
-<ol>
-<li><p>公用的方法、变量、组件等。方法的注释推荐使用VSCode拓展koroFileHeader生成模板。如有需要，变量、组件参数建议说明取值范围。</p>
-</li>
-<li><p>文件头注释。也可以使用koroFileHeader生成模板，主要是介绍一下该文件负责的功能。</p>
-</li>
-<li><p>确实复杂，不易看懂的代码部分。如果发现某一段代码可能让未来的自己或别人看不懂，及时写注释。</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>开发</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-        <tag>CSS</tag>
-        <tag>HTML</tag>
       </tags>
   </entry>
   <entry>
