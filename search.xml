@@ -1,23 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Vue router中params和query的区别</title>
-    <url>/Vue-router%E4%B8%ADparams%E5%92%8Cquery%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<p>在vue开发中，页面跳转时常需要传递一些参数。如果我们使用vue router来进行路由，通常有两种方式进行参数的传递，一种是使用params, 一种是使用query. 在下文中我将介绍一下个人使用中感受到的这两者的区别。</p>
-<span id="more"></span>
-
-<h3 id="params"><a href="#params" class="headerlink" title="params"></a>params</h3><p>如果在url中定义了params的绑定，则可以直接在url中传递params(&#39;/articles/:id&#39;), 否则只能通过vue router的方法（router-link或$router.push等）传递路径对象时添加params. params可以直接传递值和对象，并且定义了router中的props属性后，能在页面中通过props属性去获取。如果不通过props, 也可以使用this.$route.params获取。</p>
-<h3 id="query"><a href="#query" class="headerlink" title="query"></a>query</h3><p>query既可以直接在url后添加(&#39;marycly.github.io/index?pageId=114514&#39;), 也可以通过vue router的方法传递路径对象时添加query. query可以传递值，但传递对象效果不稳定，最好将传递的对象通过JSON来保存。在页面中可以使用this.$route.query来获取query的内容。</p>
-<h3 id="在页面跳转中的实际应用表现"><a href="#在页面跳转中的实际应用表现" class="headerlink" title="在页面跳转中的实际应用表现"></a>在页面跳转中的实际应用表现</h3><p>如果url中没有定义与params绑定的动态路由，个人不建议使用params来传递信息。因为这种情况下url里面并不包含params的信息，在浏览器历史前进/回退的过程中就会丢失，因此只能实现一个单向的传递。如果需要支持时常在页面之间跳转并保留信息的话，建议使用query.</p>
-]]></content>
-      <categories>
-        <category>开发</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JS: Union-find(quick-union + weighting + path compression + map)</title>
     <url>/JS-Union-find-quick-union-weighting-path-compression-map/</url>
     <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Union-find，合并-查找，这个算法是在学习Algorithms这本书的时候看到的。</p>
@@ -93,23 +76,6 @@
       </tags>
   </entry>
   <entry>
-    <title>一些使用UI组件库的经验</title>
-    <url>/%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8UI%E7%BB%84%E4%BB%B6%E5%BA%93%E7%9A%84%E7%BB%8F%E9%AA%8C/</url>
-    <content><![CDATA[<p>近期进行前端开发的过程中，接触了一些比较全面方便的UI库，有Ant Design Vue, 以及Vant. 这些UI库使用起来比自己造零件要方便且美观，不过在初使用的过程中也会遇到一些比较疑惑的问题，因此写下本文记录一下使用这些UI组件库所积累的一些经验。</p>
-<span id="more"></span>
-
-<h2 id="主题定制"><a href="#主题定制" class="headerlink" title="主题定制"></a>主题定制</h2><p>通常来说，UI组件库都提供全局的主题定制的功能，如某个组件的默认颜色或整体的颜色风格等，一般可以在官网找到更改方式，譬如Ant Design Vue 3的主题定制方式就在<a href="https://antdv.com/docs/vue/customize-theme-cn">定制主题 - Ant Design Vue</a>. Vue项目通常需要修改全局选项文件。</p>
-<h2 id="调整内部样式"><a href="#调整内部样式" class="headerlink" title="调整内部样式"></a>调整内部样式</h2><p>在使用UI组件库的过程中，有时候需要调整个别组件的样式，而不改变全局的UI库参数。如果直接打开浏览器的开发者检查工具，可以看到UI库组件的内部存在一些class, 它们定义了那些你不想要的样式。这种时候，如果在源代码中直接用类名选择器设置这些class的样式，会发现并没有效果。这种时候，使用/deep/ .target-class 的选择器来定义你需要更改的样式，就能起到效果（LESS预编译语言下）。有一篇类似情况的文章可供参考：<a href="https://www.jianshu.com/p/5bd38a4d4d64">&gt;&gt;&gt;或/deep/的作用</a></p>
-]]></content>
-      <categories>
-        <category>开发</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-        <tag>CSS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Vue组件复制实现模块放大终极优化版</title>
     <url>/Vue%E7%BB%84%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%AE%9E%E7%8E%B0%E6%A8%A1%E5%9D%97%E6%94%BE%E5%A4%A7%E7%BB%88%E6%9E%81%E4%BC%98%E5%8C%96%E7%89%88/</url>
     <content><![CDATA[<p>继上章研究出模块放大的实现方法并选择了 Vue 组件复制的方法后，将该方法投入了实践。在开发过程中还是觉得之前设计的调用方式有些繁琐，于是灵机一动，改良了一下代码。接下来将放出完整的关键代码，没看上一章也没关系。</p>
@@ -135,6 +101,40 @@
       </categories>
       <tags>
         <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vue router中params和query的区别</title>
+    <url>/Vue-router%E4%B8%ADparams%E5%92%8Cquery%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<p>在vue开发中，页面跳转时常需要传递一些参数。如果我们使用vue router来进行路由，通常有两种方式进行参数的传递，一种是使用params, 一种是使用query. 在下文中我将介绍一下个人使用中感受到的这两者的区别。</p>
+<span id="more"></span>
+
+<h3 id="params"><a href="#params" class="headerlink" title="params"></a>params</h3><p>如果在url中定义了params的绑定，则可以直接在url中传递params(&#39;/articles/:id&#39;), 否则只能通过vue router的方法（router-link或$router.push等）传递路径对象时添加params. params可以直接传递值和对象，并且定义了router中的props属性后，能在页面中通过props属性去获取。如果不通过props, 也可以使用this.$route.params获取。</p>
+<h3 id="query"><a href="#query" class="headerlink" title="query"></a>query</h3><p>query既可以直接在url后添加(&#39;marycly.github.io/index?pageId=114514&#39;), 也可以通过vue router的方法传递路径对象时添加query. query可以传递值，但传递对象效果不稳定，最好将传递的对象通过JSON来保存。在页面中可以使用this.$route.query来获取query的内容。</p>
+<h3 id="在页面跳转中的实际应用表现"><a href="#在页面跳转中的实际应用表现" class="headerlink" title="在页面跳转中的实际应用表现"></a>在页面跳转中的实际应用表现</h3><p>如果url中没有定义与params绑定的动态路由，个人不建议使用params来传递信息。因为这种情况下url里面并不包含params的信息，在浏览器历史前进/回退的过程中就会丢失，因此只能实现一个单向的传递。如果需要支持时常在页面之间跳转并保留信息的话，建议使用query.</p>
+]]></content>
+      <categories>
+        <category>开发</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一些使用UI组件库的经验</title>
+    <url>/%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8UI%E7%BB%84%E4%BB%B6%E5%BA%93%E7%9A%84%E7%BB%8F%E9%AA%8C/</url>
+    <content><![CDATA[<p>近期进行前端开发的过程中，接触了一些比较全面方便的UI库，有Ant Design Vue, 以及Vant. 这些UI库使用起来比自己造零件要方便且美观，不过在初使用的过程中也会遇到一些比较疑惑的问题，因此写下本文记录一下使用这些UI组件库所积累的一些经验。</p>
+<span id="more"></span>
+
+<h2 id="主题定制"><a href="#主题定制" class="headerlink" title="主题定制"></a>主题定制</h2><p>通常来说，UI组件库都提供全局的主题定制的功能，如某个组件的默认颜色或整体的颜色风格等，一般可以在官网找到更改方式，譬如Ant Design Vue 3的主题定制方式就在<a href="https://antdv.com/docs/vue/customize-theme-cn">定制主题 - Ant Design Vue</a>. Vue项目通常需要修改全局选项文件。</p>
+<h2 id="调整内部样式"><a href="#调整内部样式" class="headerlink" title="调整内部样式"></a>调整内部样式</h2><p>在使用UI组件库的过程中，有时候需要调整个别组件的样式，而不改变全局的UI库参数。如果直接打开浏览器的开发者检查工具，可以看到UI库组件的内部存在一些class, 它们定义了那些你不想要的样式。这种时候，如果在源代码中直接用类名选择器设置这些class的样式，会发现并没有效果。这种时候，使用/deep/ .target-class 的选择器来定义你需要更改的样式，就能起到效果（LESS预编译语言下）。有一篇类似情况的文章可供参考：<a href="https://www.jianshu.com/p/5bd38a4d4d64">&gt;&gt;&gt;或/deep/的作用</a></p>
+]]></content>
+      <categories>
+        <category>开发</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+        <tag>CSS</tag>
       </tags>
   </entry>
   <entry>
@@ -217,6 +217,53 @@
       </tags>
   </entry>
   <entry>
+    <title>使用AWS Amplify搭建一个Degrees of Lewdity(DOL)私服</title>
+    <url>/%E4%BD%BF%E7%94%A8AWS-Amplify%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AADegrees-of-Lewdity-DOL-%E7%A7%81%E6%9C%8D/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近迷上了一款文字纯爱战斗冒险游戏（雾），我本人是用 iPhone 手机玩所以一直都是玩的 web 版本。一开始玩的是汉化组提供的 GitHub Pages 线上版，后来又玩了 DOL-Lyra 的美化封装版，也是有 GitHub Pages 线上版。玩了几个档以后开始尝试自己折腾模组，学会用<a href="https://github.com/cphxj123">北极星</a>大佬提供的美化模组生成器，可以把一些旧时代的直接覆盖游戏图片的美化模组封装成 mod loader 版本。后来又想尝试一下<a href="https://github.com/cphxj123/Dol-BJX-Ex">北极星扩展</a>，这回提供的是游戏本体 html 且没有直接提供的线上部署版，于是想着尝试自己弄一个静态 web 服务来托管这个游戏，并且看看能不能做一些不同的美化组合的快捷切换方式（mod loader 的模组顺序和启用切换还是太累，不是很好用）。最后算是弄出来了一个比较满意的成果，于是发个帖子分享一下我的操作路径。</p>
+<span id="more"></span>
+
+<h2 id="托管服务的选择"><a href="#托管服务的选择" class="headerlink" title="托管服务的选择"></a>托管服务的选择</h2><p>首先作为个人自用的小站点，也没有安全性要求，优先选择便宜甚至免费的服务。目前 GitHub Pages 托管静态站点是免费无限制使用的；AWS Amplify 是前 12 个月免费，不使用 SSR 的话部署不到 1GB 的数据月费也很低，最多不到 1 刀吧。考虑了一下 AWS 我没用过，这个网站也没有公开的需求，干脆用它搭一个试试。（Github Pages 也很好的，推荐使用）</p>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><p>现在主流的模组管理方法是通过 mod loader 来管理，网络上都可以直接下到内置 mod loader 的游戏本体。它们基本上只包含一个 html 文件，原版图片包和 i18n 等都需要通过 mod 的形式传入。</p>
+<ul>
+<li><a href="https://github.com/Eltirosto/Degrees-of-Lewdity-Chinese-Localization/releases">最新汉化版游戏本体</a></li>
+<li><a href="https://github.com/cphxj123/Dol-BJX-Ex">包含北极星拓展的汉化版游戏本体</a></li>
+</ul>
+<p>下载了游戏本体后，还需要下载所需预安装的相关 mod 文件。</p>
+<h2 id="单个游戏程序的部署代码"><a href="#单个游戏程序的部署代码" class="headerlink" title="单个游戏程序的部署代码"></a>单个游戏程序的部署代码</h2><p>以最新汉化版游戏本体为例，游戏本体关键文件目录是这样的：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">index.html</span><br><span class="line">style.css</span><br></pre></td></tr></table></figure>
+
+<p>（注：release 包里有多个文件，只有 html 和 css 这两个是游戏本体）</p>
+<p>如果需要在进入游戏程序时预加载模组，我们需要在 index.html 的同目录下新建一个 modList.json 文件，里面的内容是一个包含模组加载路径的数组。预加载的模组可以存放在服务器上，我们就直接在根目录下建一个 mods 文件夹，里面存放.mod.zip 文件，然后使用相对路径引用。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">index.html</span><br><span class="line">style.css</span><br><span class="line">modList.json +</span><br><span class="line">mods +</span><br><span class="line">- GameOriginalImagePack-0.4.5.3.mod.zip +</span><br><span class="line">- ModI18N-0.4.5.3-chs-alpha1.5.0.mod.zip +</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight json"><figcaption><span>modList.json</span></figcaption><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line">    <span class="string">&quot;mods/GameOriginalImagePack-0.4.5.3.mod.zip&quot;</span>,</span><br><span class="line">    <span class="string">&quot;mods/ModI18N-0.4.5.3-chs-alpha1.5.0.mod.zip&quot;</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>如此这般，单个游戏程序的部署代码就完成了。你可以建一个 GitHub 仓库来管理它。</p>
+<h2 id="用-AWS-Amplify-部署"><a href="#用-AWS-Amplify-部署" class="headerlink" title="用 AWS Amplify 部署"></a>用 AWS Amplify 部署</h2><p>在 AWS 控制台里可以找到这样的选项：“创建静态 web 服务”，进入配置页，连接到你的 GitHub 仓库并选择相应分支。可以允许 AWS 在 GitHub 提交更新时自动部署。配置项按照默认的来即可，等待 AWS 进行初次构建和部署，提示完成以后这个服务就创建好了。</p>
+<p>浏览器通常会自动以 index.html 作为重定向入口，所以部署成功后直接访问 AWS 提供的域名就会进到游戏里面，打开 mod loader 就可以看到你在 modList.json 中选择的 mod 已经加载。如果你有自己的域名，可以不使用 AWS 提供的随机域名，在应用程序设置-域管理中绑定自己的域名。</p>
+<p>如果你不想让陌生人访问你的站点，可以在应用程序设置-访问控制中添加限制，访问站点时会要求输入用户名和密码。</p>
+<h2 id="在一个站点上实现不同模组组合的切换"><a href="#在一个站点上实现不同模组组合的切换" class="headerlink" title="在一个站点上实现不同模组组合的切换"></a>在一个站点上实现不同模组组合的切换</h2><p>如果你也像我一样需要经常调整 mod 组合，那么可以接着看下去。大致的思路是做多个子页面，每个子页面都有一个 index.html 和 modList.json，mod 文件则都放在一个文件夹里复用。文件目录大致如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mods</span><br><span class="line">- mod1.mod.zip</span><br><span class="line">- mod2.mod.zip</span><br><span class="line">game1</span><br><span class="line">- index.html</span><br><span class="line">- modList.json</span><br><span class="line">game2</span><br><span class="line">- index.html</span><br><span class="line">- modList.json</span><br><span class="line">index.html</span><br></pre></td></tr></table></figure>
+
+<p>代码编写示例如下：</p>
+<figure class="highlight json"><figcaption><span>game1/modList.json</span></figcaption><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line">    <span class="string">&quot;../mods/mod1.mod.zip&quot;</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight json"><figcaption><span>game2/modList.json</span></figcaption><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line">    <span class="string">&quot;../mods/mod2.mod.zip&quot;</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><figcaption><span>index.html</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 一个简陋的选择页 --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;zh-CN&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>Degrees of Lewdity 游戏选择页<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;/game1&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_self&quot;</span></span></span><br><span class="line"><span class="tag">        &gt;</span>game1&lt;/a</span><br><span class="line">        &gt;</span><br><span class="line">        <span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;/game2&quot;</span> <span class="attr">target</span>=<span class="string">&quot;_self&quot;</span></span></span><br><span class="line"><span class="tag">        &gt;</span>game2&lt;/a</span><br><span class="line">        &gt;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>我自己使用的部署代码可以参考：<a href="https://github.com/MaryCLY/Degrees-of-Lewdity-Chinese-Localization/tree/build_clymini">GitHub链接</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>用这种方式实现的模组组合切换我还是比较满意的，首先是静态网站无需搭后端服务，总共的存储数据量也不是很大。因为是同一个站点，浏览器缓存是共通的，所以切换mod组合甚至本体也不需要导入导出存档（虽然本体切换有跳error的风险，但是保留成就点数还是需要导存档的啊）。日后如果有时间的话也可以研究研究有没有更省空间的方式来做这样的切换模组服务。</p>
+]]></content>
+      <categories>
+        <category>开发</category>
+      </categories>
+      <tags>
+        <tag>DOL</tag>
+        <tag>AWS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>关于我如何艰难地在公司业务中实现侧滑置顶删除功能（一）</title>
     <url>/%E5%85%B3%E4%BA%8E%E6%88%91%E5%A6%82%E4%BD%95%E8%89%B0%E9%9A%BE%E5%9C%B0%E5%9C%A8%E5%85%AC%E5%8F%B8%E4%B8%9A%E5%8A%A1%E4%B8%AD%E5%AE%9E%E7%8E%B0%E4%BE%A7%E6%BB%91%E7%BD%AE%E9%A1%B6%E5%88%A0%E9%99%A4%E5%8A%9F%E8%83%BD%EF%BC%88%E4%B8%80%EF%BC%89/</url>
     <content><![CDATA[<h2 id="工程需求"><a href="#工程需求" class="headerlink" title="工程需求"></a>工程需求</h2><p>开发的应用：用微信小程序经由hera生成的跨平台移动端APP。</p>
@@ -240,34 +287,6 @@
       </categories>
       <tags>
         <tag>微信小程序</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>各种问题的发现、解决与感想(2)</title>
-    <url>/%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98%E7%9A%84%E5%8F%91%E7%8E%B0%E3%80%81%E8%A7%A3%E5%86%B3%E4%B8%8E%E6%84%9F%E6%83%B3-2/</url>
-    <content><![CDATA[<p>目录：</p>
-<ul>
-<li><a href="#CSS-opacity%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE%E7%99%BE%E5%88%86%E6%AF%94%E4%BC%9A%E5%AF%BC%E8%87%B4%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%97%AE%E9%A2%98">CSS opacity属性设置百分比会导致生产环境问题</a></li>
-<li><a href="#HTML%E6%96%87%E4%BB%B6%E5%BC%95%E7%94%A8%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98">HTML文件引用在服务器上的路径问题</a></li>
-</ul>
-<span id="more"></span>
-
-<hr>
-<h2 id="CSS-opacity属性设置百分比会导致生产环境问题"><a href="#CSS-opacity属性设置百分比会导致生产环境问题" class="headerlink" title="CSS opacity属性设置百分比会导致生产环境问题"></a>CSS opacity属性设置百分比会导致生产环境问题</h2><p>在某个项目的测试阶段中，测试人员反馈某个元素没有显示，但是本地开发环境一切正常。在浏览器检查时发现，该元素的opacity属性值被设置为1%，故几乎不可见，但实际代码中设置为70%.</p>
-<p>经过网络查询发现，原来别人也有出现同样的问题，即当opacity属性设置为百分比的时候，打包工具无法正确处理，就会变成1%. 如果使用0.7这样的小数值，便可以正常处理。</p>
-<p>实际上，opacity的值的标准写法就是小数（见MDN Web Doc），但工程中往往写百分比形式也可以正常使用（且符合直觉，通常不透明度的概念经常以百分比表示），然而使用一些打包工具转移到生产环境的时候，就会导致数值错误的问题。希望读者都能够知道这件事情，不要犯类似的错误。</p>
-<hr>
-<h2 id="HTML文件引用在服务器上的路径问题"><a href="#HTML文件引用在服务器上的路径问题" class="headerlink" title="HTML文件引用在服务器上的路径问题"></a>HTML文件引用在服务器上的路径问题</h2><p>有时我们不使用node进行开发和打包，而是直接使用HTML, CSS, JS文件开发和打包。</p>
-<p>在开发阶段，我们在HTML代码中引用文件时通常使用文件的相对路径，如&quot;image/xxx.png&quot;, &quot;css/common.css&quot;，并且可以正常调试。打包到服务器上时，有时会把资源文件和HTML分开存放，有时就保留原始目录结构放在同一个文件夹下。但尽管放在同一个文件夹下，原来的相对路径却无法正常在浏览器中引用了，这是为什么呢？</p>
-<p>因为HTML文件中的相对路径，在浏览器环境下，会引用的实际路径是相对服务器根目录的路径。如HTML代码中引用了&quot;image/xxx.png&quot;，服务器地址是&quot;localhost:8080&quot;, 页面的地址是&quot;localhost:8080/hello/index.html&quot;, 反馈到浏览器中则不是期望的&quot;localhost:8080/hello/image/xxx.png&quot;, 而是&quot;localhost:8080/image/xxx.png&quot;，这样就无法正确地引用到文件了。</p>
-<p>因此，实际部署时正确的引用方式应该是&quot;hello/image/xxx.png&quot;. 实际上是一个相对服务器根目录的绝对路径。</p>
-]]></content>
-      <categories>
-        <category>开发</category>
-      </categories>
-      <tags>
-        <tag>CSS</tag>
-        <tag>HTML</tag>
       </tags>
   </entry>
   <entry>
@@ -307,58 +326,55 @@
       </tags>
   </entry>
   <entry>
-    <title>对一些团队前端开发规范的质疑、求证和思考总结</title>
-    <url>/%E5%AF%B9%E4%B8%80%E4%BA%9B%E5%9B%A2%E9%98%9F%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83%E7%9A%84%E8%B4%A8%E7%96%91%E3%80%81%E6%B1%82%E8%AF%81%E5%92%8C%E6%80%9D%E8%80%83%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<p>因为我算是比较重视代码质量的一个人，在刚进公司的时候就开始积极地学习团队内的一些开发规范。其中有写在文档里面的，也有同事们在代码审查中提到的；有美观性、易读性方面的，也有性能提升方面的。有时，看到一些开发规范，我无法理解它的意义和必要性，并且觉得非常不方便，便会在网络上寻找相关的资料，以及与同事交流。当然，作为一名前端新人，我个人的考虑其实也有很多不足之处，以下就介绍一下我对一些团队前端开发规范产生的质疑、求证和思考总结。</p>
+    <title>各种问题的发现、解决与感想(2)</title>
+    <url>/%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98%E7%9A%84%E5%8F%91%E7%8E%B0%E3%80%81%E8%A7%A3%E5%86%B3%E4%B8%8E%E6%84%9F%E6%83%B3-2/</url>
+    <content><![CDATA[<p>目录：</p>
+<ul>
+<li><a href="#CSS-opacity%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE%E7%99%BE%E5%88%86%E6%AF%94%E4%BC%9A%E5%AF%BC%E8%87%B4%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%97%AE%E9%A2%98">CSS opacity属性设置百分比会导致生产环境问题</a></li>
+<li><a href="#HTML%E6%96%87%E4%BB%B6%E5%BC%95%E7%94%A8%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98">HTML文件引用在服务器上的路径问题</a></li>
+</ul>
 <span id="more"></span>
 
 <hr>
-<h2 id="定义样式时使用class，避免使用id"><a href="#定义样式时使用class，避免使用id" class="headerlink" title="定义样式时使用class，避免使用id"></a>定义样式时使用class，避免使用id</h2><p>这一点，我一开始不知道有什么意义，在深入了解过后觉得是必要的。</p>
-<p>首先这两个属性存在明显的不同：class属性是专为样式准备的，并且可复用；id属性具有当前文档内的唯一性，通常能够起到特殊的作用，比如作为&lt;a&gt;标签的锚点，以及最快地被JavaScript元素节点语法选中。</p>
-<p>因此，id属性通常作为一种具有特殊性的标识，表示本元素可能用作页面锚点，或者代码中需要对该元素执行JavaScript操作。除此之外，不在非必要的时候使用id属性也可以减少出现意外重复的概率。</p>
-<p>总之，使用CSS选择器的时候，如果该本身就需要使用id进行其他操作，就可以使用id选择器，否则尽量不要仅为了定义样式而使用id.</p>
+<h2 id="CSS-opacity属性设置百分比会导致生产环境问题"><a href="#CSS-opacity属性设置百分比会导致生产环境问题" class="headerlink" title="CSS opacity属性设置百分比会导致生产环境问题"></a>CSS opacity属性设置百分比会导致生产环境问题</h2><p>在某个项目的测试阶段中，测试人员反馈某个元素没有显示，但是本地开发环境一切正常。在浏览器检查时发现，该元素的opacity属性值被设置为1%，故几乎不可见，但实际代码中设置为70%.</p>
+<p>经过网络查询发现，原来别人也有出现同样的问题，即当opacity属性设置为百分比的时候，打包工具无法正确处理，就会变成1%. 如果使用0.7这样的小数值，便可以正常处理。</p>
+<p>实际上，opacity的值的标准写法就是小数（见MDN Web Doc），但工程中往往写百分比形式也可以正常使用（且符合直觉，通常不透明度的概念经常以百分比表示），然而使用一些打包工具转移到生产环境的时候，就会导致数值错误的问题。希望读者都能够知道这件事情，不要犯类似的错误。</p>
 <hr>
-<h2 id="少使用标签选择器"><a href="#少使用标签选择器" class="headerlink" title="少使用标签选择器"></a>少使用标签选择器</h2><p>从开发者的角度来说，其实使用标签选择器是很方便的。譬如某个div元素中只存在一个img标签，使用[.certain-div img]的选择器就可以最快地选中该img元素。</p>
-<p>但从性能的方面考虑，使用标签选择器可能会带来一些性能影响。CSS选择器的层次逻辑是从右到左执行的，因此越往右边的选择器越影响效率。而标签选择器通常放在较右边，这就使得CSS先选中文档中所有的该标签，再执行上一步的层次查找。标签往往在文档中相比class和id是最多的，因此会影响CSS选择器的效率。</p>
-<p>当然，如果本身就是在文档中比较少使用的标签，自然不会非常影响效率，但div, span等使用频率较高的标签，可以想象对性能影响还是比较大的。</p>
-<p>总的来说，定义样式的时候，如果能使用class，尽量还是避免使用标签选择器。</p>
-<hr>
-<h2 id="Vue框架中v-for列表渲染的key属性是否能使用index"><a href="#Vue框架中v-for列表渲染的key属性是否能使用index" class="headerlink" title="Vue框架中v-for列表渲染的key属性是否能使用index"></a>Vue框架中v-for列表渲染的key属性是否能使用index</h2><p>key属性，是在Vue列表渲染时，被用于唯一标识每一列表项的属性。在列表渲染的机制中起到非常重要的作用。</p>
-<p>首先，在比较简单且静态的列表结构里面，使用index作为key, 或者不使用key, 其实是能够通过依赖默认行为提高性能的。</p>
-<p>但是，以下几种情况无法使用index作为key:</p>
-<ol>
-<li>该列表可能出现顺序变化。譬如需要提供向列表中间插入项的功能，这时会把顺序打乱，原本的标识作用也将产生混乱。这种情况，建议在列表结构中，给每一项增加一个单独的识别码，譬如：</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">id</span>: <span class="string">&#x27;hello1&#x27;</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;Hello&#x27;</span></span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        <span class="attr">id</span>: <span class="string">&#x27;hello2&#x27;</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;Hello&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>两个及以上的列表渲染作为兄弟节点出现。</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item, index) in array&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;index&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item1, index1) in array1&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;index1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>因为key的作用范围是同一元素下，这种条件下就可能会出现key重复的情况。解决方式是把index和一些字符拼接起来，就可以把两种key区分开。这种方式生成的key实际上也是和index完全相对应的。如下：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item, index) in array&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;`a$&#123;index&#125;`&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item1, index1) in array1&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;`b$&#123;index1&#125;`&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>跟前辈讨论的时候，她认为为了避免key重复的情况，应该完全不使用index作为key, 尽量拼接字符串。我其实觉得，这种情况在使用简单静态列表的场景下很少出现，只要心里有数就可以用。</p>
-<hr>
-<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>没人爱写注释，我也不爱。听过一种说法，一个条理清晰、命名意义明确、排版舒适的代码胜过各种注释，因此我也一直很努力地在做到，为了不写注释。</p>
-<p>当然，有些注释还是可以一写，大多方便别人，部分方便自己：</p>
-<ol>
-<li><p>公用的方法、变量、组件等。方法的注释推荐使用VSCode拓展koroFileHeader生成模板。如有需要，变量、组件参数建议说明取值范围。</p>
-</li>
-<li><p>文件头注释。也可以使用koroFileHeader生成模板，主要是介绍一下该文件负责的功能。</p>
-</li>
-<li><p>确实复杂，不易看懂的代码部分。如果发现某一段代码可能让未来的自己或别人看不懂，及时写注释。</p>
-</li>
-</ol>
+<h2 id="HTML文件引用在服务器上的路径问题"><a href="#HTML文件引用在服务器上的路径问题" class="headerlink" title="HTML文件引用在服务器上的路径问题"></a>HTML文件引用在服务器上的路径问题</h2><p>有时我们不使用node进行开发和打包，而是直接使用HTML, CSS, JS文件开发和打包。</p>
+<p>在开发阶段，我们在HTML代码中引用文件时通常使用文件的相对路径，如&quot;image/xxx.png&quot;, &quot;css/common.css&quot;，并且可以正常调试。打包到服务器上时，有时会把资源文件和HTML分开存放，有时就保留原始目录结构放在同一个文件夹下。但尽管放在同一个文件夹下，原来的相对路径却无法正常在浏览器中引用了，这是为什么呢？</p>
+<p>因为HTML文件中的相对路径，在浏览器环境下，会引用的实际路径是相对服务器根目录的路径。如HTML代码中引用了&quot;image/xxx.png&quot;，服务器地址是&quot;localhost:8080&quot;, 页面的地址是&quot;localhost:8080/hello/index.html&quot;, 反馈到浏览器中则不是期望的&quot;localhost:8080/hello/image/xxx.png&quot;, 而是&quot;localhost:8080/image/xxx.png&quot;，这样就无法正确地引用到文件了。</p>
+<p>因此，实际部署时正确的引用方式应该是&quot;hello/image/xxx.png&quot;. 实际上是一个相对服务器根目录的绝对路径。</p>
 ]]></content>
       <categories>
         <category>开发</category>
       </categories>
       <tags>
-        <tag>Vue</tag>
         <tag>CSS</tag>
         <tag>HTML</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>微信小程序：灵活适配不同标题栏高度的设备的方法</title>
+    <url>/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%EF%BC%9A%E7%81%B5%E6%B4%BB%E9%80%82%E9%85%8D%E4%B8%8D%E5%90%8C%E6%A0%87%E9%A2%98%E6%A0%8F%E9%AB%98%E5%BA%A6%E7%9A%84%E8%AE%BE%E5%A4%87%E7%9A%84%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="工程需求"><a href="#工程需求" class="headerlink" title="工程需求"></a>工程需求</h2><p>开发的应用：用微信小程序经由hera生成的跨平台移动端App。</p>
+<p>作为实习生在工作中遇到了这样的需求：需要顶部的标题栏和选择标签栏保持一直在窗口顶部（样式即top:0; position:fixed;），而其他的内容组件则可以随着页面滚动（样式即position:absolute;）。而我开发的小程序属于跨平台App，不知道公司的标题栏大小是如何设置的，总之会产生不同设备上标题栏高度不一的问题（尤其体现在微信小程序和hera生成的Android/IOS应用之间）。那么则需要解决一个问题，如何让absolute的内容组件自动贴着fixed的顶部组件生成呢？</p>
+<p>首先，对于需要分别设置不同position的组件，当然不能使用flex布局之类的进行自动黏贴。那么接下来的想法是想办法获取fixed部分的底部高度。</p>
+<h2 id="方案参考"><a href="#方案参考" class="headerlink" title="方案参考"></a>方案参考</h2><p>在公司其他员工的代码中发现了这样的操作：在html页面中建立一个wxs脚本，运行时获取设备是否为Android，如果是则通过Android系统接口获取标题栏高度而进行对固定内容组件的top样式的渲染，否则就不要使用位置fixed。</p>
+<p>私以为，还能够用更优雅的代码和适配性更强的方案去解决这个问题，于是经过一番思考有了以下的方案：</p>
+<span id="more"></span>
+
+<h2 id="最终方案"><a href="#最终方案" class="headerlink" title="最终方案"></a>最终方案</h2><h3 id="大体思路如下："><a href="#大体思路如下：" class="headerlink" title="大体思路如下："></a>大体思路如下：</h3><p>在onLoad函数中使用微信小程序的SelectorQuery选取需要设置fixed的view，然后获取它的底部高度，再对需要设置absolute的内容组件的top样式进行渲染。</p>
+<h3 id="主要代码："><a href="#主要代码：" class="headerlink" title="主要代码："></a>主要代码：</h3><figure class="highlight javascript"><figcaption><span>index.js</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">/* page */</span></span><br><span class="line">	<span class="attr">data</span>: &#123;</span><br><span class="line">		<span class="attr">dAbsoluteTop</span>: <span class="number">0</span>, <span class="comment">//准备设置固定内容组件的高度</span></span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="attr">onLoad</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">const</span> that = <span class="built_in">this</span>;</span><br><span class="line">		<span class="keyword">const</span> query = wx.createSelectorQuery();</span><br><span class="line">		query.select(<span class="string">&#x27;#fixed-view&#x27;</span>).boundingClientRect();</span><br><span class="line">		query.selectViewport().scrollOffset();</span><br><span class="line">		query.exec(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">			that.setData(&#123;</span><br><span class="line">				<span class="attr">dAbsoluteTop</span>: res[<span class="number">0</span>].bottom <span class="comment">//根据底部渲染</span></span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;,</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><figcaption><span>index.wxml</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;view id=&quot;fixed-view&quot; style=&quot;position: fixed; top: 0; display: flex; flex-direction: column;&quot;&gt;</span><br><span class="line">	&lt;titlebar /&gt; &lt;!-- 标题栏 --&gt;</span><br><span class="line">	&lt;tabbar /&gt; &lt;!-- 选择标签栏 --&gt;</span><br><span class="line">&lt;/view&gt;</span><br><span class="line">&lt;view style=&quot;position: absolute; top: &#123;&#123;dAbsolute&#125;&#125;;&quot;&gt;</span><br><span class="line">	&lt;!-- 内容 --&gt;</span><br><span class="line">&lt;/view&gt;</span><br></pre></td></tr></table></figure>
+
+<p>经不同设备检验，效果良好。</p>
+]]></content>
+      <categories>
+        <category>开发</category>
+      </categories>
+      <tags>
+        <tag>微信小程序</tag>
       </tags>
   </entry>
   <entry>
@@ -423,27 +439,58 @@
       </tags>
   </entry>
   <entry>
-    <title>微信小程序：灵活适配不同标题栏高度的设备的方法</title>
-    <url>/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%EF%BC%9A%E7%81%B5%E6%B4%BB%E9%80%82%E9%85%8D%E4%B8%8D%E5%90%8C%E6%A0%87%E9%A2%98%E6%A0%8F%E9%AB%98%E5%BA%A6%E7%9A%84%E8%AE%BE%E5%A4%87%E7%9A%84%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<h2 id="工程需求"><a href="#工程需求" class="headerlink" title="工程需求"></a>工程需求</h2><p>开发的应用：用微信小程序经由hera生成的跨平台移动端App。</p>
-<p>作为实习生在工作中遇到了这样的需求：需要顶部的标题栏和选择标签栏保持一直在窗口顶部（样式即top:0; position:fixed;），而其他的内容组件则可以随着页面滚动（样式即position:absolute;）。而我开发的小程序属于跨平台App，不知道公司的标题栏大小是如何设置的，总之会产生不同设备上标题栏高度不一的问题（尤其体现在微信小程序和hera生成的Android/IOS应用之间）。那么则需要解决一个问题，如何让absolute的内容组件自动贴着fixed的顶部组件生成呢？</p>
-<p>首先，对于需要分别设置不同position的组件，当然不能使用flex布局之类的进行自动黏贴。那么接下来的想法是想办法获取fixed部分的底部高度。</p>
-<h2 id="方案参考"><a href="#方案参考" class="headerlink" title="方案参考"></a>方案参考</h2><p>在公司其他员工的代码中发现了这样的操作：在html页面中建立一个wxs脚本，运行时获取设备是否为Android，如果是则通过Android系统接口获取标题栏高度而进行对固定内容组件的top样式的渲染，否则就不要使用位置fixed。</p>
-<p>私以为，还能够用更优雅的代码和适配性更强的方案去解决这个问题，于是经过一番思考有了以下的方案：</p>
+    <title>对一些团队前端开发规范的质疑、求证和思考总结</title>
+    <url>/%E5%AF%B9%E4%B8%80%E4%BA%9B%E5%9B%A2%E9%98%9F%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83%E7%9A%84%E8%B4%A8%E7%96%91%E3%80%81%E6%B1%82%E8%AF%81%E5%92%8C%E6%80%9D%E8%80%83%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>因为我算是比较重视代码质量的一个人，在刚进公司的时候就开始积极地学习团队内的一些开发规范。其中有写在文档里面的，也有同事们在代码审查中提到的；有美观性、易读性方面的，也有性能提升方面的。有时，看到一些开发规范，我无法理解它的意义和必要性，并且觉得非常不方便，便会在网络上寻找相关的资料，以及与同事交流。当然，作为一名前端新人，我个人的考虑其实也有很多不足之处，以下就介绍一下我对一些团队前端开发规范产生的质疑、求证和思考总结。</p>
 <span id="more"></span>
 
-<h2 id="最终方案"><a href="#最终方案" class="headerlink" title="最终方案"></a>最终方案</h2><h3 id="大体思路如下："><a href="#大体思路如下：" class="headerlink" title="大体思路如下："></a>大体思路如下：</h3><p>在onLoad函数中使用微信小程序的SelectorQuery选取需要设置fixed的view，然后获取它的底部高度，再对需要设置absolute的内容组件的top样式进行渲染。</p>
-<h3 id="主要代码："><a href="#主要代码：" class="headerlink" title="主要代码："></a>主要代码：</h3><figure class="highlight javascript"><figcaption><span>index.js</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment">/* page */</span></span><br><span class="line">	<span class="attr">data</span>: &#123;</span><br><span class="line">		<span class="attr">dAbsoluteTop</span>: <span class="number">0</span>, <span class="comment">//准备设置固定内容组件的高度</span></span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="attr">onLoad</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">const</span> that = <span class="built_in">this</span>;</span><br><span class="line">		<span class="keyword">const</span> query = wx.createSelectorQuery();</span><br><span class="line">		query.select(<span class="string">&#x27;#fixed-view&#x27;</span>).boundingClientRect();</span><br><span class="line">		query.selectViewport().scrollOffset();</span><br><span class="line">		query.exec(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line">			that.setData(&#123;</span><br><span class="line">				<span class="attr">dAbsoluteTop</span>: res[<span class="number">0</span>].bottom <span class="comment">//根据底部渲染</span></span><br><span class="line">			&#125;);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;,</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="定义样式时使用class，避免使用id"><a href="#定义样式时使用class，避免使用id" class="headerlink" title="定义样式时使用class，避免使用id"></a>定义样式时使用class，避免使用id</h2><p>这一点，我一开始不知道有什么意义，在深入了解过后觉得是必要的。</p>
+<p>首先这两个属性存在明显的不同：class属性是专为样式准备的，并且可复用；id属性具有当前文档内的唯一性，通常能够起到特殊的作用，比如作为&lt;a&gt;标签的锚点，以及最快地被JavaScript元素节点语法选中。</p>
+<p>因此，id属性通常作为一种具有特殊性的标识，表示本元素可能用作页面锚点，或者代码中需要对该元素执行JavaScript操作。除此之外，不在非必要的时候使用id属性也可以减少出现意外重复的概率。</p>
+<p>总之，使用CSS选择器的时候，如果该本身就需要使用id进行其他操作，就可以使用id选择器，否则尽量不要仅为了定义样式而使用id.</p>
+<hr>
+<h2 id="少使用标签选择器"><a href="#少使用标签选择器" class="headerlink" title="少使用标签选择器"></a>少使用标签选择器</h2><p>从开发者的角度来说，其实使用标签选择器是很方便的。譬如某个div元素中只存在一个img标签，使用[.certain-div img]的选择器就可以最快地选中该img元素。</p>
+<p>但从性能的方面考虑，使用标签选择器可能会带来一些性能影响。CSS选择器的层次逻辑是从右到左执行的，因此越往右边的选择器越影响效率。而标签选择器通常放在较右边，这就使得CSS先选中文档中所有的该标签，再执行上一步的层次查找。标签往往在文档中相比class和id是最多的，因此会影响CSS选择器的效率。</p>
+<p>当然，如果本身就是在文档中比较少使用的标签，自然不会非常影响效率，但div, span等使用频率较高的标签，可以想象对性能影响还是比较大的。</p>
+<p>总的来说，定义样式的时候，如果能使用class，尽量还是避免使用标签选择器。</p>
+<hr>
+<h2 id="Vue框架中v-for列表渲染的key属性是否能使用index"><a href="#Vue框架中v-for列表渲染的key属性是否能使用index" class="headerlink" title="Vue框架中v-for列表渲染的key属性是否能使用index"></a>Vue框架中v-for列表渲染的key属性是否能使用index</h2><p>key属性，是在Vue列表渲染时，被用于唯一标识每一列表项的属性。在列表渲染的机制中起到非常重要的作用。</p>
+<p>首先，在比较简单且静态的列表结构里面，使用index作为key, 或者不使用key, 其实是能够通过依赖默认行为提高性能的。</p>
+<p>但是，以下几种情况无法使用index作为key:</p>
+<ol>
+<li>该列表可能出现顺序变化。譬如需要提供向列表中间插入项的功能，这时会把顺序打乱，原本的标识作用也将产生混乱。这种情况，建议在列表结构中，给每一项增加一个单独的识别码，譬如：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">id</span>: <span class="string">&#x27;hello1&#x27;</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;Hello&#x27;</span></span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        <span class="attr">id</span>: <span class="string">&#x27;hello2&#x27;</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;Hello&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><figcaption><span>index.wxml</span></figcaption><table><tr><td class="code"><pre><span class="line">&lt;view id=&quot;fixed-view&quot; style=&quot;position: fixed; top: 0; display: flex; flex-direction: column;&quot;&gt;</span><br><span class="line">	&lt;titlebar /&gt; &lt;!-- 标题栏 --&gt;</span><br><span class="line">	&lt;tabbar /&gt; &lt;!-- 选择标签栏 --&gt;</span><br><span class="line">&lt;/view&gt;</span><br><span class="line">&lt;view style=&quot;position: absolute; top: &#123;&#123;dAbsolute&#125;&#125;;&quot;&gt;</span><br><span class="line">	&lt;!-- 内容 --&gt;</span><br><span class="line">&lt;/view&gt;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>两个及以上的列表渲染作为兄弟节点出现。</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item, index) in array&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;index&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item1, index1) in array1&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;index1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>经不同设备检验，效果良好。</p>
+<p>因为key的作用范围是同一元素下，这种条件下就可能会出现key重复的情况。解决方式是把index和一些字符拼接起来，就可以把两种key区分开。这种方式生成的key实际上也是和index完全相对应的。如下：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item, index) in array&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;`a$&#123;index&#125;`&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item1, index1) in array1&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;`b$&#123;index1&#125;`&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>跟前辈讨论的时候，她认为为了避免key重复的情况，应该完全不使用index作为key, 尽量拼接字符串。我其实觉得，这种情况在使用简单静态列表的场景下很少出现，只要心里有数就可以用。</p>
+<hr>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>没人爱写注释，我也不爱。听过一种说法，一个条理清晰、命名意义明确、排版舒适的代码胜过各种注释，因此我也一直很努力地在做到，为了不写注释。</p>
+<p>当然，有些注释还是可以一写，大多方便别人，部分方便自己：</p>
+<ol>
+<li><p>公用的方法、变量、组件等。方法的注释推荐使用VSCode拓展koroFileHeader生成模板。如有需要，变量、组件参数建议说明取值范围。</p>
+</li>
+<li><p>文件头注释。也可以使用koroFileHeader生成模板，主要是介绍一下该文件负责的功能。</p>
+</li>
+<li><p>确实复杂，不易看懂的代码部分。如果发现某一段代码可能让未来的自己或别人看不懂，及时写注释。</p>
+</li>
+</ol>
 ]]></content>
       <categories>
         <category>开发</category>
       </categories>
       <tags>
-        <tag>微信小程序</tag>
+        <tag>Vue</tag>
+        <tag>CSS</tag>
+        <tag>HTML</tag>
       </tags>
   </entry>
   <entry>
