@@ -240,7 +240,7 @@
 
 <p>如此这般，单个游戏程序的部署代码就完成了。你可以建一个 GitHub 仓库来管理它。</p>
 <h2 id="用-AWS-Amplify-部署"><a href="#用-AWS-Amplify-部署" class="headerlink" title="用 AWS Amplify 部署"></a>用 AWS Amplify 部署</h2><p>在 AWS 控制台里可以找到这样的选项：“创建静态 web 服务”，进入配置页，连接到你的 GitHub 仓库并选择相应分支。可以允许 AWS 在 GitHub 提交更新时自动部署。配置项按照默认的来即可，等待 AWS 进行初次构建和部署，提示完成以后这个服务就创建好了。</p>
-<p>浏览器通常会自动以 index.html 作为重定向入口，所以部署成功后直接访问 AWS 提供的域名就会进到游戏里面，打开 mod loader 就可以看到你在 modList.json 中选择的 mod 已经加载。如果你有自己的域名，可以不使用 AWS 提供的随机域名，在应用程序设置-域管理中绑定自己的域名。</p>
+<p>服务器默认会以 index.html 作为根路径的重定向入口，所以部署成功后直接访问 AWS 提供的域名就会进到游戏里面，打开 mod loader 就可以看到你在 modList.json 中选择的 mod 已经加载。如果你有自己的域名，可以不使用 AWS 提供的随机域名，在应用程序设置-域管理中绑定自己的域名。</p>
 <p>如果你不想让陌生人访问你的站点，可以在应用程序设置-访问控制中添加限制，访问站点时会要求输入用户名和密码。</p>
 <h2 id="在一个站点上实现不同模组组合的切换"><a href="#在一个站点上实现不同模组组合的切换" class="headerlink" title="在一个站点上实现不同模组组合的切换"></a>在一个站点上实现不同模组组合的切换</h2><p>如果你也像我一样需要经常调整 mod 组合，那么可以接着看下去。大致的思路是做多个子页面，每个子页面都有一个 index.html 和 modList.json，mod 文件则都放在一个文件夹里复用。文件目录大致如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mods</span><br><span class="line">- mod1.mod.zip</span><br><span class="line">- mod2.mod.zip</span><br><span class="line">game1</span><br><span class="line">- index.html</span><br><span class="line">- modList.json</span><br><span class="line">game2</span><br><span class="line">- index.html</span><br><span class="line">- modList.json</span><br><span class="line">index.html</span><br></pre></td></tr></table></figure>
