@@ -1,0 +1,71 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>程序员玛丽的星海方舟 | 双版本应用的架构决策反思</title><meta name="description" content="&lt;p&gt;去年8月启动的项目一直基本作为独立前端干到现在，有时候会突然意识到一些非常严重的技术决策失误，有些轻易就可以挽救，有些却已经积重难返。当然，我不会过分责怪那时的自己，毕竟当时还是一个只工作了一年的小白。但我决定把一个最近发现的决策失误记录下来，以警醒自己。&lt;/p&gt;"><link rel="icon" href="https://cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/物理2-飞船2.svg"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700"><link rel="stylesheet" href="/css/highlights/darkula.css"><link rel="stylesheet" href="/css/main.css"><link rel="search" type="application/opensearchdescription+xml" href="https://MaryCLY.github.io/atom.xml" title="程序员玛丽的星海方舟"><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="程序员玛丽的星海方舟" type="application/atom+xml">
+</head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/">程序员玛丽的星海方舟</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/about/" target="_self">ABOUT</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="https://github.com/maryCLY" target="_blank">GITHUB</a></li></ul></nav></header><main class="container__wrapper"><article class="article post"><h1 class="article__title">双版本应用的架构决策反思</h1><div class="article__date metadata"><div class="post-info">2024/05/20</div></div><div class="article__categories metadata">分类:
+<a class="article__categories__link metadata" href="/categories/%E5%BC%80%E5%8F%91/">开发</a></div><div class="article__tags metadata">标签:
+<a class="article__tags__link metadata" href="/tags/Vue/">Vue</a></div><div class="article__body"><p>去年8月启动的项目一直基本作为独立前端干到现在，有时候会突然意识到一些非常严重的技术决策失误，有些轻易就可以挽救，有些却已经积重难返。当然，我不会过分责怪那时的自己，毕竟当时还是一个只工作了一年的小白。但我决定把一个最近发现的决策失误记录下来，以警醒自己。</p>
+<span id="more"></span>
+
+<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>这个决策是在项目开发了大约2-3个月，已经开发了5-6个页面的时候出现的。一开始项目的需求是在32:9比例的大屏上进行展示，只开发了适配32:9比例的版本。但后来客户发现汇报时经常只有条件使用16:9的屏幕，且平常政府人员也有在电脑上浏览应用的需求，因此决定今后要同时开发16:9和32:9两个版本。因为这个需求，我们需要设计一套前端架构来实现两种比例的分别显示。</p>
+<h2 id="方案选择"><a href="#方案选择" class="headerlink" title="方案选择"></a>方案选择</h2><p>当时做前端架构设计的是我自己，时间比较仓促，只是简单跟研发经理交流了一下（研发经理是后端出身，其实不是很懂），暂时得出了以下的两个方案：</p>
+<ol>
+<li>使用同一套前端代码进行开发部署，通过一个变量来进行16:9和32:9比例的切换，代码通过这个变量作为条件进行分支表达</li>
+</ol>
+<p>具体的操作就是创建一个全局可获取的state(is169)，在template和script中通过这个变量来做分支表达；根节点根据is169设置类名.ratio169和.ratio329来进行css的覆盖。项目部署时附带一个config文件，在这里可以设置is169的值，或者自动切换（在代码里设置window的resize事件监听，判断当前屏幕比例）。</p>
+<ol start="2">
+<li>使用两套前端代码进行开发部署，16:9和32:9独立开发</li>
+</ol>
+<h2 id="优缺点分析"><a href="#优缺点分析" class="headerlink" title="优缺点分析"></a>优缺点分析</h2><h3 id="方案一："><a href="#方案一：" class="headerlink" title="方案一："></a>方案一：</h3><p>优点：</p>
+<ol>
+<li><p>代码和素材可以高度复用，冗余最小化，整体包大小较小</p>
+</li>
+<li><p>减少了代码重复的情况下，更改无需反复同步</p>
+</li>
+<li><p>可以实现两种比例之间快速切换，方便开发者和客户对比观察</p>
+</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li><p>必须同时载入整个包，启动速度可能较慢</p>
+</li>
+<li><p>分支判断的编码方式会降低易读性，且新人难以上手，后续维护较麻烦</p>
+</li>
+<li><p>当某个页面需要大幅度改动，而两个比例版本之间存在进度不一致的情况时，会比较麻烦</p>
+</li>
+</ol>
+<h3 id="方案二："><a href="#方案二：" class="headerlink" title="方案二："></a>方案二：</h3><p>优点：</p>
+<ol>
+<li><p>两个比例的包是独立的，单个启动速度较快</p>
+</li>
+<li><p>代码更加简单，易读性更强，新人上手更快，后续维护更简单</p>
+</li>
+<li><p>两种比例的内容不一致的情况会更好处理</p>
+</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li><p>作为整体来看代码冗余更多，包大小更大</p>
+</li>
+<li><p>存在更多重复代码，常需要进行修改同步</p>
+</li>
+<li><p>不可以实现两种比例之间快速切换</p>
+</li>
+</ol>
+<h2 id="当时的决策和现在的看法"><a href="#当时的决策和现在的看法" class="headerlink" title="当时的决策和现在的看法"></a>当时的决策和现在的看法</h2><p>首先说明，当时选择的是方案一，而现在我觉得方案二更好。为什么？这需要结合当时和现在的不同情况来解释。</p>
+<h3 id="选择方案一的理由"><a href="#选择方案一的理由" class="headerlink" title="选择方案一的理由"></a>选择方案一的理由</h3><ol>
+<li><p>当时项目还处于初期，需求的变化是迅速的，我需要一个更有备无患的方式去应对客户可能的需求。如果客户想要进行16:9和32:9的快速切换，怎么办？方案一是更容易实现这一点的。</p>
+</li>
+<li><p>开发的工期很赶。我认为使用方案一能减少代码量，很好地提高开发的效率。</p>
+</li>
+<li><p>可能会需要频繁地更改全局样式。使用方案一的情况下，在更改全局样式时能够更快地进行两种比例下的综合审阅。</p>
+</li>
+</ol>
+<p>除上述几点之外，也许当时的我并没有考虑到上文所提到的所有的优缺点来进行综合的评估，并且技术经验不足以支撑比较实际的设想对比。在比较仓促的情况下，认为方案一为更好实现的一方。</p>
+<h3 id="现在认为方案二更好的理由"><a href="#现在认为方案二更好的理由" class="headerlink" title="现在认为方案二更好的理由"></a>现在认为方案二更好的理由</h3><ol>
+<li><p>随着项目的发展，内容越来越多。现在一整个包的启动速度会很慢（相对单位的垃圾电脑来说），这个问题其实是对开发效率的一个很大的阻碍。</p>
+</li>
+<li><p>因为独特的编码方案，项目难以临时加新人支援（还需要花时间教学），我也不得不一直在这个项目上。就算以后调走了，估计也会是一个沉重的技术债。这个问题是当时没有考虑到的。</p>
+</li>
+<li><p>当时对公司的多package框架还不熟悉，现在深刻地掌握了以后发现，其实如果走方案二，还是可以复用很多代码和素材的，其实应对这种情况非常好。当时太高估方案二的开发难度和冗余程度了。</p>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总地来说，我现在觉得这是一个从长远来看比较失败的架构决策。考虑了重构成本，觉得还是比较困难，风险太高了。如果没有充分的时间和理想的方案，应该暂时不会考虑重构。但我现在深切感受到在某些情况下追求“精简”、“复用”可能是一个严重的谬误，希望能够在以后的开发生涯中成为一个教训。</p>
+</div></article><div class="pagination"><a class="pagination__link pagination__next" href="/Vue%E7%BB%84%E4%BB%B6%E5%A4%8D%E5%88%B6%E5%AE%9E%E7%8E%B0%E6%A8%A1%E5%9D%97%E6%94%BE%E5%A4%A7%E7%BB%88%E6%9E%81%E4%BC%98%E5%8C%96%E7%89%88/">下一篇</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 陈俪影</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>
