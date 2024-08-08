@@ -1,0 +1,24 @@
+<!DOCTYPE html><html lang="zh"><head><meta charset="UTF-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>程序员玛丽的星海方舟 | 双版本应用重构后的感想</title><meta name="description" content="&lt;p&gt;上篇中突然发现项目前端架构不合理后，我是有点坐立不安的。考虑到之后战线还会拉长，所以我还是抽了2-3天时间把这个事情处理掉。提前跟后端（兼研发经理）沟通过，让他配合我重新部署测试。&lt;/p&gt;"><link rel="icon" href="https://cdn.jsdelivr.net/gh/MaryCLY/blog_cdn/source/images/物理2-飞船2.svg"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700"><link rel="stylesheet" href="/css/highlights/darkula.css"><link rel="stylesheet" href="/css/main.css"><link rel="search" type="application/opensearchdescription+xml" href="https://MaryCLY.github.io/atom.xml" title="程序员玛丽的星海方舟"><meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="程序员玛丽的星海方舟" type="application/atom+xml">
+</head><body><div class="container"><header class="main-header"><h1 class="main-header__title uplize"><a class="main-header__title__link" href="/">程序员玛丽的星海方舟</a></h1><nav class="main-header__nav"><ul class="main-nav"><li class="main-nav__list"><a class="main-nav__list__link" href="/" target="_self">HOME</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/about/" target="_self">ABOUT</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="/archives/" target="_self">ARCHIVE</a></li><li class="main-nav__list"><a class="main-nav__list__link" href="https://github.com/maryCLY" target="_blank">GITHUB</a></li></ul></nav></header><main class="container__wrapper"><article class="article post"><h1 class="article__title">双版本应用重构后的感想</h1><div class="article__date metadata"><div class="post-info">2024/08/08</div></div><div class="article__categories metadata">分类:
+<a class="article__categories__link metadata" href="/categories/%E5%BC%80%E5%8F%91/">开发</a></div><div class="article__tags metadata">标签:
+<a class="article__tags__link metadata" href="/tags/Vue/">Vue</a></div><div class="article__body"><p>上篇中突然发现项目前端架构不合理后，我是有点坐立不安的。考虑到之后战线还会拉长，所以我还是抽了2-3天时间把这个事情处理掉。提前跟后端（兼研发经理）沟通过，让他配合我重新部署测试。</p>
+<span id="more"></span>
+
+<h2 id="重构的具体操作"><a href="#重构的具体操作" class="headerlink" title="重构的具体操作"></a>重构的具体操作</h2><p>首先，将源代码中可以完全复用的内容提取到上级目录下。如图片素材、通用逻辑函数、API定义等。移动后对代码进行全局替换，调整它们的引用地址。</p>
+<p>然后，新建一个package（前端脚手架的分包管理），将剩余的代码复制一份。然后对于每个文件，两边对照着保留当前比例所使用的代码，删除未使用的代码。这个过程需要非常细心，合理利用文件内搜索（我使用的分支信号是is169这个变量，就重点搜索这个变量）。</p>
+<p>完成这些后，再在package.json, 脚手架开发服务配置和webpack配置中定义16:9, 32:9单独或同时的启动服务方式和打包方式。如定义serve:169是只启动16:9的服务，serve是同时启动；build:169是打包16:9的程序，build是打包两个程序。</p>
+<p>以上就完成了重构。重构完后在本地启动服务，分别浏览16:9和32:9应用是否存在bug。本地确认无bug后发布测试环境，再确认测试环境是否有bug。对于后端来说，原先的部署方式是两个文件夹放置大体相同的打包文件，只有一个配置文件的区别，现在就是两个文件夹放不同的打包文件，改动不是特别大。</p>
+<h2 id="重构后感觉到的变化"><a href="#重构后感觉到的变化" class="headerlink" title="重构后感觉到的变化"></a>重构后感觉到的变化</h2><ol>
+<li><p>启动和打包速度：对于启动和打包单个比例的情况，是有一定的速度提升的，体感大约有20%。但是同时启动或打包两个比例时，会更慢。特别是打包时，会需要接近原来2倍的时间，因为实际上是按先后顺序分别打包，而不是同时。在实际开发过程中，大约70%的时间需要启动和打包单个比例，30%的时间是两个一起。综合来看，加权平均的启动、打包时间是略微更久。</p>
+</li>
+<li><p>单个包大小：相比原来的组合版本，16:9的减少约5%，32:9的减少约10%，效果没有我想象的好。我一开始认为，包大小中占比最大的就是素材，16:9和32:9单独的素材加起来会占很大的空间。而根据重构后的结果来看，素材实际上本来就复用得很多，并没有特别多单独的素材。不过32:9的包通常都比16:9的大几MB，说明32:9的素材还是比较大的。</p>
+</li>
+<li><p>部署速度：部署速度理论上通常取决于上传文件的速度。原本是将同一个包上传到服务器，然后复制到两个文件夹；现在需要将两个包上传到服务器的两个文件夹。因为上传两个文件实际上是几乎没有降速，所以上传速度取决于最大的那个包，还是小于原来的包大小，因此就算是两个包同时上传，也会比原来的部署速度稍快。更新一个包的情况则自然是更快一些的。</p>
+</li>
+<li><p>开发体验：代码易读性提升非常明显，开发难度也显著下降。不用想尽办法写分支，只需要关注当下的事情真是太好了。开发完一个比例后直接复制一份，再稍微修改就行，除了echarts配置外，js逻辑基本不需要改。需要跟新人解释的事情也少多了。</p>
+</li>
+<li><p>代码冗余和维护难度：那都不叫事儿……其实没有多少。</p>
+</li>
+</ol>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>综合来说，重构还是非常值得的。虽然性能没有明显的提升，但开发体验真的好很多。这次架构决策失误让我深刻地体会到代码的少和精并不代表好。有时恰恰需要冗余，才能让程序更加灵活。</p>
+</div></article><div class="pagination"><a class="pagination__link pagination__next" href="/%E5%8F%8C%E7%89%88%E6%9C%AC%E5%BA%94%E7%94%A8%E7%9A%84%E6%9E%B6%E6%9E%84%E5%86%B3%E7%AD%96%E5%8F%8D%E6%80%9D/">下一篇</a></div></main><footer class="footer metadata"><p class="footer__text">© 2024 陈俪影</p><p class="footer__text">Powered by <a class="footer__text__link" href="https://hexo.io/" target="_blank">Hexo</a> &amp; <a class="footer__text__link" href="https://pages.github.com/" target="_blank">Github Page</a></p></footer></div></body></html>

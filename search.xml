@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Vue router中params和query的区别</title>
+    <url>/Vue-router%E4%B8%ADparams%E5%92%8Cquery%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
+    <content><![CDATA[<p>在vue开发中，页面跳转时常需要传递一些参数。如果我们使用vue router来进行路由，通常有两种方式进行参数的传递，一种是使用params, 一种是使用query. 在下文中我将介绍一下个人使用中感受到的这两者的区别。</p>
+<span id="more"></span>
+
+<h3 id="params"><a href="#params" class="headerlink" title="params"></a>params</h3><p>如果在url中定义了params的绑定，则可以直接在url中传递params(&#39;/articles/:id&#39;), 否则只能通过vue router的方法（router-link或$router.push等）传递路径对象时添加params. params可以直接传递值和对象，并且定义了router中的props属性后，能在页面中通过props属性去获取。如果不通过props, 也可以使用this.$route.params获取。</p>
+<h3 id="query"><a href="#query" class="headerlink" title="query"></a>query</h3><p>query既可以直接在url后添加(&#39;marycly.github.io/index?pageId=114514&#39;), 也可以通过vue router的方法传递路径对象时添加query. query可以传递值，但传递对象效果不稳定，最好将传递的对象通过JSON来保存。在页面中可以使用this.$route.query来获取query的内容。</p>
+<h3 id="在页面跳转中的实际应用表现"><a href="#在页面跳转中的实际应用表现" class="headerlink" title="在页面跳转中的实际应用表现"></a>在页面跳转中的实际应用表现</h3><p>如果url中没有定义与params绑定的动态路由，个人不建议使用params来传递信息。因为这种情况下url里面并不包含params的信息，在浏览器历史前进/回退的过程中就会丢失，因此只能实现一个单向的传递。如果需要支持时常在页面之间跳转并保留信息的话，建议使用query.</p>
+]]></content>
+      <categories>
+        <category>开发</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JS: Union-find(quick-union + weighting + path compression + map)</title>
     <url>/JS-Union-find-quick-union-weighting-path-compression-map/</url>
     <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Union-find，合并-查找，这个算法是在学习Algorithms这本书的时候看到的。</p>
@@ -46,23 +63,6 @@
       <tags>
         <tag>JS</tag>
         <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vue router中params和query的区别</title>
-    <url>/Vue-router%E4%B8%ADparams%E5%92%8Cquery%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
-    <content><![CDATA[<p>在vue开发中，页面跳转时常需要传递一些参数。如果我们使用vue router来进行路由，通常有两种方式进行参数的传递，一种是使用params, 一种是使用query. 在下文中我将介绍一下个人使用中感受到的这两者的区别。</p>
-<span id="more"></span>
-
-<h3 id="params"><a href="#params" class="headerlink" title="params"></a>params</h3><p>如果在url中定义了params的绑定，则可以直接在url中传递params(&#39;/articles/:id&#39;), 否则只能通过vue router的方法（router-link或$router.push等）传递路径对象时添加params. params可以直接传递值和对象，并且定义了router中的props属性后，能在页面中通过props属性去获取。如果不通过props, 也可以使用this.$route.params获取。</p>
-<h3 id="query"><a href="#query" class="headerlink" title="query"></a>query</h3><p>query既可以直接在url后添加(&#39;marycly.github.io/index?pageId=114514&#39;), 也可以通过vue router的方法传递路径对象时添加query. query可以传递值，但传递对象效果不稳定，最好将传递的对象通过JSON来保存。在页面中可以使用this.$route.query来获取query的内容。</p>
-<h3 id="在页面跳转中的实际应用表现"><a href="#在页面跳转中的实际应用表现" class="headerlink" title="在页面跳转中的实际应用表现"></a>在页面跳转中的实际应用表现</h3><p>如果url中没有定义与params绑定的动态路由，个人不建议使用params来传递信息。因为这种情况下url里面并不包含params的信息，在浏览器历史前进/回退的过程中就会丢失，因此只能实现一个单向的传递。如果需要支持时常在页面之间跳转并保留信息的话，建议使用query.</p>
-]]></content>
-      <categories>
-        <category>开发</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -279,6 +279,65 @@
       </tags>
   </entry>
   <entry>
+    <title>双版本应用重构后的感想</title>
+    <url>/%E5%8F%8C%E7%89%88%E6%9C%AC%E5%BA%94%E7%94%A8%E9%87%8D%E6%9E%84%E5%90%8E%E7%9A%84%E6%84%9F%E6%83%B3/</url>
+    <content><![CDATA[<p>上篇中突然发现项目前端架构不合理后，我是有点坐立不安的。考虑到之后战线还会拉长，所以我还是抽了2-3天时间把这个事情处理掉。提前跟后端（兼研发经理）沟通过，让他配合我重新部署测试。</p>
+<span id="more"></span>
+
+<h2 id="重构的具体操作"><a href="#重构的具体操作" class="headerlink" title="重构的具体操作"></a>重构的具体操作</h2><p>首先，将源代码中可以完全复用的内容提取到上级目录下。如图片素材、通用逻辑函数、API定义等。移动后对代码进行全局替换，调整它们的引用地址。</p>
+<p>然后，新建一个package（前端脚手架的分包管理），将剩余的代码复制一份。然后对于每个文件，两边对照着保留当前比例所使用的代码，删除未使用的代码。这个过程需要非常细心，合理利用文件内搜索（我使用的分支信号是is169这个变量，就重点搜索这个变量）。</p>
+<p>完成这些后，再在package.json, 脚手架开发服务配置和webpack配置中定义16:9, 32:9单独或同时的启动服务方式和打包方式。如定义serve:169是只启动16:9的服务，serve是同时启动；build:169是打包16:9的程序，build是打包两个程序。</p>
+<p>以上就完成了重构。重构完后在本地启动服务，分别浏览16:9和32:9应用是否存在bug。本地确认无bug后发布测试环境，再确认测试环境是否有bug。对于后端来说，原先的部署方式是两个文件夹放置大体相同的打包文件，只有一个配置文件的区别，现在就是两个文件夹放不同的打包文件，改动不是特别大。</p>
+<h2 id="重构后感觉到的变化"><a href="#重构后感觉到的变化" class="headerlink" title="重构后感觉到的变化"></a>重构后感觉到的变化</h2><ol>
+<li><p>启动和打包速度：对于启动和打包单个比例的情况，是有一定的速度提升的，体感大约有20%。但是同时启动或打包两个比例时，会更慢。特别是打包时，会需要接近原来2倍的时间，因为实际上是按先后顺序分别打包，而不是同时。在实际开发过程中，大约70%的时间需要启动和打包单个比例，30%的时间是两个一起。综合来看，加权平均的启动、打包时间是略微更久。</p>
+</li>
+<li><p>单个包大小：相比原来的组合版本，16:9的减少约5%，32:9的减少约10%，效果没有我想象的好。我一开始认为，包大小中占比最大的就是素材，16:9和32:9单独的素材加起来会占很大的空间。而根据重构后的结果来看，素材实际上本来就复用得很多，并没有特别多单独的素材。不过32:9的包通常都比16:9的大几MB，说明32:9的素材还是比较大的。</p>
+</li>
+<li><p>部署速度：部署速度理论上通常取决于上传文件的速度。原本是将同一个包上传到服务器，然后复制到两个文件夹；现在需要将两个包上传到服务器的两个文件夹。因为上传两个文件实际上是几乎没有降速，所以上传速度取决于最大的那个包，还是小于原来的包大小，因此就算是两个包同时上传，也会比原来的部署速度稍快。更新一个包的情况则自然是更快一些的。</p>
+</li>
+<li><p>开发体验：代码易读性提升非常明显，开发难度也显著下降。不用想尽办法写分支，只需要关注当下的事情真是太好了。开发完一个比例后直接复制一份，再稍微修改就行，除了echarts配置外，js逻辑基本不需要改。需要跟新人解释的事情也少多了。</p>
+</li>
+<li><p>代码冗余和维护难度：那都不叫事儿……其实没有多少。</p>
+</li>
+</ol>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>综合来说，重构还是非常值得的。虽然性能没有明显的提升，但开发体验真的好很多。这次架构决策失误让我深刻地体会到代码的少和精并不代表好。有时恰恰需要冗余，才能让程序更加灵活。</p>
+]]></content>
+      <categories>
+        <category>开发</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>各种问题的发现、解决与感想(2)</title>
+    <url>/%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98%E7%9A%84%E5%8F%91%E7%8E%B0%E3%80%81%E8%A7%A3%E5%86%B3%E4%B8%8E%E6%84%9F%E6%83%B3-2/</url>
+    <content><![CDATA[<p>目录：</p>
+<ul>
+<li><a href="#CSS-opacity%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE%E7%99%BE%E5%88%86%E6%AF%94%E4%BC%9A%E5%AF%BC%E8%87%B4%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%97%AE%E9%A2%98">CSS opacity属性设置百分比会导致生产环境问题</a></li>
+<li><a href="#HTML%E6%96%87%E4%BB%B6%E5%BC%95%E7%94%A8%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98">HTML文件引用在服务器上的路径问题</a></li>
+</ul>
+<span id="more"></span>
+
+<hr>
+<h2 id="CSS-opacity属性设置百分比会导致生产环境问题"><a href="#CSS-opacity属性设置百分比会导致生产环境问题" class="headerlink" title="CSS opacity属性设置百分比会导致生产环境问题"></a>CSS opacity属性设置百分比会导致生产环境问题</h2><p>在某个项目的测试阶段中，测试人员反馈某个元素没有显示，但是本地开发环境一切正常。在浏览器检查时发现，该元素的opacity属性值被设置为1%，故几乎不可见，但实际代码中设置为70%.</p>
+<p>经过网络查询发现，原来别人也有出现同样的问题，即当opacity属性设置为百分比的时候，打包工具无法正确处理，就会变成1%. 如果使用0.7这样的小数值，便可以正常处理。</p>
+<p>实际上，opacity的值的标准写法就是小数（见MDN Web Doc），但工程中往往写百分比形式也可以正常使用（且符合直觉，通常不透明度的概念经常以百分比表示），然而使用一些打包工具转移到生产环境的时候，就会导致数值错误的问题。希望读者都能够知道这件事情，不要犯类似的错误。</p>
+<hr>
+<h2 id="HTML文件引用在服务器上的路径问题"><a href="#HTML文件引用在服务器上的路径问题" class="headerlink" title="HTML文件引用在服务器上的路径问题"></a>HTML文件引用在服务器上的路径问题</h2><p>有时我们不使用node进行开发和打包，而是直接使用HTML, CSS, JS文件开发和打包。</p>
+<p>在开发阶段，我们在HTML代码中引用文件时通常使用文件的相对路径，如&quot;image/xxx.png&quot;, &quot;css/common.css&quot;，并且可以正常调试。打包到服务器上时，有时会把资源文件和HTML分开存放，有时就保留原始目录结构放在同一个文件夹下。但尽管放在同一个文件夹下，原来的相对路径却无法正常在浏览器中引用了，这是为什么呢？</p>
+<p>因为HTML文件中的相对路径，在浏览器环境下，会引用的实际路径是相对服务器根目录的路径。如HTML代码中引用了&quot;image/xxx.png&quot;，服务器地址是&quot;localhost:8080&quot;, 页面的地址是&quot;localhost:8080/hello/index.html&quot;, 反馈到浏览器中则不是期望的&quot;localhost:8080/hello/image/xxx.png&quot;, 而是&quot;localhost:8080/image/xxx.png&quot;，这样就无法正确地引用到文件了。</p>
+<p>因此，实际部署时正确的引用方式应该是&quot;hello/image/xxx.png&quot;. 实际上是一个相对服务器根目录的绝对路径。</p>
+]]></content>
+      <categories>
+        <category>开发</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
+        <tag>HTML</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>双版本应用的架构决策反思</title>
     <url>/%E5%8F%8C%E7%89%88%E6%9C%AC%E5%BA%94%E7%94%A8%E7%9A%84%E6%9E%B6%E6%9E%84%E5%86%B3%E7%AD%96%E5%8F%8D%E6%80%9D/</url>
     <content><![CDATA[<p>去年8月启动的项目一直基本作为独立前端干到现在，有时候会突然意识到一些非常严重的技术决策失误，有些轻易就可以挽救，有些却已经积重难返。当然，我不会过分责怪那时的自己，毕竟当时还是一个只工作了一年的小白。但我决定把一个最近发现的决策失误记录下来，以警醒自己。</p>
@@ -357,89 +416,6 @@
       </tags>
   </entry>
   <entry>
-    <title>各种问题的发现、解决与感想(2)</title>
-    <url>/%E5%90%84%E7%A7%8D%E9%97%AE%E9%A2%98%E7%9A%84%E5%8F%91%E7%8E%B0%E3%80%81%E8%A7%A3%E5%86%B3%E4%B8%8E%E6%84%9F%E6%83%B3-2/</url>
-    <content><![CDATA[<p>目录：</p>
-<ul>
-<li><a href="#CSS-opacity%E5%B1%9E%E6%80%A7%E8%AE%BE%E7%BD%AE%E7%99%BE%E5%88%86%E6%AF%94%E4%BC%9A%E5%AF%BC%E8%87%B4%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E9%97%AE%E9%A2%98">CSS opacity属性设置百分比会导致生产环境问题</a></li>
-<li><a href="#HTML%E6%96%87%E4%BB%B6%E5%BC%95%E7%94%A8%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%9A%84%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98">HTML文件引用在服务器上的路径问题</a></li>
-</ul>
-<span id="more"></span>
-
-<hr>
-<h2 id="CSS-opacity属性设置百分比会导致生产环境问题"><a href="#CSS-opacity属性设置百分比会导致生产环境问题" class="headerlink" title="CSS opacity属性设置百分比会导致生产环境问题"></a>CSS opacity属性设置百分比会导致生产环境问题</h2><p>在某个项目的测试阶段中，测试人员反馈某个元素没有显示，但是本地开发环境一切正常。在浏览器检查时发现，该元素的opacity属性值被设置为1%，故几乎不可见，但实际代码中设置为70%.</p>
-<p>经过网络查询发现，原来别人也有出现同样的问题，即当opacity属性设置为百分比的时候，打包工具无法正确处理，就会变成1%. 如果使用0.7这样的小数值，便可以正常处理。</p>
-<p>实际上，opacity的值的标准写法就是小数（见MDN Web Doc），但工程中往往写百分比形式也可以正常使用（且符合直觉，通常不透明度的概念经常以百分比表示），然而使用一些打包工具转移到生产环境的时候，就会导致数值错误的问题。希望读者都能够知道这件事情，不要犯类似的错误。</p>
-<hr>
-<h2 id="HTML文件引用在服务器上的路径问题"><a href="#HTML文件引用在服务器上的路径问题" class="headerlink" title="HTML文件引用在服务器上的路径问题"></a>HTML文件引用在服务器上的路径问题</h2><p>有时我们不使用node进行开发和打包，而是直接使用HTML, CSS, JS文件开发和打包。</p>
-<p>在开发阶段，我们在HTML代码中引用文件时通常使用文件的相对路径，如&quot;image/xxx.png&quot;, &quot;css/common.css&quot;，并且可以正常调试。打包到服务器上时，有时会把资源文件和HTML分开存放，有时就保留原始目录结构放在同一个文件夹下。但尽管放在同一个文件夹下，原来的相对路径却无法正常在浏览器中引用了，这是为什么呢？</p>
-<p>因为HTML文件中的相对路径，在浏览器环境下，会引用的实际路径是相对服务器根目录的路径。如HTML代码中引用了&quot;image/xxx.png&quot;，服务器地址是&quot;localhost:8080&quot;, 页面的地址是&quot;localhost:8080/hello/index.html&quot;, 反馈到浏览器中则不是期望的&quot;localhost:8080/hello/image/xxx.png&quot;, 而是&quot;localhost:8080/image/xxx.png&quot;，这样就无法正确地引用到文件了。</p>
-<p>因此，实际部署时正确的引用方式应该是&quot;hello/image/xxx.png&quot;. 实际上是一个相对服务器根目录的绝对路径。</p>
-]]></content>
-      <categories>
-        <category>开发</category>
-      </categories>
-      <tags>
-        <tag>CSS</tag>
-        <tag>HTML</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>对一些团队前端开发规范的质疑、求证和思考总结</title>
-    <url>/%E5%AF%B9%E4%B8%80%E4%BA%9B%E5%9B%A2%E9%98%9F%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83%E7%9A%84%E8%B4%A8%E7%96%91%E3%80%81%E6%B1%82%E8%AF%81%E5%92%8C%E6%80%9D%E8%80%83%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<p>因为我算是比较重视代码质量的一个人，在刚进公司的时候就开始积极地学习团队内的一些开发规范。其中有写在文档里面的，也有同事们在代码审查中提到的；有美观性、易读性方面的，也有性能提升方面的。有时，看到一些开发规范，我无法理解它的意义和必要性，并且觉得非常不方便，便会在网络上寻找相关的资料，以及与同事交流。当然，作为一名前端新人，我个人的考虑其实也有很多不足之处，以下就介绍一下我对一些团队前端开发规范产生的质疑、求证和思考总结。</p>
-<span id="more"></span>
-
-<hr>
-<h2 id="定义样式时使用class，避免使用id"><a href="#定义样式时使用class，避免使用id" class="headerlink" title="定义样式时使用class，避免使用id"></a>定义样式时使用class，避免使用id</h2><p>这一点，我一开始不知道有什么意义，在深入了解过后觉得是必要的。</p>
-<p>首先这两个属性存在明显的不同：class属性是专为样式准备的，并且可复用；id属性具有当前文档内的唯一性，通常能够起到特殊的作用，比如作为&lt;a&gt;标签的锚点，以及最快地被JavaScript元素节点语法选中。</p>
-<p>因此，id属性通常作为一种具有特殊性的标识，表示本元素可能用作页面锚点，或者代码中需要对该元素执行JavaScript操作。除此之外，不在非必要的时候使用id属性也可以减少出现意外重复的概率。</p>
-<p>总之，使用CSS选择器的时候，如果该本身就需要使用id进行其他操作，就可以使用id选择器，否则尽量不要仅为了定义样式而使用id.</p>
-<hr>
-<h2 id="少使用标签选择器"><a href="#少使用标签选择器" class="headerlink" title="少使用标签选择器"></a>少使用标签选择器</h2><p>从开发者的角度来说，其实使用标签选择器是很方便的。譬如某个div元素中只存在一个img标签，使用[.certain-div img]的选择器就可以最快地选中该img元素。</p>
-<p>但从性能的方面考虑，使用标签选择器可能会带来一些性能影响。CSS选择器的层次逻辑是从右到左执行的，因此越往右边的选择器越影响效率。而标签选择器通常放在较右边，这就使得CSS先选中文档中所有的该标签，再执行上一步的层次查找。标签往往在文档中相比class和id是最多的，因此会影响CSS选择器的效率。</p>
-<p>当然，如果本身就是在文档中比较少使用的标签，自然不会非常影响效率，但div, span等使用频率较高的标签，可以想象对性能影响还是比较大的。</p>
-<p>总的来说，定义样式的时候，如果能使用class，尽量还是避免使用标签选择器。</p>
-<hr>
-<h2 id="Vue框架中v-for列表渲染的key属性是否能使用index"><a href="#Vue框架中v-for列表渲染的key属性是否能使用index" class="headerlink" title="Vue框架中v-for列表渲染的key属性是否能使用index"></a>Vue框架中v-for列表渲染的key属性是否能使用index</h2><p>key属性，是在Vue列表渲染时，被用于唯一标识每一列表项的属性。在列表渲染的机制中起到非常重要的作用。</p>
-<p>首先，在比较简单且静态的列表结构里面，使用index作为key, 或者不使用key, 其实是能够通过依赖默认行为提高性能的。</p>
-<p>但是，以下几种情况无法使用index作为key:</p>
-<ol>
-<li>该列表可能出现顺序变化。譬如需要提供向列表中间插入项的功能，这时会把顺序打乱，原本的标识作用也将产生混乱。这种情况，建议在列表结构中，给每一项增加一个单独的识别码，譬如：</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">id</span>: <span class="string">&#x27;hello1&#x27;</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;Hello&#x27;</span></span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        <span class="attr">id</span>: <span class="string">&#x27;hello2&#x27;</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;Hello&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-
-<ol start="2">
-<li>两个及以上的列表渲染作为兄弟节点出现。</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item, index) in array&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;index&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item1, index1) in array1&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;index1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>因为key的作用范围是同一元素下，这种条件下就可能会出现key重复的情况。解决方式是把index和一些字符拼接起来，就可以把两种key区分开。这种方式生成的key实际上也是和index完全相对应的。如下：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item, index) in array&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;`a$&#123;index&#125;`&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item1, index1) in array1&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;`b$&#123;index1&#125;`&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>跟前辈讨论的时候，她认为为了避免key重复的情况，应该完全不使用index作为key, 尽量拼接字符串。我其实觉得，这种情况在使用简单静态列表的场景下很少出现，只要心里有数就可以用。</p>
-<hr>
-<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>没人爱写注释，我也不爱。听过一种说法，一个条理清晰、命名意义明确、排版舒适的代码胜过各种注释，因此我也一直很努力地在做到，为了不写注释。</p>
-<p>当然，有些注释还是可以一写，大多方便别人，部分方便自己：</p>
-<ol>
-<li><p>公用的方法、变量、组件等。方法的注释推荐使用VSCode拓展koroFileHeader生成模板。如有需要，变量、组件参数建议说明取值范围。</p>
-</li>
-<li><p>文件头注释。也可以使用koroFileHeader生成模板，主要是介绍一下该文件负责的功能。</p>
-</li>
-<li><p>确实复杂，不易看懂的代码部分。如果发现某一段代码可能让未来的自己或别人看不懂，及时写注释。</p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>开发</category>
-      </categories>
-      <tags>
-        <tag>Vue</tag>
-        <tag>CSS</tag>
-        <tag>HTML</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>微信小程序：灵活适配不同标题栏高度的设备的方法</title>
     <url>/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%EF%BC%9A%E7%81%B5%E6%B4%BB%E9%80%82%E9%85%8D%E4%B8%8D%E5%90%8C%E6%A0%87%E9%A2%98%E6%A0%8F%E9%AB%98%E5%BA%A6%E7%9A%84%E8%AE%BE%E5%A4%87%E7%9A%84%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<h2 id="工程需求"><a href="#工程需求" class="headerlink" title="工程需求"></a>工程需求</h2><p>开发的应用：用微信小程序经由hera生成的跨平台移动端App。</p>
@@ -461,6 +437,28 @@
       </categories>
       <tags>
         <tag>微信小程序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>邮箱系统界面设计</title>
+    <url>/%E9%82%AE%E7%AE%B1%E7%B3%BB%E7%BB%9F%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1/</url>
+    <content><![CDATA[<p>谨以本文记录2022年7月入职科大讯飞后，作为培训的一部分参加的编程大赛。</p>
+<p>因为项目要求队员中至少一位有TCP编程经验，原本小组中的两位前端之一（自然不是我）被分配到其他小组了，而新分配进来的这位是一个Android开发工程师，并没有Vue开发经验（比赛要求使用Vue框架进行开发）。因此，所有的前端开发工作便由我一个人完成。因为前端部分代码完全由我独立开发，因此作为个人成果发布于<a href="https://github.com/MaryCLY/mail-system-ui">GitHub</a>供公开交流学习。</p>
+<span id="more"></span>
+
+<h2 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h2><h3 id="登录-注册界面"><a href="#登录-注册界面" class="headerlink" title="登录/注册界面"></a>登录/注册界面</h3><p>登录/注册的过程又被分为两个步骤：第一个步骤是输入用户名并点击“下一步”，这时系统会检测用户名是否已注册，从而将用户转入登录或注册页面。而第二个步骤则是输入密码，其中需要注册的用户将被要求重复输入密码，而登录的用户只需输入一次。在这个过程中，前端包含用户名与密码的格式检测。</p>
+<p>点击确认后，系统请求后端是否注册/登录成功，如果失败弹出错误提示，反之则弹出成功提示，并将页面转入主页。</p>
+<h3 id="主页"><a href="#主页" class="headerlink" title="主页"></a>主页</h3><p>主页提供查看邮件以及写新邮件的功能。其中查看邮件的内容分为收件箱和发件箱，邮件列表提供分页功能，点击列表中的邮件标题进入邮件详情。</p>
+<p>写邮件的功能采用按钮+模态弹窗的形式实现。因为开发时采用的富文本编辑器出现bug难以修复，只提供了输入纯文本的功能。未支持上传附件。</p>
+<p>头部提供退出登录按钮。</p>
+<h2 id="主要技术"><a href="#主要技术" class="headerlink" title="主要技术"></a>主要技术</h2><p>系统使用Vite+Vue 3进行前端开发。</p>
+<h2 id="部分细节"><a href="#部分细节" class="headerlink" title="部分细节"></a>部分细节</h2><p>交付时的版本，只使用点击来切换sider中的选项卡，而复杂的操作下会出现bug. 之后进行了一定的优化，使用vuex state来管理当前处于的页面，从而保证sider的选项正确。</p>
+]]></content>
+      <categories>
+        <category>开发</category>
+      </categories>
+      <tags>
+        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -525,25 +523,58 @@
       </tags>
   </entry>
   <entry>
-    <title>邮箱系统界面设计</title>
-    <url>/%E9%82%AE%E7%AE%B1%E7%B3%BB%E7%BB%9F%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1/</url>
-    <content><![CDATA[<p>谨以本文记录2022年7月入职科大讯飞后，作为培训的一部分参加的编程大赛。</p>
-<p>因为项目要求队员中至少一位有TCP编程经验，原本小组中的两位前端之一（自然不是我）被分配到其他小组了，而新分配进来的这位是一个Android开发工程师，并没有Vue开发经验（比赛要求使用Vue框架进行开发）。因此，所有的前端开发工作便由我一个人完成。因为前端部分代码完全由我独立开发，因此作为个人成果发布于<a href="https://github.com/MaryCLY/mail-system-ui">GitHub</a>供公开交流学习。</p>
+    <title>对一些团队前端开发规范的质疑、求证和思考总结</title>
+    <url>/%E5%AF%B9%E4%B8%80%E4%BA%9B%E5%9B%A2%E9%98%9F%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83%E7%9A%84%E8%B4%A8%E7%96%91%E3%80%81%E6%B1%82%E8%AF%81%E5%92%8C%E6%80%9D%E8%80%83%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p>因为我算是比较重视代码质量的一个人，在刚进公司的时候就开始积极地学习团队内的一些开发规范。其中有写在文档里面的，也有同事们在代码审查中提到的；有美观性、易读性方面的，也有性能提升方面的。有时，看到一些开发规范，我无法理解它的意义和必要性，并且觉得非常不方便，便会在网络上寻找相关的资料，以及与同事交流。当然，作为一名前端新人，我个人的考虑其实也有很多不足之处，以下就介绍一下我对一些团队前端开发规范产生的质疑、求证和思考总结。</p>
 <span id="more"></span>
 
-<h2 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h2><h3 id="登录-注册界面"><a href="#登录-注册界面" class="headerlink" title="登录/注册界面"></a>登录/注册界面</h3><p>登录/注册的过程又被分为两个步骤：第一个步骤是输入用户名并点击“下一步”，这时系统会检测用户名是否已注册，从而将用户转入登录或注册页面。而第二个步骤则是输入密码，其中需要注册的用户将被要求重复输入密码，而登录的用户只需输入一次。在这个过程中，前端包含用户名与密码的格式检测。</p>
-<p>点击确认后，系统请求后端是否注册/登录成功，如果失败弹出错误提示，反之则弹出成功提示，并将页面转入主页。</p>
-<h3 id="主页"><a href="#主页" class="headerlink" title="主页"></a>主页</h3><p>主页提供查看邮件以及写新邮件的功能。其中查看邮件的内容分为收件箱和发件箱，邮件列表提供分页功能，点击列表中的邮件标题进入邮件详情。</p>
-<p>写邮件的功能采用按钮+模态弹窗的形式实现。因为开发时采用的富文本编辑器出现bug难以修复，只提供了输入纯文本的功能。未支持上传附件。</p>
-<p>头部提供退出登录按钮。</p>
-<h2 id="主要技术"><a href="#主要技术" class="headerlink" title="主要技术"></a>主要技术</h2><p>系统使用Vite+Vue 3进行前端开发。</p>
-<h2 id="部分细节"><a href="#部分细节" class="headerlink" title="部分细节"></a>部分细节</h2><p>交付时的版本，只使用点击来切换sider中的选项卡，而复杂的操作下会出现bug. 之后进行了一定的优化，使用vuex state来管理当前处于的页面，从而保证sider的选项正确。</p>
+<hr>
+<h2 id="定义样式时使用class，避免使用id"><a href="#定义样式时使用class，避免使用id" class="headerlink" title="定义样式时使用class，避免使用id"></a>定义样式时使用class，避免使用id</h2><p>这一点，我一开始不知道有什么意义，在深入了解过后觉得是必要的。</p>
+<p>首先这两个属性存在明显的不同：class属性是专为样式准备的，并且可复用；id属性具有当前文档内的唯一性，通常能够起到特殊的作用，比如作为&lt;a&gt;标签的锚点，以及最快地被JavaScript元素节点语法选中。</p>
+<p>因此，id属性通常作为一种具有特殊性的标识，表示本元素可能用作页面锚点，或者代码中需要对该元素执行JavaScript操作。除此之外，不在非必要的时候使用id属性也可以减少出现意外重复的概率。</p>
+<p>总之，使用CSS选择器的时候，如果该本身就需要使用id进行其他操作，就可以使用id选择器，否则尽量不要仅为了定义样式而使用id.</p>
+<hr>
+<h2 id="少使用标签选择器"><a href="#少使用标签选择器" class="headerlink" title="少使用标签选择器"></a>少使用标签选择器</h2><p>从开发者的角度来说，其实使用标签选择器是很方便的。譬如某个div元素中只存在一个img标签，使用[.certain-div img]的选择器就可以最快地选中该img元素。</p>
+<p>但从性能的方面考虑，使用标签选择器可能会带来一些性能影响。CSS选择器的层次逻辑是从右到左执行的，因此越往右边的选择器越影响效率。而标签选择器通常放在较右边，这就使得CSS先选中文档中所有的该标签，再执行上一步的层次查找。标签往往在文档中相比class和id是最多的，因此会影响CSS选择器的效率。</p>
+<p>当然，如果本身就是在文档中比较少使用的标签，自然不会非常影响效率，但div, span等使用频率较高的标签，可以想象对性能影响还是比较大的。</p>
+<p>总的来说，定义样式的时候，如果能使用class，尽量还是避免使用标签选择器。</p>
+<hr>
+<h2 id="Vue框架中v-for列表渲染的key属性是否能使用index"><a href="#Vue框架中v-for列表渲染的key属性是否能使用index" class="headerlink" title="Vue框架中v-for列表渲染的key属性是否能使用index"></a>Vue框架中v-for列表渲染的key属性是否能使用index</h2><p>key属性，是在Vue列表渲染时，被用于唯一标识每一列表项的属性。在列表渲染的机制中起到非常重要的作用。</p>
+<p>首先，在比较简单且静态的列表结构里面，使用index作为key, 或者不使用key, 其实是能够通过依赖默认行为提高性能的。</p>
+<p>但是，以下几种情况无法使用index作为key:</p>
+<ol>
+<li>该列表可能出现顺序变化。譬如需要提供向列表中间插入项的功能，这时会把顺序打乱，原本的标识作用也将产生混乱。这种情况，建议在列表结构中，给每一项增加一个单独的识别码，譬如：</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">id</span>: <span class="string">&#x27;hello1&#x27;</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;Hello&#x27;</span></span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        <span class="attr">id</span>: <span class="string">&#x27;hello2&#x27;</span>,</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;Hello&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>两个及以上的列表渲染作为兄弟节点出现。</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item, index) in array&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;index&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item1, index1) in array1&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;index1&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>因为key的作用范围是同一元素下，这种条件下就可能会出现key重复的情况。解决方式是把index和一些字符拼接起来，就可以把两种key区分开。这种方式生成的key实际上也是和index完全相对应的。如下：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item, index) in array&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;`a$&#123;index&#125;`&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">&quot;(item1, index1) in array1&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;`b$&#123;index1&#125;`&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>跟前辈讨论的时候，她认为为了避免key重复的情况，应该完全不使用index作为key, 尽量拼接字符串。我其实觉得，这种情况在使用简单静态列表的场景下很少出现，只要心里有数就可以用。</p>
+<hr>
+<h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>没人爱写注释，我也不爱。听过一种说法，一个条理清晰、命名意义明确、排版舒适的代码胜过各种注释，因此我也一直很努力地在做到，为了不写注释。</p>
+<p>当然，有些注释还是可以一写，大多方便别人，部分方便自己：</p>
+<ol>
+<li><p>公用的方法、变量、组件等。方法的注释推荐使用VSCode拓展koroFileHeader生成模板。如有需要，变量、组件参数建议说明取值范围。</p>
+</li>
+<li><p>文件头注释。也可以使用koroFileHeader生成模板，主要是介绍一下该文件负责的功能。</p>
+</li>
+<li><p>确实复杂，不易看懂的代码部分。如果发现某一段代码可能让未来的自己或别人看不懂，及时写注释。</p>
+</li>
+</ol>
 ]]></content>
       <categories>
         <category>开发</category>
       </categories>
       <tags>
         <tag>Vue</tag>
+        <tag>CSS</tag>
+        <tag>HTML</tag>
       </tags>
   </entry>
 </search>
