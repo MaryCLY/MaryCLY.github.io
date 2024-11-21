@@ -605,13 +605,19 @@ img {
 	color: #ff90d0;
 	text-decoration: underline;
 }
-.article__body > h2,
-.article__body h3,
+.article__body > h2 {
+	font-size: 20px;
+	margin: 15px 0;
+}
+.article__body h3 {
+	font-size: 18px;
+	margin: 12px 0;
+}
 .article__body h4,
 .article__body h5,
 .article__body h6 {
-	font-size: 20px;
-	margin: 15px 0;
+	font-size: 16px;
+	margin: 10px 0;
 }
 .article__body > blockquote {
 	background-color: #e6e6e6;
